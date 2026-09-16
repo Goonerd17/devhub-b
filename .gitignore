@@ -41,3 +41,28 @@ out/
 /src/test/resources/application.yml
 /.claude/docs/
 /src/main/resources/application-local.yml
+
+### Application configuration containing local or environment-specific values ###
+**/src/main/resources/application-local.yml
+**/src/main/resources/application-prd.yml
+**/src/main/resources/application-*.properties
+**/src/main/resources/application-*.yaml
+
+# Module-local application.yml files are generated/developer-specific defaults.
+# Keep shared, non-sensitive configuration in versioned documentation/templates.
+**/src/main/resources/application.yml
+
+### Secrets and credentials ###
+.env
+.env.*
+!.env.example
+**/secrets/
+**/secret/
+**/credentials/
+**/*-secret.*
+**/*-credentials.*
+**/*.pem
+**/*.key
+**/*.p12
+**/*.jks
+**/*.keystore

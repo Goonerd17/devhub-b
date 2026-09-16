@@ -1,1 +1,18 @@
+plugins {
+    id 'org.gradle.toolchains.foojay-resolver-convention' version '0.10.0'
+}
+
 rootProject.name = 'devhub-b'
+
+include 'bootstrap'
+include 'platform'
+include 'web'
+
+include 'identity'
+include 'member'
+include 'project'
+include 'community'
+include 'administration'
+include 'media'
+include 'notification'
+include 'readmodel'
