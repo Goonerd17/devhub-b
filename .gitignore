@@ -1,8 +1,5 @@
 HELP.md
 .gradle
-.gradle-phase0/
-.gradle-phase1/
-.gradle-verify/
 build/
 !gradle/wrapper/gradle-wrapper.jar
 !**/src/main/**/build/
@@ -54,6 +51,10 @@ out/
 # Module-local application.yml files are generated/developer-specific defaults.
 # Keep shared, non-sensitive configuration in versioned documentation/templates.
 **/src/main/resources/application.yml
+!discovery-server/src/main/resources/application.yml
+!config-server/src/main/resources/application.yml
+!gateway-server/src/main/resources/application.yml
+!media-server/src/main/resources/application.yml
 
 ### Secrets and credentials ###
 .env

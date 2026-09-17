@@ -1,0 +1,12 @@
+spring:
+  cloud:
+    gateway:
+      server:
+        webflux:
+          routes:
+            - id: media-files
+              uri: lb://media-server
+              predicates:
+                - Path=/api/files,/api/files/**
+              filters:
+                - StripPrefix=1

@@ -1,7 +1,0 @@
-package teamdevhub.devhub.identity.api.credential;
-
-import java.util.Optional;
-
-public interface MemberEmailQuery {
-    Optional<String> findEmail(String memberGuid);
-}
