@@ -1,4 +1,4 @@
-package teamdevhub.devhub.bootstrap.config;
+package teamdevhub.devhub.platform.config;
 
 import io.netty.channel.ChannelOption;
 import io.netty.handler.timeout.ReadTimeoutHandler;
@@ -6,6 +6,7 @@ import io.netty.handler.timeout.WriteTimeoutHandler;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.client.reactive.ReactorClientHttpConnector;
@@ -18,34 +19,27 @@ import java.time.Duration;
 
 @Slf4j
 @Configuration
-public class WebClientConfig {
-
+@Profile("standalone")
+public class PlatformWebClientConfig {
     @Bean("defaultWebClient")
     @ConditionalOnMissingBean(name = "defaultWebClient")
-    public WebClient defaultWebClient() {
-        return WebClient.builder()
-                .filter(logRequest())
-                .filter(logResponse())
-                .build();
+    WebClient defaultWebClient() {
+        return WebClient.builder().filter(logRequest()).filter(logResponse()).build();
     }
 
     @Bean("oauthWebClient")
     @ConditionalOnMissingBean(name = "oauthWebClient")
-    public WebClient oauthWebClient() {
+    WebClient oauthWebClient() {
         HttpClient httpClient = HttpClient.create()
                 .option(ChannelOption.CONNECT_TIMEOUT_MILLIS, 5000)
                 .responseTimeout(Duration.ofSeconds(5))
                 .doOnConnected(connection -> connection
                         .addHandlerLast(new ReadTimeoutHandler(5))
-                        .addHandlerLast(new WriteTimeoutHandler(5))
-                );
-
+                        .addHandlerLast(new WriteTimeoutHandler(5)));
         return WebClient.builder()
                 .clientConnector(new ReactorClientHttpConnector(httpClient))
                 .defaultHeader(HttpHeaders.USER_AGENT, "devhub-oauth-client")
-                .filter(logRequest())
-                .filter(logResponse())
-                .build();
+                .filter(logRequest()).filter(logResponse()).build();
     }
 
     private ExchangeFilterFunction logRequest() {

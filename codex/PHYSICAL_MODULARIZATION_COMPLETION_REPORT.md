@@ -97,3 +97,9 @@ flowchart LR
 ## 디렉터리 정리
 
 각 모듈의 `src` 하위에서 소스·리소스가 없는 빈 패키지 디렉터리만 제거했다. Gradle이 생성하는 `build` 디렉터리와 실제 테스트 fixture가 있는 경로는 삭제하지 않았다.
+
+## 독립 기동 설정 (2026-09-16)
+
+모듈별 `application.yml`에 `standalone` 프로파일과 고유 HTTP 포트를 지정했다. `platform`은 WebClient·PasswordEncoder·QueryDSL 기술 인프라를 제공하고, `identity`는 standalone AuthenticationManager를 구성한다. 각 모듈은 `jdbc:h2:mem:devhub`를 사용한다.
+
+검증 결과 `identity-service.jar`가 standalone profile에서 포트 8082로 정상 기동했으며 H2, JPA EntityManagerFactory, Repository, Security 초기화를 완료했다. 전체 `build -x test` 및 bootstrap 테스트도 성공했다.

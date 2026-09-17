@@ -762,3 +762,6 @@ H2 In-Memory Database `jdbc:h2:mem:devhub`, 물리 DB 공유, transaction 경계
 - QueryDSL 공통 인프라를 `platform.config.QueryDslConfig`로 제공하고 bootstrap의 중복 설정을 제거했다. 모든 모듈 bootJar 패키징과 bootstrap 테스트가 성공했으며, `member-service.jar`를 실제 실행해 JPA repository 4개와 H2 초기화 및 애플리케이션 기동을 확인했다.
 - 사용자 요청에 따라 기존 `.gradle-phase0`, `.gradle-phase1` Gradle 캐시 디렉터리를 삭제했다.
 - 2026-09-16 모듈 `src` 하위의 빈 legacy 디렉터리를 정리했다. 실제 Java/리소스가 존재하는 패키지는 유지하고, `teamdevhub/devhub/core`, `outbound` 등 빈 경로와 빈 테스트 패키지만 제거했다. `build` 생성 디렉터리는 보존했다.
+- 2026-09-16 모듈 독립 기동 설정을 보강했다. `platform`에 standalone 전용 `PlatformWebClientConfig`/`PlatformPasswordCryptoConfig`를 추가하고 QueryDSL과 함께 기술 인프라를 제공했다. Identity에는 standalone `AuthenticationManager` 구성을 추가했다.
+- 모듈별 application.yml에 standalone profile, 고유 포트(8081~8090), 공통 H2 `jdbc:h2:mem:devhub` 및 Identity의 비밀값 대체용 로컬 개발 설정을 구성했다. 실제 credential은 포함하지 않았다.
+- `identity-service.jar`를 standalone profile로 실제 기동하여 Tomcat 8082, H2/JPA, Security 초기화를 확인했다. `bootstrap:test` 및 전체 `build -x test`는 성공했다.

@@ -1,5 +1,8 @@
 HELP.md
 .gradle
+.gradle-phase0/
+.gradle-phase1/
+.gradle-verify/
 build/
 !gradle/wrapper/gradle-wrapper.jar
 !**/src/main/**/build/
