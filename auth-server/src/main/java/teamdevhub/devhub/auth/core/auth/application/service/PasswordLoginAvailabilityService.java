@@ -8,7 +8,7 @@ import teamdevhub.devhub.auth.api.credential.PasswordLoginAvailabilityQuery;
 
 @Service
 @RequiredArgsConstructor
-public class PasswordLoginAvailabilityService implements PasswordLoginAvailabilityQuery {
+public class PasswordLoginAvailabilityService implements PasswordLoginAvailabilityQuery, teamdevhub.devhub.shared.security.PasswordLoginAvailabilityQuery {
 
     private final EmailUserCredentialRepository emailUserCredentialRepository;
 

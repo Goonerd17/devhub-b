@@ -17,9 +17,9 @@ import teamdevhub.devhub.community.core.board.port.out.BoardRepository;
 import teamdevhub.devhub.community.core.board.port.out.CommentRepository;
 import teamdevhub.devhub.shared.core.common.exception.BusinessRuleException;
 import teamdevhub.devhub.shared.identifier.IdentifierProvider;
-import teamdevhub.devhub.auth.api.credential.MemberEmailQuery;
-import teamdevhub.devhub.member.api.profile.MemberCommunityProfile;
-import teamdevhub.devhub.member.api.profile.MemberCommunityProfileQuery;
+import teamdevhub.devhub.shared.security.MemberEmailQuery;
+import teamdevhub.devhub.shared.member.MemberCommunityProfile;
+import teamdevhub.devhub.shared.member.MemberProfileQuery;
 import teamdevhub.devhub.shared.shared.enums.ErrorCode;
 
 @Service
@@ -31,7 +31,7 @@ public class BoardService implements BoardUseCase {
 	private final BoardRepository boardRepository;
 	private final BoardLikeRepository boardLikeRepository;
 	private final CommentRepository commentRepository;
-	private final MemberCommunityProfileQuery memberCommunityProfileQuery;
+	private final MemberProfileQuery memberCommunityProfileQuery;
 	private final MemberEmailQuery memberEmailQuery;
 	private final CommentService commentService;
 	

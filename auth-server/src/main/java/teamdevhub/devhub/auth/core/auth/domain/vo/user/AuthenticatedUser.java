@@ -1,7 +1,7 @@
 package teamdevhub.devhub.auth.core.auth.domain.vo.user;
 
 import lombok.Builder;
-import teamdevhub.devhub.member.api.MemberRole;
+import teamdevhub.devhub.shared.security.MemberRole;
 import teamdevhub.devhub.shared.security.AuditablePrincipal;
 import teamdevhub.devhub.shared.security.CurrentUserPrincipal;
 

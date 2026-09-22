@@ -7,9 +7,9 @@ import teamdevhub.devhub.auth.core.auth.port.in.command.oauth.SignupOAuthUserCom
 import teamdevhub.devhub.auth.core.user.port.in.command.SignupAdminCommand;
 import teamdevhub.devhub.auth.core.user.port.in.command.SignupUserCommand;
 import teamdevhub.devhub.auth.core.user.port.in.usecase.UserSignupUseCase;
-import teamdevhub.devhub.member.api.MemberRegistrationCommand;
-import teamdevhub.devhub.member.api.MemberRegistrationUseCase;
-import teamdevhub.devhub.member.api.MemberRole;
+import teamdevhub.devhub.shared.member.AuthMemberGateway;
+import teamdevhub.devhub.shared.member.AuthMemberRegistration;
+import teamdevhub.devhub.shared.security.MemberRole;
 import teamdevhub.devhub.shared.identifier.IdentifierProvider;
 
 @Service
@@ -17,7 +17,7 @@ import teamdevhub.devhub.shared.identifier.IdentifierProvider;
 @RequiredArgsConstructor
 public class UserSignupService implements UserSignupUseCase {
 
-    private final MemberRegistrationUseCase memberRegistrationUseCase;
+    private final AuthMemberGateway memberRegistrationUseCase;
     private final IdentifierProvider identifierProvider;
 
     @Override
@@ -25,20 +25,20 @@ public class UserSignupService implements UserSignupUseCase {
         if(memberRegistrationUseCase.adminExists()) {
             return;
         }
-        memberRegistrationUseCase.register(new MemberRegistrationCommand(identifierProvider.generateIdentifier(),
+        memberRegistrationUseCase.register(new AuthMemberRegistration(identifierProvider.generateIdentifier(),
                 signupAdminCommand.username(), signupAdminCommand.introduction(), signupAdminCommand.positionList(),
                 signupAdminCommand.skillList(), MemberRole.ADMIN));
     }
 
     @Override
     public void saveEmailUserInfo(SignupUserCommand signupUserCommand, String userGuid) {
-        memberRegistrationUseCase.register(new MemberRegistrationCommand(userGuid, signupUserCommand.username(),
+        memberRegistrationUseCase.register(new AuthMemberRegistration(userGuid, signupUserCommand.username(),
                 signupUserCommand.introduction(), signupUserCommand.positionList(), signupUserCommand.skillList(), MemberRole.USER));
     }
 
     @Override
     public void saveOAuthUserInfo(SignupOAuthUserCommand signupOAuthUserCommand, String userGuid) {
-        memberRegistrationUseCase.register(new MemberRegistrationCommand(userGuid, signupOAuthUserCommand.username(),
+        memberRegistrationUseCase.register(new AuthMemberRegistration(userGuid, signupOAuthUserCommand.username(),
                 signupOAuthUserCommand.introduction(), signupOAuthUserCommand.positionList(), signupOAuthUserCommand.skillList(), MemberRole.USER));
     }
 }

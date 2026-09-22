@@ -5,7 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import teamdevhub.devhub.member.api.MemberRole;
+import teamdevhub.devhub.shared.security.MemberRole;
 import teamdevhub.devhub.auth.core.auth.domain.VerificationProvider;
 
 import static lombok.AccessLevel.PROTECTED;

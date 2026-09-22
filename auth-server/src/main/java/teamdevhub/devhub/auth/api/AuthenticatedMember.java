@@ -1,6 +1,6 @@
 package teamdevhub.devhub.auth.api;
 
-import teamdevhub.devhub.member.api.MemberRole;
+import teamdevhub.devhub.shared.security.MemberRole;
 
 public interface AuthenticatedMember {
     String userGuid();

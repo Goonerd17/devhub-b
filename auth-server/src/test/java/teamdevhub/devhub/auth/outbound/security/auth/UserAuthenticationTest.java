@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import teamdevhub.devhub.auth.outbound.security.auth.UserAuthentication;
 import teamdevhub.devhub.auth.core.auth.domain.vo.user.AuthenticatedUser;
-import teamdevhub.devhub.member.api.MemberRole;
+import teamdevhub.devhub.shared.security.MemberRole;
 
 import java.util.Collection;
 

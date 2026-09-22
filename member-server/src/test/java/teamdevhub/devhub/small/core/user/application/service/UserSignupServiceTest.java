@@ -17,6 +17,9 @@ import teamdevhub.devhub.fake.pure.application.port.out.user.FakeUserSkillReposi
 import teamdevhub.devhub.member.api.MemberRegistrationUseCase;
 import teamdevhub.devhub.member.core.user.application.service.MemberRegistrationService;
 import teamdevhub.devhub.fake.pure.application.provider.FakeUuidIdentifierProvider;
+import teamdevhub.devhub.shared.member.AuthMemberGateway;
+import teamdevhub.devhub.shared.member.AuthMemberRegistration;
+import teamdevhub.devhub.shared.security.MemberRole;
 
 import java.util.List;
 import java.util.Set;
@@ -39,7 +42,7 @@ public class UserSignupServiceTest {
         userSkillRepository = new FakeUserSkillRepository();
 
         MemberRegistrationUseCase registration = new MemberRegistrationService(userRepository, userPositionRepository, userSkillRepository);
-        userSignupService = new UserSignupService(registration, new FakeUuidIdentifierProvider(TEST_USER_GUID_1));
+        userSignupService = new UserSignupService(gateway(registration), new FakeUuidIdentifierProvider(TEST_USER_GUID_1));
     }
 
     @Test
@@ -47,7 +50,7 @@ public class UserSignupServiceTest {
     void createAdminAccount() {
         // given
         MemberRegistrationUseCase registration = new MemberRegistrationService(userRepository, userPositionRepository, userSkillRepository);
-        userSignupService = new UserSignupService(registration, new FakeUuidIdentifierProvider(ADMIN_USER_GUID_1));
+        userSignupService = new UserSignupService(gateway(registration), new FakeUuidIdentifierProvider(ADMIN_USER_GUID_1));
 
         SignupAdminCommand signupAdminCommand = new SignupAdminCommand(null, ADMIN_EMAIL_1, ADMIN_PASSWORD_1, ADMIN_USERNAME_1, "", List.of(), List.of(), null);
         // when
@@ -121,5 +124,19 @@ public class UserSignupServiceTest {
 
         // then
         assertThat(userRepository.wasCalled("updateLastLoginDateTime")).isFalse();
+    }
+
+    private AuthMemberGateway gateway(MemberRegistrationUseCase registration) {
+        return new AuthMemberGateway() {
+            public void register(AuthMemberRegistration value) {
+                registration.register(new teamdevhub.devhub.member.api.MemberRegistrationCommand(
+                        value.userGuid(), value.username(), value.introduction(), value.positionList(), value.skillList(),
+                        teamdevhub.devhub.member.api.MemberRole.valueOf(value.role().name())));
+            }
+            public boolean adminExists() { return registration.adminExists(); }
+            public void assertCanLogIn(String memberGuid) { }
+            public void recordSuccessfulLogin(String memberGuid) { }
+            public MemberRole findCurrentRole(String memberGuid) { return MemberRole.USER; }
+        };
     }
 }

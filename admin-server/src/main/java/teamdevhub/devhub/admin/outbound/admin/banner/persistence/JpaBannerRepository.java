@@ -8,8 +8,12 @@ import org.springframework.data.repository.query.Param;
 import teamdevhub.devhub.admin.outbound.admin.banner.adapter.entity.BannerEntity;
 
 import java.time.LocalDate;
+import java.util.List;
 
 public interface JpaBannerRepository extends JpaRepository<BannerEntity, String> {
+
+    List<BannerEntity> findByMainBannerAndUsedTrueAndStartDateLessThanEqualAndEndDateGreaterThanEqualOrderBySortOrder(
+            boolean mainBanner, LocalDate startDate, LocalDate endDate);
 
     @Query("""
             SELECT b FROM BannerEntity b

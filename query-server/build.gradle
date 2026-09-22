@@ -10,13 +10,16 @@ java {
 }
 
 dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web:3.5.7'
+    implementation 'org.springframework.boot:spring-boot-starter-validation:3.5.7'
+    implementation 'org.springframework.kafka:spring-kafka:3.3.10'
+    implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.7.0'
+    implementation platform('org.springframework.cloud:spring-cloud-dependencies:2025.0.0')
+    implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
+    implementation 'org.springframework.cloud:spring-cloud-starter-loadbalancer'
+    implementation 'org.springframework.cloud:spring-cloud-starter-config'
     runtimeOnly 'com.h2database:h2:2.3.232'
     api project(':shared-kernel')
-    implementation project(':admin-server')
-    implementation project(':member-server')
-    implementation project(':community-server')
-    implementation project(':project-server')
-
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa:3.5.7'
     implementation 'com.querydsl:querydsl-jpa:5.1.0:jakarta'
     compileOnly 'org.projectlombok:lombok:1.18.38'

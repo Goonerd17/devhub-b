@@ -15,7 +15,7 @@ import teamdevhub.devhub.auth.core.auth.port.out.token.RefreshTokenRepository;
 import teamdevhub.devhub.auth.core.auth.port.out.token.TokenParseProvider;
 import teamdevhub.devhub.shared.core.common.exception.BusinessRuleException;
 import teamdevhub.devhub.shared.identifier.IdentifierProvider;
-import teamdevhub.devhub.member.api.MemberRole;
+import teamdevhub.devhub.shared.security.MemberRole;
 import teamdevhub.devhub.auth.api.credential.EmailCredentialRegistrationCommand;
 import teamdevhub.devhub.auth.api.credential.UpdatePasswordCommand;
 import teamdevhub.devhub.auth.api.credential.AdminPasswordReset;
@@ -25,7 +25,7 @@ import teamdevhub.devhub.shared.shared.enums.ErrorCode;
 @Service
 @Transactional
 @RequiredArgsConstructor
-public class UserCredentialService implements UserCredentialUseCase, AdminPasswordReset {
+public class UserCredentialService implements UserCredentialUseCase, AdminPasswordReset, teamdevhub.devhub.shared.security.AdminPasswordReset {
 
     private final TokenParseProvider tokenParseProvider;
     private final IdentifierProvider identifierProvider;

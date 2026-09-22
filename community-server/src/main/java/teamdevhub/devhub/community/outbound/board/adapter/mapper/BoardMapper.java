@@ -3,7 +3,6 @@ package teamdevhub.devhub.community.outbound.board.adapter.mapper;
 import teamdevhub.devhub.community.core.board.domain.Board;
 import teamdevhub.devhub.shared.core.common.audit.AuditInfo;
 import teamdevhub.devhub.community.outbound.board.adapter.entity.BoardEntity;
-import teamdevhub.devhub.member.api.UserStatus;
 
 public class BoardMapper {
 	public static BoardEntity toEntity(Board board) {
@@ -55,10 +54,16 @@ public class BoardMapper {
 				.title(boardEntity.getTitle())
 				.categoryCd(boardEntity.getCategoryCd())
 				.userName(username)
-				.userStatus(UserStatus.from(deleted, blocked).getCode())
+				.userStatus(userStatusCode(deleted, blocked))
 				.reportCount(String.valueOf(reportCount))
 				.auditInfo(toAuditInfo(boardEntity))
 				.build();
+	}
+
+	private static String userStatusCode(boolean deleted, boolean blocked) {
+		if (deleted) return "7002";
+		if (blocked) return "7003";
+		return "7001";
 	}
 	
 	

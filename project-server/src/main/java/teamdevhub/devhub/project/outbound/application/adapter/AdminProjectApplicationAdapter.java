@@ -21,8 +21,8 @@ import teamdevhub.devhub.project.outbound.application.adapter.mapper.Application
 import teamdevhub.devhub.project.outbound.application.persistence.JpaAdminProjectApplicationRepository;
 import teamdevhub.devhub.project.outbound.project.adapter.entity.ProjectRequirementEntity;
 import teamdevhub.devhub.project.outbound.project.persistence.JpaProjectRequirementRepository;
-import teamdevhub.devhub.member.api.profile.MemberApplicationProfile;
-import teamdevhub.devhub.member.api.profile.MemberApplicationProfileQuery;
+import teamdevhub.devhub.shared.member.MemberApplicationProfile;
+import teamdevhub.devhub.shared.member.ProjectMemberQuery;
 
 @Component
 @RequiredArgsConstructor
@@ -30,7 +30,7 @@ public class AdminProjectApplicationAdapter implements AdminProjectApplicationRe
 	
 	private final JpaAdminProjectApplicationRepository jpaAdminProjectApplicationRepository;
 	private final JpaProjectRequirementRepository jpaProjectRequirementRepository;
-	private final MemberApplicationProfileQuery memberApplicationProfileQuery;
+	private final ProjectMemberQuery memberApplicationProfileQuery;
 	
 	@Override
 	public PageResult<ProjectApplication> getApplicationsByProjectGuid(

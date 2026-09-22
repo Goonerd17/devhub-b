@@ -1,6 +1,4 @@
-name: Backend CI/CD
-
-
+name: Backend services CI/CD
 
 on:
   push:
@@ -9,102 +7,98 @@ on:
   workflow_dispatch:
 
 env:
-  PROJECT: devhub-b
+  PROJECT: devhub
   TARGET_ENV: dev
 
 jobs:
-  build-and-deploy:
-
+  verify:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Debug secret
-        run: echo "${{ secrets.GH_PAT != '' }}"
-
-      - name: Checkout Source
+      - name: Checkout source
         uses: actions/checkout@v4
 
-      - name: Set JDK 21
+      - name: Set up JDK 17
         uses: actions/setup-java@v4
         with:
           distribution: temurin
-          java-version: 21
+          java-version: 17
+          cache: gradle
 
-      - name: Grant Execute Permission
+      - name: Grant Gradle execute permission
         run: chmod +x gradlew
 
-      - name: Build Application
-        run: ./gradlew clean build -x test
+      - name: Test, package, and verify service boundaries
+        run: ./gradlew test bootJar verifyServiceBoundaries --no-daemon
 
-      - name: Generate Build Tag
+      - name: Validate Docker Compose configuration
+        run: docker compose config --quiet
+
+      - name: Upload executable service jars
+        uses: actions/upload-artifact@v4
+        with:
+          name: service-jars
+          path: '*-server/build/libs/*-server.jar'
+          if-no-files-found: error
+          retention-days: 1
+
+  publish-images:
+    needs: verify
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        service:
+          - auth-server
+          - member-server
+          - project-server
+          - community-server
+          - admin-server
+          - media-server
+          - notification-server
+          - query-server
+          - discovery-server
+          - config-server
+          - gateway-server
+
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v4
+
+      - name: Download executable service jars
+        uses: actions/download-artifact@v4
+        with:
+          name: service-jars
+
+      - name: Generate image metadata
+        shell: bash
         run: |
-          DATE=$(date +%Y%m%d)
-          BUILD_TAG="${PROJECT}-${DATE}-${GITHUB_RUN_NUMBER}"
-          echo "BUILD_TAG=${BUILD_TAG,,}" >> $GITHUB_ENV
+          BUILD_TAG="$(date +%Y%m%d)-${GITHUB_RUN_NUMBER}"
+          IMAGE_NAME="${{ secrets.DOCKERHUB_USERNAME }}/${PROJECT}-${{ matrix.service }}-${TARGET_ENV}"
+          echo "BUILD_TAG=${BUILD_TAG,,}" >> "$GITHUB_ENV"
+          echo "IMAGE_NAME=${IMAGE_NAME,,}" >> "$GITHUB_ENV"
 
-      - name: Set Image Name
-        run: |
-          IMAGE_NAME="${{ secrets.DOCKERHUB_USERNAME }}/${PROJECT}-${TARGET_ENV}"
-          echo "IMAGE_NAME=${IMAGE_NAME,,}" >> $GITHUB_ENV
-
-      - name: DockerHub Login
+      - name: Log in to Docker Hub
         uses: docker/login-action@v3
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: Docker Build
-        run: |
-          docker build \
-            -t ${IMAGE_NAME}:${BUILD_TAG} \
-            .
-
-      - name: Docker Push
-        run: |
-          docker push ${IMAGE_NAME}:${BUILD_TAG}
-
-      - name: Checkout Infra Repository
-        uses: actions/checkout@v4
+      - name: Build and push service image
+        uses: docker/build-push-action@v6
         with:
-          repository: TeamDevhub/devhub-infra
-          ref: dev
-          token: ${{ secrets.GH_PAT }}
-          path: infra
+          context: .
+          push: true
+          build-args: |
+            SERVICE=${{ matrix.service }}
+          tags: |
+            ${{ env.IMAGE_NAME }}:${{ env.BUILD_TAG }}
+            ${{ env.IMAGE_NAME }}:latest
 
-      - name: Verify Deployment File
+  deployment-note:
+    needs: publish-images
+    runs-on: ubuntu-latest
+    steps:
+      - name: Report deployment handoff
         run: |
-          test -f infra/k8s/dev/devhub-b/deployment.yml
-
-      - name: Update Deployment Image
-        run: |
-          DEPLOY_FILE="infra/k8s/dev/devhub-b/deployment.yml"
-
-          sed -i \
-            "s#image: .*#image: ${IMAGE_NAME}:${BUILD_TAG}#g" \
-            ${DEPLOY_FILE}
-
-          echo "Updated deployment.yml"
-          grep image: ${DEPLOY_FILE}
-
-      - name: Commit And Push Infra Changes
-        run: |
-
-          cd infra
-
-          git config user.name "github-actions"
-          git config user.email "github-actions@github.com"
-
-          git add k8s/dev/devhub-b/deployment.yml
-
-          git commit \
-            -m "[CI] Update backend image to ${BUILD_TAG}" \
-            || echo "No changes"
-
-          git push origin dev
-
-      - name: Print Result
-        run: |
-          echo "================================="
-          echo "Backend Build Success"
-          echo "Image : ${IMAGE_NAME}:${BUILD_TAG}"
-          echo "================================="
+          echo "All service images were published successfully."
+          echo "Service-specific infrastructure manifests must select their matching image."

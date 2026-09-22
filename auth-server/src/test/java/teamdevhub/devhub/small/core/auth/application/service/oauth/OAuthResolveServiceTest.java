@@ -7,7 +7,7 @@ import teamdevhub.devhub.auth.core.auth.application.service.oauth.OAuthResolveSe
 import teamdevhub.devhub.auth.core.auth.application.service.oauth.vo.OAuthUserResult;
 import teamdevhub.devhub.auth.core.auth.domain.vo.user.AuthenticatedUser;
 import teamdevhub.devhub.auth.core.auth.port.in.command.oauth.SignupOAuthUserCommand;
-import teamdevhub.devhub.member.api.MemberRole;
+import teamdevhub.devhub.shared.security.MemberRole;
 import teamdevhub.devhub.fake.pure.application.port.out.auth.FakeUserCredentialRepository;
 import teamdevhub.devhub.fake.pure.application.provider.FakeTokenParseProvider;
 import teamdevhub.devhub.auth.core.auth.domain.vo.oauth.OAuthUser;

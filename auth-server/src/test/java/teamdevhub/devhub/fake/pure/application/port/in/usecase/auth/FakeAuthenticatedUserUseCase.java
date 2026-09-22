@@ -1,7 +1,7 @@
 package teamdevhub.devhub.fake.pure.application.port.in.usecase.auth;
 
 import teamdevhub.devhub.auth.core.auth.domain.vo.user.AuthenticatedUser;
-import teamdevhub.devhub.member.api.MemberRole;
+import teamdevhub.devhub.shared.security.MemberRole;
 import teamdevhub.devhub.auth.core.auth.port.in.command.LoginCommand;
 import teamdevhub.devhub.auth.core.auth.port.in.usecase.AuthenticatedUserUseCase;
 

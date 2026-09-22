@@ -5,7 +5,7 @@ import teamdevhub.devhub.project.core.application.domain.ProjectApplicationAnswe
 import teamdevhub.devhub.shared.core.common.audit.AuditInfo;
 import teamdevhub.devhub.project.outbound.application.adapter.entity.ProjectApplicationAnswerEntity;
 import teamdevhub.devhub.project.outbound.application.adapter.entity.ProjectApplicationEntity;
-import teamdevhub.devhub.member.api.profile.MemberApplicationProfile;
+import teamdevhub.devhub.shared.member.MemberApplicationProfile;
 import teamdevhub.devhub.project.outbound.project.adapter.entity.ProjectRequirementEntity;
 
 import java.util.List;
@@ -21,6 +21,7 @@ public class ApplicationMapper {
 		return ProjectApplication.builder()
 			.applicationGuid(applicationEntity.getApplicationGuid())
 			.requirementGuid(applicationEntity.getRequirementGuid())
+			.projectGuid(requirementEntity.getProjectGuid())
 			.applicantGuid(applicationEntity.getApplicantGuid())
 			.approverGuid(applicationEntity.getApproverGuid())
 			.decisionDate(applicationEntity.getDecisionDate())

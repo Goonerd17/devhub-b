@@ -1,6 +1,6 @@
 package teamdevhub.devhub.constant;
 
-import teamdevhub.devhub.admin.api.terms.TermsAgreementItem;
+import teamdevhub.devhub.shared.terms.TermsAgreementItem;
 import teamdevhub.devhub.member.core.user.domain.vo.position.UserPosition;
 import teamdevhub.devhub.member.core.user.domain.vo.skill.UserSkill;
 import teamdevhub.devhub.auth.core.auth.domain.vo.verification.VerificationTarget;

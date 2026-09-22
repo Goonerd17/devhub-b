@@ -2,7 +2,7 @@ package teamdevhub.devhub.auth.core.auth.domain;
 
 import lombok.Builder;
 import lombok.Getter;
-import teamdevhub.devhub.member.api.MemberRole;
+import teamdevhub.devhub.shared.security.MemberRole;
 import teamdevhub.devhub.auth.core.auth.domain.VerificationProvider;
 
 @Getter

@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 import lombok.Builder;
-import teamdevhub.devhub.admin.api.ApplicationFormDefinition;
+import teamdevhub.devhub.shared.form.ApplicationFormDefinition;
 import teamdevhub.devhub.project.core.project.port.in.command.CreateProjectRequirementRequestCommand;
 
 @Builder

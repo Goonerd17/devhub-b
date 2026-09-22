@@ -20,6 +20,14 @@ import teamdevhub.devhub.shared.core.common.page.PageCommand;
 import teamdevhub.devhub.shared.core.common.page.PageResult;
 import teamdevhub.devhub.shared.identifier.IdentifierProvider;
 import teamdevhub.devhub.project.core.project.domain.ProjectApprovalStatus;
+import teamdevhub.devhub.project.outbound.event.ProjectEventOutbox;
+import teamdevhub.devhub.shared.event.IntegrationEvent;
+import teamdevhub.devhub.shared.event.project.ProjectApplicationSubmittedPayload;
+import teamdevhub.devhub.shared.event.project.ProjectApplicationStatusChangedPayload;
+import teamdevhub.devhub.shared.event.project.ProjectApplicationCancelledPayload;
+
+import java.time.Instant;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -28,6 +36,7 @@ public class ProjectApplicationService implements ProjectApplicationQueryUseCase
 
 	private final ApplicationRepository applicationRepository;
 	private final IdentifierProvider identifierProvider;
+	private final ProjectEventOutbox projectEventOutbox;
 
 	@Override
 	@Transactional
@@ -58,11 +67,17 @@ public class ProjectApplicationService implements ProjectApplicationQueryUseCase
 			.toList();
 
 		applicationRepository.saveAnswers(answers);
+		projectEventOutbox.append(new IntegrationEvent(
+				UUID.randomUUID().toString(), "project.application.submitted", 1, Instant.now(),
+				"project-application", applicationGuid, null, null,
+				new ProjectApplicationSubmittedPayload(command.projectGuid(), applicationGuid,
+						command.requirementGuid(), command.applicantGuid())));
 	}
 
 	@Override
 	@Transactional
 	public void approveApplication(ApproveApplicationCommand command) {
+		ProjectApplication application = applicationRepository.findApplicationByGuid(command.applicationGuid());
 		String decisionDate = LocalDate.now().toString();
 		applicationRepository.updateApplicationStatus(
 			command.applicationGuid(),
@@ -70,6 +85,11 @@ public class ProjectApplicationService implements ProjectApplicationQueryUseCase
 			command.approverGuid(),
 			decisionDate
 		);
+		projectEventOutbox.append(new IntegrationEvent(
+				UUID.randomUUID().toString(), "project.application.status-changed", 1, Instant.now(),
+				"project-application", command.applicationGuid(), null, null,
+				new ProjectApplicationStatusChangedPayload(command.applicationGuid(), application.getProjectGuid(), application.getApplicantGuid(),
+						command.resolveStatusCd(), command.approverGuid())));
 	}
 
 	@Override
@@ -78,6 +98,11 @@ public class ProjectApplicationService implements ProjectApplicationQueryUseCase
 		ProjectApplication application = applicationRepository.findApplicationByGuid(applicationGuid);
 		application.assertCancelable(applicantGuid);
 		applicationRepository.cancelApplication(applicationGuid);
+		projectEventOutbox.append(new IntegrationEvent(
+				UUID.randomUUID().toString(), "project.application.cancelled", 1, Instant.now(),
+				"project-application", applicationGuid, null, null,
+				new ProjectApplicationCancelledPayload(applicationGuid, application.getProjectGuid(),
+						application.getApplicantGuid())));
 	}
 
 	@Override

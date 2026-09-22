@@ -10,8 +10,8 @@ import teamdevhub.devhub.auth.core.auth.domain.vo.user.AuthenticatedUser;
 import teamdevhub.devhub.shared.core.common.audit.AuditInfo;
 import teamdevhub.devhub.member.core.user.domain.User;
 import teamdevhub.devhub.member.core.user.domain.vo.UserRole;
-import teamdevhub.devhub.member.core.user.application.service.CurrentMemberRoleService;
-import teamdevhub.devhub.member.api.MemberRole;
+import teamdevhub.devhub.shared.member.AuthMemberGateway;
+import teamdevhub.devhub.shared.security.MemberRole;
 import teamdevhub.devhub.fake.pure.application.port.out.auth.FakeRefreshTokenRepository;
 import teamdevhub.devhub.fake.pure.application.port.out.user.FakeUserRepository;
 import teamdevhub.devhub.fake.pure.application.provider.FakeTokenIssueProvider;
@@ -27,12 +27,15 @@ class AuthenticationServiceTest {
 
     private FakeRefreshTokenRepository refreshTokenRepository;
     private FakeUserRepository userRepository;
+    private AuthMemberGateway memberGateway;
 
     @BeforeEach
     void init() {
         FakeTokenIssueProvider fakeTokenIssueProvider = new FakeTokenIssueProvider();
         refreshTokenRepository = new FakeRefreshTokenRepository();
         userRepository = new FakeUserRepository();
+        memberGateway = org.mockito.Mockito.mock(AuthMemberGateway.class);
+        org.mockito.Mockito.when(memberGateway.findCurrentRole(TEST_USER_GUID_1)).thenReturn(MemberRole.USER);
 
         userRepository.givenUser(
                 User.of(
@@ -53,7 +56,7 @@ class AuthenticationServiceTest {
         authenticationService = new AuthenticationService(
                 fakeTokenIssueProvider,
                 refreshTokenRepository,
-                new CurrentMemberRoleService(userRepository)
+                memberGateway
         );
     }
 
@@ -166,21 +169,7 @@ class AuthenticationServiceTest {
     @Test
     @DisplayName("?醫뤾쿃??_?袁⑤뼎獄쏆룇?_亦낅슦釉???袁⑤빒_DB???袁⑹삺亦낅슦釉??곗쨮_獄쏆뮄???뺣뼄")
     void login_usesCurrentRoleFromRepository() {
-        userRepository.givenUser(
-                User.of(
-                        TEST_USER_GUID_1,
-                        UserRole.ADMIN,
-                        "admin",
-                        null,
-                        null,
-                        36.5,
-                        false,
-                        null,
-                        false,
-                        null,
-                        AuditInfo.empty()
-                )
-        );
+        org.mockito.Mockito.when(memberGateway.findCurrentRole(TEST_USER_GUID_1)).thenReturn(MemberRole.ADMIN);
 
         AuthenticatedUser authenticatedUser =
                 new AuthenticatedUser(
@@ -191,10 +180,6 @@ class AuthenticationServiceTest {
 
         authenticationService.login(authenticatedUser);
 
-        assertThat(userRepository.wasCalled("findByUserGuid"))
-                .isTrue();
-
-        assertThat(userRepository.callCount("findByUserGuid"))
-                .isEqualTo(1);
+        org.mockito.Mockito.verify(memberGateway).findCurrentRole(TEST_USER_GUID_1);
     }
 }

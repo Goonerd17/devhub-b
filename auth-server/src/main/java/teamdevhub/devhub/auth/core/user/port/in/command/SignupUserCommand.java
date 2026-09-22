@@ -2,8 +2,8 @@ package teamdevhub.devhub.auth.core.user.port.in.command;
 
 import lombok.Builder;
 import teamdevhub.devhub.auth.core.auth.domain.vo.verification.VerificationTarget;
-import teamdevhub.devhub.admin.api.terms.TermsAgreementItem;
-import teamdevhub.devhub.admin.api.terms.AgreeTermsCommand;
+import teamdevhub.devhub.shared.terms.TermsAgreementItem;
+import teamdevhub.devhub.shared.terms.AgreeTermsCommand;
 
 import java.util.List;
 

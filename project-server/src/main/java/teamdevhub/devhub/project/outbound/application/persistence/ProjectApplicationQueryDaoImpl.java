@@ -19,9 +19,8 @@ import teamdevhub.devhub.project.outbound.application.adapter.entity.ProjectAppl
 import teamdevhub.devhub.project.outbound.application.adapter.mapper.ApplicationMapper;
 import teamdevhub.devhub.project.outbound.project.adapter.entity.ProjectRequirementEntity;
 import teamdevhub.devhub.project.outbound.project.persistence.JpaProjectRequirementRepository;
-import teamdevhub.devhub.member.api.profile.MemberApplicationProfile;
-import teamdevhub.devhub.member.api.profile.MemberApplicationProfileQuery;
-import teamdevhub.devhub.member.api.review.MemberReviewScoreQuery;
+import teamdevhub.devhub.shared.member.MemberApplicationProfile;
+import teamdevhub.devhub.shared.member.ProjectMemberQuery;
 
 @Repository
 @RequiredArgsConstructor
@@ -30,8 +29,7 @@ public class ProjectApplicationQueryDaoImpl implements ProjectApplicationQueryDa
 	private final JpaProjectApplicationRepository jpaProjectApplicationRepository;
 	private final JpaProjectApplicationAnswerRepository jpaProjectApplicationAnswerRepository;
 	private final JpaProjectRequirementRepository jpaProjectRequirementRepository;
-	private final MemberApplicationProfileQuery memberApplicationProfileQuery;
-	private final MemberReviewScoreQuery memberReviewScoreQuery;
+	private final ProjectMemberQuery memberApplicationProfileQuery;
 
 	@Override
 	public Page<ProjectApplication> findApplicationsByProjectGuid(String projectGuid, Pageable pageable) {
@@ -164,7 +162,7 @@ public class ProjectApplicationQueryDaoImpl implements ProjectApplicationQueryDa
 		return result.getContent().stream()
 				.filter(application -> "3302".equals(application.getStatusCd()))
 				.map(application -> {
-					Double score = memberReviewScoreQuery.findScore(projectGuid, application.getApplicantGuid())
+					Double score = memberApplicationProfileQuery.findReviewScore(projectGuid, application.getApplicantGuid())
 								.orElse(null);
 					return ProjectApplicationScore.toApplicationWithScore(application, score);
 				})

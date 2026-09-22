@@ -10,7 +10,7 @@ import teamdevhub.devhub.auth.core.auth.application.service.oauth.SignupStatus;
 import teamdevhub.devhub.auth.core.auth.domain.vo.user.AuthenticatedUser;
 import teamdevhub.devhub.auth.core.auth.port.in.facade.OAuthFacade;
 import teamdevhub.devhub.member.core.user.domain.User;
-import teamdevhub.devhub.member.api.MemberRole;
+import teamdevhub.devhub.shared.security.MemberRole;
 import teamdevhub.devhub.member.core.user.domain.vo.command.CreateUserCommand;
 import teamdevhub.devhub.auth.core.user.port.in.command.SignupUserCommand;
 import teamdevhub.devhub.fake.pure.application.port.in.usecase.auth.FakeAuthenticationUseCase;

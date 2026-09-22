@@ -3,7 +3,7 @@ package teamdevhub.devhub.fake.pure.application.port.in.usecase.notification;
 import teamdevhub.devhub.notification.core.port.in.NotificationUseCase;
 import teamdevhub.devhub.notification.core.port.in.command.CreateNotificationCommand;
 import teamdevhub.devhub.notification.core.port.in.command.VerificationNotificationCommand;
-import teamdevhub.devhub.notification.api.VerificationNotificationSender;
+import teamdevhub.devhub.shared.notification.VerificationNotificationSender;
 
 import java.util.ArrayList;
 import java.util.List;

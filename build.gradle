@@ -74,6 +74,43 @@ subprojects {
 	}
 }
 
+def businessServiceNames = [
+		'auth-server',
+		'member-server',
+		'project-server',
+		'community-server',
+		'admin-server',
+		'media-server',
+		'notification-server',
+		'query-server'
+] as Set
+
+tasks.register('verifyServiceBoundaries') {
+	group = 'verification'
+	description = 'Rejects production Gradle dependencies between independently deployable business services.'
+	doLast {
+		def violations = []
+		businessServiceNames.each { serviceName ->
+			def serviceProject = project(":${serviceName}")
+			['api', 'implementation'].each { configurationName ->
+				serviceProject.configurations.findByName(configurationName)?.dependencies
+						?.withType(org.gradle.api.artifacts.ProjectDependency)
+						?.findAll { businessServiceNames.contains(it.dependencyProject.name) }
+						?.each { dependency ->
+							violations << "${serviceProject.path}:${configurationName} -> ${dependency.dependencyProject.path}"
+						}
+			}
+		}
+		if (!violations.isEmpty()) {
+			throw new GradleException("Business-service production dependencies are forbidden:\n" + violations.join('\n'))
+		}
+	}
+}
+
+tasks.named('check') {
+	dependsOn tasks.named('verifyServiceBoundaries')
+}
+
 clean.doLast {
 	file(querydslDir).deleteDir()
 }

@@ -3,7 +3,7 @@ package teamdevhub.devhub.auth.core.auth.domain.vo.user;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import teamdevhub.devhub.auth.core.auth.domain.EmailUserCredential;
-import teamdevhub.devhub.member.api.MemberRole;
+import teamdevhub.devhub.shared.security.MemberRole;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

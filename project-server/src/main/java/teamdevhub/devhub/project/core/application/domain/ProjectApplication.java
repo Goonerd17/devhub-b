@@ -15,6 +15,7 @@ public class ProjectApplication {
 
 	private String applicationGuid;
 	private String requirementGuid;
+	private String projectGuid;
 	private String applicantGuid;
 	private String approverGuid;
 	private String decisionDate;

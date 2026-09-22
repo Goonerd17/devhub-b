@@ -8,7 +8,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import teamdevhub.devhub.auth.core.auth.domain.EmailUserCredential;
 import teamdevhub.devhub.auth.core.auth.domain.vo.user.AuthenticatedUser;
 import teamdevhub.devhub.auth.core.auth.port.out.EmailUserCredentialRepository;
-import teamdevhub.devhub.member.api.MemberRole;
+import teamdevhub.devhub.shared.security.MemberRole;
 import teamdevhub.devhub.auth.outbound.security.auth.UserAuthentication;
 import teamdevhub.devhub.auth.outbound.security.auth.UserAuthenticationLoader;
 

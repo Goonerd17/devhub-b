@@ -9,7 +9,7 @@ import teamdevhub.devhub.auth.core.auth.port.in.command.LoginCommand;
 import teamdevhub.devhub.auth.core.auth.port.in.usecase.AuthenticationUseCase;
 import teamdevhub.devhub.auth.api.credential.UpdatePasswordCommand;
 import teamdevhub.devhub.auth.core.auth.port.in.usecase.UserCredentialUseCase;
-import teamdevhub.devhub.member.api.MemberLoginActivityUseCase;
+import teamdevhub.devhub.shared.member.AuthMemberGateway;
 
 @Service
 @Transactional
@@ -18,11 +18,11 @@ public class AuthFacade {
 
     private final UserCredentialUseCase userCredentialUseCase;
     private final AuthenticationUseCase authenticationUseCase;
-    private final MemberLoginActivityUseCase memberLoginActivityUseCase;
+    private final AuthMemberGateway memberLoginActivityUseCase;
 
     public AuthResult login(LoginCommand loginCommand) {
         AuthenticatedUser authenticatedUser = userCredentialUseCase.authenticate(loginCommand);
-        memberLoginActivityUseCase.assertMemberCanLogIn(authenticatedUser.userGuid());
+        memberLoginActivityUseCase.assertCanLogIn(authenticatedUser.userGuid());
         AuthResult authResult = authenticationUseCase.login(authenticatedUser);
         memberLoginActivityUseCase.recordSuccessfulLogin(authenticatedUser.userGuid());
         return authResult;

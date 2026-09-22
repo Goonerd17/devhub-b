@@ -12,7 +12,7 @@ import teamdevhub.devhub.auth.outbound.auth.infrastructure.token.vo.JwtClaims;
 import teamdevhub.devhub.shared.outbound.common.exception.AuthRuleException;
 import teamdevhub.devhub.auth.core.auth.port.out.token.vo.AccessTokenInfo;
 import teamdevhub.devhub.auth.core.auth.port.out.token.vo.TempTokenInfo;
-import teamdevhub.devhub.member.api.MemberRole;
+import teamdevhub.devhub.shared.security.MemberRole;
 import teamdevhub.devhub.shared.time.TimeProvider;
 import teamdevhub.devhub.auth.core.auth.port.out.token.TokenIssueProvider;
 import teamdevhub.devhub.auth.core.auth.port.out.token.TokenParseProvider;

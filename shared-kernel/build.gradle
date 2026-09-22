@@ -16,6 +16,8 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa:3.5.7'
     implementation 'org.springframework.security:spring-security-core:6.5.3'
     implementation 'org.springframework.security:spring-security-crypto:6.5.3'
+    implementation 'org.springframework.security:spring-security-web:6.5.3'
+    compileOnly 'jakarta.servlet:jakarta.servlet-api:6.1.0'
     implementation 'com.fasterxml.jackson.core:jackson-annotations:2.19.2'
 
     compileOnly 'org.projectlombok:lombok:1.18.38'
@@ -26,6 +28,8 @@ dependencies {
 
     testImplementation 'org.junit.jupiter:junit-jupiter:5.12.2'
     testImplementation 'org.assertj:assertj-core:3.27.3'
+    testImplementation 'org.springframework:spring-test:6.2.12'
+    testImplementation 'jakarta.servlet:jakarta.servlet-api:6.1.0'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher:1.12.2'
 }
 

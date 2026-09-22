@@ -14,6 +14,13 @@ dependencies {
     api project(':shared-kernel')
 
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa:3.5.7'
+    implementation 'org.springframework.boot:spring-boot-starter-web:3.5.7'
+    implementation 'org.springframework.boot:spring-boot-starter-security:3.5.7'
+    implementation 'org.springframework.boot:spring-boot-starter-validation:3.5.7'
+    implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.7.0'
+    implementation platform('org.springframework.cloud:spring-cloud-dependencies:2025.0.0')
+    implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
+    implementation 'org.springframework.cloud:spring-cloud-starter-config'
     implementation 'com.querydsl:querydsl-jpa:5.1.0:jakarta'
 
     compileOnly 'org.projectlombok:lombok:1.18.38'

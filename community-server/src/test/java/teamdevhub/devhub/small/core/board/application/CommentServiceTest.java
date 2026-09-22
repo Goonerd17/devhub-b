@@ -13,8 +13,8 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import teamdevhub.devhub.community.core.board.application.CommentService;
 import teamdevhub.devhub.community.core.board.domain.Comment;
 import teamdevhub.devhub.community.core.board.port.out.CommentRepository;
-import teamdevhub.devhub.member.api.profile.MemberPublicProfile;
-import teamdevhub.devhub.member.api.profile.MemberPublicProfileQuery;
+import teamdevhub.devhub.shared.member.MemberProfileQuery;
+import teamdevhub.devhub.shared.member.MemberPublicProfile;
 import teamdevhub.devhub.shared.identifier.IdentifierProvider;
 
 @ExtendWith(MockitoExtension.class)
@@ -27,7 +27,7 @@ class CommentServiceTest {
     private CommentRepository commentRepository;
 
     @Mock
-    private MemberPublicProfileQuery memberPublicProfileQuery;
+    private MemberProfileQuery memberPublicProfileQuery;
 
     @Test
     void commentListFillsDisplayNameFromMemberPublicProfileQuery() {

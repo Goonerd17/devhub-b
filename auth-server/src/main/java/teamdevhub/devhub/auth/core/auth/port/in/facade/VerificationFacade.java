@@ -7,7 +7,7 @@ import teamdevhub.devhub.auth.core.auth.application.service.verification.IssuedV
 import teamdevhub.devhub.auth.core.auth.port.in.command.verification.ConfirmVerificationCommand;
 import teamdevhub.devhub.auth.core.auth.port.in.command.verification.IssueVerificationCommand;
 import teamdevhub.devhub.auth.core.auth.port.in.usecase.verification.VerificationUseCase;
-import teamdevhub.devhub.notification.api.VerificationNotificationSender;
+import teamdevhub.devhub.shared.notification.VerificationNotificationSender;
 
 @Service
 @Transactional

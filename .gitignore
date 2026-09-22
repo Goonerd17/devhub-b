@@ -1,5 +1,7 @@
 HELP.md
 .gradle
+.gradle-verify/
+.gradle-*/
 build/
 !gradle/wrapper/gradle-wrapper.jar
 !**/src/main/**/build/
@@ -55,6 +57,13 @@ out/
 !config-server/src/main/resources/application.yml
 !gateway-server/src/main/resources/application.yml
 !media-server/src/main/resources/application.yml
+!auth-server/src/main/resources/application.yml
+!member-server/src/main/resources/application.yml
+!project-server/src/main/resources/application.yml
+!community-server/src/main/resources/application.yml
+!admin-server/src/main/resources/application.yml
+!notification-server/src/main/resources/application.yml
+!query-server/src/main/resources/application.yml
 
 ### Secrets and credentials ###
 .env

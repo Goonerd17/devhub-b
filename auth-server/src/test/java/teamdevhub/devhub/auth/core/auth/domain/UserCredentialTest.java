@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 import teamdevhub.devhub.auth.core.auth.domain.EmailUserCredential;
 import teamdevhub.devhub.auth.core.auth.domain.OAuthUserCredential;
 import teamdevhub.devhub.shared.core.common.exception.DomainRuleException;
-import teamdevhub.devhub.member.api.MemberRole;
+import teamdevhub.devhub.shared.security.MemberRole;
 import teamdevhub.devhub.shared.shared.enums.ErrorCode;
 import teamdevhub.devhub.auth.core.auth.domain.VerificationProvider;
 

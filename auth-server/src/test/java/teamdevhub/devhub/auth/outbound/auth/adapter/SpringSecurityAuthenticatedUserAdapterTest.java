@@ -8,7 +8,7 @@ import org.springframework.security.core.Authentication;
 import teamdevhub.devhub.auth.core.auth.domain.vo.user.AuthenticatedUser;
 import teamdevhub.devhub.auth.outbound.auth.adapter.SpringSecurityAuthenticatedUserAdapter;
 import teamdevhub.devhub.auth.outbound.security.auth.UserAuthentication;
-import teamdevhub.devhub.member.api.MemberRole;
+import teamdevhub.devhub.shared.security.MemberRole;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;

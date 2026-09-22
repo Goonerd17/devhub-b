@@ -2,7 +2,7 @@ package teamdevhub.devhub.auth.core.auth.domain;
 
 import lombok.Getter;
 import teamdevhub.devhub.shared.core.common.exception.DomainRuleException;
-import teamdevhub.devhub.member.api.MemberRole;
+import teamdevhub.devhub.shared.security.MemberRole;
 import teamdevhub.devhub.shared.shared.enums.ErrorCode;
 
 @Getter

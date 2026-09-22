@@ -4,7 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import teamdevhub.devhub.auth.core.auth.domain.vo.user.AuthenticatedUser;
-import teamdevhub.devhub.member.api.MemberRole;
+import teamdevhub.devhub.shared.security.MemberRole;
 import teamdevhub.devhub.auth.outbound.auth.infrastructure.token.JwtTokenCodec;
 import teamdevhub.devhub.auth.core.auth.domain.VerificationProvider;
 import teamdevhub.devhub.shared.outbound.common.exception.AuthRuleException;
@@ -21,7 +21,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static teamdevhub.devhub.constant.UserTestConstant.*;
 import static teamdevhub.devhub.shared.shared.enums.ErrorCode.TOKEN_EXPIRED;
 import static teamdevhub.devhub.shared.shared.enums.ErrorCode.TOKEN_INVALID;
-import static teamdevhub.devhub.member.api.MemberRole.USER;
+import static teamdevhub.devhub.shared.security.MemberRole.USER;
 
 class JwtTokenCodecTest {
 

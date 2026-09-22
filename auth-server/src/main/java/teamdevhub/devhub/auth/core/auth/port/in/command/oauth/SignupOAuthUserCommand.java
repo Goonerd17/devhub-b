@@ -1,8 +1,8 @@
 package teamdevhub.devhub.auth.core.auth.port.in.command.oauth;
 
 import lombok.Builder;
-import teamdevhub.devhub.admin.api.terms.TermsAgreementItem;
-import teamdevhub.devhub.admin.api.terms.AgreeTermsCommand;
+import teamdevhub.devhub.shared.terms.TermsAgreementItem;
+import teamdevhub.devhub.shared.terms.AgreeTermsCommand;
 
 import java.util.List;
 

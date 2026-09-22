@@ -1,6 +1,9 @@
 package teamdevhub.devhub.community.outbound.board.adapter;
 
 import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -17,11 +20,14 @@ import teamdevhub.devhub.shared.core.common.page.PageResult;
 import teamdevhub.devhub.community.outbound.board.adapter.entity.BoardEntity;
 import teamdevhub.devhub.community.outbound.board.adapter.mapper.BoardMapper;
 import teamdevhub.devhub.community.outbound.board.persistence.JpaBoardRepository;
+import teamdevhub.devhub.shared.member.MemberModerationProfile;
+import teamdevhub.devhub.shared.member.MemberModerationQuery;
 
 @Component
 @RequiredArgsConstructor
 public class BoardQueryAdapter implements BoardQueryRepository {
 	private final JpaBoardRepository jpaBoardRepository;
+	private final MemberModerationQuery memberModerationQuery;
 	
 	@Override
 	public PageResult<Board> listBoard(SearchBoardCommand searchBoardCommand, int page, int size) {
@@ -43,24 +49,40 @@ public class BoardQueryAdapter implements BoardQueryRepository {
 	@Override
 	public PageResult<Board> listAdminBoard(SearchAdminBoardCommand searchAdminBoardCommand, int page, int size) {
 		Pageable pageable = PageRequest.of(page, size, Sort.by("registeredDate").descending());
+		boolean filterByUserStatus = searchAdminBoardCommand.userStatus() != null;
+		List<String> memberGuids = filterByUserStatus
+				? memberModerationQuery.findMemberGuidsByStatus(searchAdminBoardCommand.userStatus())
+				: List.of("__status_filter_not_applied__");
+		if (filterByUserStatus && memberGuids.isEmpty()) {
+			return PageResult.of(List.of(), page, size, 0);
+		}
 		Page<Object[]> pageBoardList = jpaBoardRepository.findBySearchCondition(				
 				searchAdminBoardCommand.title(),
 				searchAdminBoardCommand.categoryCd(),
-				searchAdminBoardCommand.userStatus(),
+				filterByUserStatus,
+				memberGuids,
 				searchAdminBoardCommand.isReported(),
 				searchAdminBoardCommand.registeredStartDate(),
 				searchAdminBoardCommand.registeredEndDate(),
 											pageable);
 		
+		List<String> pageMemberGuids = pageBoardList.getContent().stream()
+				.map(row -> ((BoardEntity) row[0]).getUserGuid()).distinct().toList();
+		Map<String, MemberModerationProfile> profiles = memberModerationQuery
+				.findModerationProfiles(pageMemberGuids).stream()
+				.collect(Collectors.toMap(MemberModerationProfile::memberGuid, Function.identity()));
+
 		List<Board> boards = pageBoardList.getContent().stream()
 				.map(row -> {
 					BoardEntity entity = (BoardEntity) row[0];
-					String username = (String) row[1];
-					boolean deleted = (boolean) row[2];
-					boolean blocked = (boolean) row[3];
-					Long reportCount = (Long) row[4];
+					MemberModerationProfile profile = profiles.get(entity.getUserGuid());
+					Long reportCount = (Long) row[1];
 		            
-		            return (Board) BoardMapper.toAdminBoard(entity, username, deleted, blocked, reportCount);
+		            return BoardMapper.toAdminBoard(entity,
+							profile == null ? "" : profile.displayName(),
+							profile != null && profile.deleted(),
+							profile != null && profile.blocked(),
+							reportCount);
 				})
 				.toList();
 		return PageResult.of(

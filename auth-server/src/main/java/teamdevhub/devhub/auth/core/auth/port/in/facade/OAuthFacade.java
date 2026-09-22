@@ -7,7 +7,7 @@ import teamdevhub.devhub.auth.core.auth.application.service.AuthResult;
 import teamdevhub.devhub.auth.core.auth.application.service.oauth.vo.OAuthResult;
 import teamdevhub.devhub.auth.core.auth.application.service.oauth.vo.OAuthAuthorizationResult;
 import teamdevhub.devhub.auth.core.auth.application.service.oauth.vo.OAuthUserResult;
-import teamdevhub.devhub.member.api.MemberLoginActivityUseCase;
+import teamdevhub.devhub.shared.member.AuthMemberGateway;
 import teamdevhub.devhub.auth.core.auth.domain.VerificationProvider;
 import teamdevhub.devhub.auth.core.auth.domain.vo.oauth.OAuthUser;
 import teamdevhub.devhub.auth.core.auth.port.in.usecase.AuthenticationUseCase;
@@ -22,7 +22,7 @@ public class OAuthFacade {
     private final OAuthAuthenticationUseCase oauthAuthenticationUseCase;
     private final OAuthResolveUseCase oauthResolveUseCase;
     private final AuthenticationUseCase authenticationUseCase;
-    private final MemberLoginActivityUseCase memberLoginActivityUseCase;
+    private final AuthMemberGateway memberLoginActivityUseCase;
 
     public OAuthAuthorizationResult createOAuthAuthorizationUrl(String provider) {
         return oauthAuthenticationUseCase.createAuthorizationUrl(provider);
@@ -33,7 +33,7 @@ public class OAuthFacade {
         OAuthUserResult oauthUserResult = oauthResolveUseCase.findOrRequireSignup(oauthUser);
 
         if (oauthUserResult.loginAvailable()) {
-            memberLoginActivityUseCase.assertMemberCanLogIn(oauthUserResult.authenticatedUser().userGuid());
+            memberLoginActivityUseCase.assertCanLogIn(oauthUserResult.authenticatedUser().userGuid());
             AuthResult authResult = authenticationUseCase.login(oauthUserResult.authenticatedUser());
             memberLoginActivityUseCase.recordSuccessfulLogin(oauthUserResult.authenticatedUser().userGuid());
             return OAuthResult.loggedIn(authResult);

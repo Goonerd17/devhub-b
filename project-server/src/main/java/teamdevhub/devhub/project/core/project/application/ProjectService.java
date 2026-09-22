@@ -36,6 +36,14 @@ import teamdevhub.devhub.project.api.AdminMemberProjectQuery;
 import teamdevhub.devhub.project.api.AdminMemberProjectResult;
 import teamdevhub.devhub.project.api.AdminMemberProjectPage;
 import teamdevhub.devhub.project.outbound.project.adapter.mapper.ProjectMapper;
+import teamdevhub.devhub.project.outbound.event.ProjectEventOutbox;
+import teamdevhub.devhub.shared.event.IntegrationEvent;
+import teamdevhub.devhub.shared.event.project.ProjectClosedPayload;
+import teamdevhub.devhub.shared.event.project.ProjectCreatedPayload;
+import teamdevhub.devhub.shared.event.project.ProjectUpdatedPayload;
+
+import java.time.Instant;
+import java.util.UUID;
 
 @Service
 @Transactional
@@ -51,6 +59,7 @@ public class ProjectService implements ProjectUseCase, AdminMemberProjectQuery {
 	private final ProjectLikeRepository projectLikeRepository;
 	private final ProjectApplicationQueryUseCase projectApplicationQueryUseCase;
 	private final ProjectApplicationUseCase projectApplicationUseCase;
+	private final ProjectEventOutbox projectEventOutbox;
 
 	@Override
 	public AdminMemberProjectPage findRegisteredProjects(String userGuid, int page, int size) {
@@ -80,6 +89,14 @@ public class ProjectService implements ProjectUseCase, AdminMemberProjectQuery {
 		saveProjectRequirement(project.getProjectGuid(), createProjectCommand.positionList());
 		saveProjectApplicationForm(project.getProjectGuid(), createProjectCommand.applicationFormList());
 		projectRepository.save(project);
+		projectEventOutbox.append(new IntegrationEvent(
+				UUID.randomUUID().toString(), "project.created", 1, Instant.now(), "project",
+				project.getProjectGuid(), null, null,
+				new ProjectCreatedPayload(project.getProjectGuid(), project.getUserGuid(), project.getTitle(),
+						project.getCategory(), project.getUsername(), project.getImageFileGuid(),
+						project.getRecruitmentStartDate(), project.getRecruitmentEndDate(),
+						project.getAuditInfo() == null ? null : project.getAuditInfo().registeredDate(),
+						project.isCapacityClosed(), project.getRecruitStatus())));
 	}
 
 	private Project createGeneralProject(CreateProjectCommand createProjectCommand, String username) {
@@ -169,7 +186,14 @@ public class ProjectService implements ProjectUseCase, AdminMemberProjectQuery {
 		saveProjectSkills(projectGuid, updateProjectCommand.skillList());
 		saveProjectRequirement(projectGuid, updateProjectCommand.positionList());
 		saveProjectApplicationForm(projectGuid, updateProjectCommand.applicationFormList());
-		projectRepository.update(Project.createUpateProject(updateProjectCommand, projectGuid));
+		Project updatedProject = Project.createUpateProject(updateProjectCommand, projectGuid);
+		projectRepository.update(updatedProject);
+		projectEventOutbox.append(new IntegrationEvent(
+				UUID.randomUUID().toString(), "project.updated", 1, Instant.now(), "project",
+				projectGuid, null, null, new ProjectUpdatedPayload(projectGuid, updatedProject.getTitle(),
+						updatedProject.getCategory(), updatedProject.getUsername(), updatedProject.getImageFileGuid(),
+						updatedProject.getRecruitmentStartDate(), updatedProject.getRecruitmentEndDate(),
+						updatedProject.isCapacityClosed(), updatedProject.getRecruitStatus())));
 		return deleteAppplicationFormGuids;
 	}
 
@@ -180,7 +204,11 @@ public class ProjectService implements ProjectUseCase, AdminMemberProjectQuery {
 
 	@Override
 	public void closeProject(String projectGuid) {
+		Project project = projectRepository.getProjectDetail(projectGuid);
 		projectRepository.closeProject(projectGuid);
+		projectEventOutbox.append(new IntegrationEvent(
+				UUID.randomUUID().toString(), "project.closed", 1, Instant.now(), "project",
+				projectGuid, null, null, new ProjectClosedPayload(projectGuid, project.getUserGuid(), project.getTitle())));
 		
 	}
 

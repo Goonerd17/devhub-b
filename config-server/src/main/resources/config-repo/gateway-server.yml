@@ -4,6 +4,54 @@ spring:
       server:
         webflux:
           routes:
+            - id: auth-user-signup
+              uri: lb://auth-server
+              predicates:
+                - Path=/api/user/signup
+              filters:
+                - StripPrefix=1
+            - id: auth
+              uri: lb://auth-server
+              predicates:
+                - Path=/api/auth,/api/auth/**
+              filters:
+                - StripPrefix=1
+            - id: member
+              uri: lb://member-server
+              predicates:
+                - Path=/api/user,/api/user/**
+              filters:
+                - StripPrefix=1
+            - id: project
+              uri: lb://project-server
+              predicates:
+                - Path=/api/projects,/api/projects/**,/api/applicationForms,/api/applicationForms/**
+              filters:
+                - StripPrefix=1
+            - id: community
+              uri: lb://community-server
+              predicates:
+                - Path=/api/boards,/api/boards/**,/api/reports,/api/reports/**
+              filters:
+                - StripPrefix=1
+            - id: admin
+              uri: lb://admin-server
+              predicates:
+                - Path=/api/admin,/api/admin/**,/api/terms,/api/terms/**
+              filters:
+                - StripPrefix=1
+            - id: notification
+              uri: lb://notification-server
+              predicates:
+                - Path=/api/notification,/api/notification/**
+              filters:
+                - StripPrefix=1
+            - id: query
+              uri: lb://query-server
+              predicates:
+                - Path=/api/home,/api/home/**,/api/skill-trends,/api/skill-trends/**
+              filters:
+                - StripPrefix=1
             - id: media-files
               uri: lb://media-server
               predicates:

@@ -14,7 +14,6 @@ public interface JpaAdminProjectApplicationRepository extends JpaRepository<Proj
 			select T1
 			from ProjectApplicationEntity T1
 			left join ProjectRequirementEntity ST1 on ST1.projectRequirementGuid = T1.requirementGuid
-		    left join UserEntity ST2 on ST2.userGuid = T1.applicantGuid
 		    where 1 = 1
 		    and (:positionCd is null or ST1.positionCd = :positionCd)
 		    and (:levelCd is null or ST1.levelCd = :levelCd)
