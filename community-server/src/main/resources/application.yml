@@ -9,13 +9,13 @@ spring:
     host: localhost
     port: 2525
   datasource:
-    url: jdbc:h2:mem:community
+    url: ${SPRING_DATASOURCE_URL:jdbc:h2:mem:community}
     driver-class-name: org.h2.Driver
-    username: sa
-    password:
+    username: ${SPRING_DATASOURCE_USERNAME:sa}
+    password: ${SPRING_DATASOURCE_PASSWORD:}
   jpa:
     hibernate:
-      ddl-auto: create
+      ddl-auto: ${JPA_DDL_AUTO:create}
     open-in-view: false
 server:
   port: ${COMMUNITY_SERVER_PORT:8084}
@@ -23,6 +23,16 @@ eureka:
   client:
     service-url:
       defaultZone: http://localhost:8761/eureka/
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  endpoint:
+    health:
+      probes:
+        enabled: true
+      show-details: never
 oauth:
   github:
     client-id: local-github-client

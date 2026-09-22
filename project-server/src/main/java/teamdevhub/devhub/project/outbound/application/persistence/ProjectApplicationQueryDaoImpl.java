@@ -141,6 +141,8 @@ public class ProjectApplicationQueryDaoImpl implements ProjectApplicationQueryDa
 				.applicationAnswerGuid(answer.getApplicationAnswerGuid())
 				.applicationGuid(answer.getApplicationGuid())
 				.projectApplicationFormGuid(answer.getProjectApplicationFormGuid())
+				.applicationFormGuid(answer.getApplicationFormGuid())
+				.projectGuid(answer.getProjectGuid())
 				.fileGuid(answer.getFileGuid())
 				.content(answer.getContent())
 				.userName(user != null ? user.displayName() : null)

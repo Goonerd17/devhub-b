@@ -12,6 +12,7 @@ import org.springframework.stereotype.Component;
 
 import lombok.RequiredArgsConstructor;
 import teamdevhub.devhub.project.core.application.domain.ProjectApplication;
+import teamdevhub.devhub.project.core.application.domain.ProjectApplicationAnswer;
 import teamdevhub.devhub.project.core.application.port.in.command.SearchAdminProjectApplicationCommand;
 import teamdevhub.devhub.project.core.application.port.out.AdminProjectApplicationRepository;
 import teamdevhub.devhub.shared.core.common.page.PageCommand;
@@ -19,6 +20,7 @@ import teamdevhub.devhub.shared.core.common.page.PageResult;
 import teamdevhub.devhub.project.outbound.application.adapter.entity.ProjectApplicationEntity;
 import teamdevhub.devhub.project.outbound.application.adapter.mapper.ApplicationMapper;
 import teamdevhub.devhub.project.outbound.application.persistence.JpaAdminProjectApplicationRepository;
+import teamdevhub.devhub.project.outbound.application.persistence.ProjectApplicationQueryDao;
 import teamdevhub.devhub.project.outbound.project.adapter.entity.ProjectRequirementEntity;
 import teamdevhub.devhub.project.outbound.project.persistence.JpaProjectRequirementRepository;
 import teamdevhub.devhub.shared.member.MemberApplicationProfile;
@@ -31,12 +33,13 @@ public class AdminProjectApplicationAdapter implements AdminProjectApplicationRe
 	private final JpaAdminProjectApplicationRepository jpaAdminProjectApplicationRepository;
 	private final JpaProjectRequirementRepository jpaProjectRequirementRepository;
 	private final ProjectMemberQuery memberApplicationProfileQuery;
+	private final ProjectApplicationQueryDao projectApplicationQueryDao;
 	
 	@Override
 	public PageResult<ProjectApplication> getApplicationsByProjectGuid(
 			SearchAdminProjectApplicationCommand searchAdminProjectApplicationCommand, PageCommand pageCommand) {
 		Pageable pageable = PageRequest.of(pageCommand.page(), pageCommand.size());
-		Page<ProjectApplicationEntity> entityResult = jpaAdminProjectApplicationRepository.getApplicationsByProjectGuid(searchAdminProjectApplicationCommand.positionCd(),
+		Page<ProjectApplicationEntity> entityResult = jpaAdminProjectApplicationRepository.getApplicationsByProjectGuid(searchAdminProjectApplicationCommand.projectGuid(), searchAdminProjectApplicationCommand.positionCd(),
 				searchAdminProjectApplicationCommand.levelCd(), searchAdminProjectApplicationCommand.approvalStatusCd(), pageable);
 		List<ProjectApplicationEntity> applicationEntities = entityResult.getContent();
 		if (applicationEntities.isEmpty()) {
@@ -82,6 +85,16 @@ public class AdminProjectApplicationAdapter implements AdminProjectApplicationRe
 				entityResult.getNumber(),
 				entityResult.getSize(),
 				entityResult.getTotalPages());
+	}
+
+	@Override
+	public ProjectApplication getApplicationByGuid(String applicationGuid) {
+		return projectApplicationQueryDao.findApplicationByGuid(applicationGuid);
+	}
+
+	@Override
+	public List<ProjectApplicationAnswer> getAnswersByApplicationGuid(String applicationGuid) {
+		return projectApplicationQueryDao.findAnswersByApplicationGuid(applicationGuid);
 	}
 
 }

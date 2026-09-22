@@ -4,7 +4,7 @@ plugins {
 
 rootProject.name = 'devhub-b'
 
-include 'shared-kernel'
+include 'common-module'
 
 include 'auth-server'
 include 'member-server'

@@ -23,8 +23,7 @@ public class AdminProjectApplicationService implements AdminProjectApplicationUs
 
 	@Override
 	public List<ProjectApplicationAnswer> getAnswersByApplicationGuid(String applicationGuid) {
-		// TODO Auto-generated method stub
-		return null;
+		return adminProjectApplicationRepository.getAnswersByApplicationGuid(applicationGuid);
 	}
 
 	@Override
@@ -36,8 +35,7 @@ public class AdminProjectApplicationService implements AdminProjectApplicationUs
 
 	@Override
 	public ProjectApplication getApplicationByGuid(String applicationGuid) {
-		// TODO Auto-generated method stub
-		return null;
+		return adminProjectApplicationRepository.getApplicationByGuid(applicationGuid);
 	}
 
 

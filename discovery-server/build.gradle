@@ -6,6 +6,7 @@ plugins {
 dependencies {
     implementation platform('org.springframework.cloud:spring-cloud-dependencies:2025.0.0')
     implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-server'
+    implementation 'org.springframework.boot:spring-boot-starter-actuator:3.5.7'
     testImplementation 'org.springframework.boot:spring-boot-starter-test:3.5.7'
 }
 

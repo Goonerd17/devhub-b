@@ -3,12 +3,14 @@ package teamdevhub.devhub.notification.outbound.event;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
+import org.slf4j.MDC;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import teamdevhub.devhub.notification.core.domain.NotificationType;
 import teamdevhub.devhub.notification.core.port.in.NotificationUseCase;
 import teamdevhub.devhub.notification.core.port.in.command.CreateNotificationCommand;
+import teamdevhub.devhub.shared.internal.CorrelationIdFilter;
 
 import java.util.List;
 import java.time.Instant;
@@ -24,8 +26,13 @@ public class ProjectEventNotificationConsumer {
             groupId = "${spring.kafka.consumer.group-id:notification-project-events}")
     @Transactional
     public void consume(String message) {
+        String correlationId = null;
         try {
             JsonNode event = objectMapper.readTree(message);
+            correlationId = event.path("correlationId").asText(null);
+            if (correlationId != null && !correlationId.isBlank()) {
+                MDC.put(CorrelationIdFilter.MDC_KEY, correlationId);
+            }
             if (event.path("schemaVersion").asInt(0) != 1) {
                 throw new IllegalArgumentException("Unsupported project event schema version");
             }
@@ -70,6 +77,10 @@ public class ProjectEventNotificationConsumer {
             processedEventRepository.save(new ProcessedNotificationEventEntity(eventId, Instant.now()));
         } catch (Exception exception) {
             throw new IllegalStateException("Unable to consume project notification event", exception);
+        } finally {
+            if (correlationId != null && !correlationId.isBlank()) {
+                MDC.remove(CorrelationIdFilter.MDC_KEY);
+            }
         }
     }
 }

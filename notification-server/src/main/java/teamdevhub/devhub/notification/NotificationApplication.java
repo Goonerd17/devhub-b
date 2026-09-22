@@ -3,7 +3,7 @@ package teamdevhub.devhub.notification;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-@SpringBootApplication(scanBasePackages = "teamdevhub.devhub")
+@SpringBootApplication(scanBasePackages = {"teamdevhub.devhub.notification", "teamdevhub.devhub.shared"})
 public class NotificationApplication {
     public static void main(String[] args) {
         SpringApplication.run(NotificationApplication.class, args);

@@ -11,7 +11,7 @@
 ## 2026-09-21 — Community → Member/Auth 동기 호출 경계 분리
 
 - Community가 Member의 Java API 타입과 구현 모듈을 직접 참조하던 의존성을 제거했다.
-- 공개 프로필·커뮤니티 프로필 조회 계약을 `shared-kernel`에 두고 Community outbound HTTP client가 Member 내부 API를 호출하도록 변경했다.
+- 공개 프로필·커뮤니티 프로필 조회 계약을 `common-module`에 두고 Community outbound HTTP client가 Member 내부 API를 호출하도록 변경했다.
 - 게시글 상세의 이메일 조회도 동일한 outbound client를 통해 Auth 내부 API로 호출하도록 변경했다.
 - Member와 Auth에는 `/internal/**` 전용 조회 endpoint를 추가했으며 Gateway에는 노출하지 않았다.
 - Community의 `member-server` Gradle 의존성을 제거했고 Community source의 `teamdevhub.devhub.member` 참조가 0건임을 확인했다.
@@ -19,7 +19,7 @@
 
 ## 2026-09-21 — Auth → Notification 동기 호출 경계 분리
 
-- Auth의 인증 코드 발송 계약을 `shared-kernel`로 옮기고 Notification 구현 모듈에 대한 production 의존성을 제거했다.
+- Auth의 인증 코드 발송 계약을 `common-module`로 옮기고 Notification 구현 모듈에 대한 production 의존성을 제거했다.
 - Auth outbound HTTP client가 Notification의 `/internal/notifications/verifications` endpoint를 호출하도록 변경했다.
 - 내부 endpoint는 Gateway 공개 라우트에 포함하지 않았다.
 - 기존 테스트 fixture 때문에 `notification-server`는 Auth의 `testImplementation`에만 남겼다.
@@ -45,16 +45,16 @@
 
 ## 2026-09-22 — Project → Administration 신청서 경계 분리
 
-- 신청서 검색·표준/커스텀 조회·생성·삭제 계약을 `shared-kernel`의 서비스 중립 계약으로 정리했다.
+- 신청서 검색·표준/커스텀 조회·생성·삭제 계약을 `common-module`의 서비스 중립 계약으로 정리했다.
 - Project outbound HTTP client가 Administration의 `/internal/application-forms/**` API를 호출하도록 변경했다.
 - Project HTTP 응답 모델이 Administration HTTP DTO를 직접 참조하던 결합도 Project 소유 DTO로 교체했다.
 - `project-server` production source의 Administration package 참조와 `admin-server` Gradle 의존성을 제거했다.
-- Project는 이제 `shared-kernel` 외 다른 비즈니스 서버 Gradle project를 production 의존성으로 갖지 않는다.
+- Project는 이제 `common-module` 외 다른 비즈니스 서버 Gradle project를 production 의존성으로 갖지 않는다.
 - `project-server:test`, `admin-server:test`, 두 서비스 `bootJar`가 성공했다.
 
 ## 2026-09-22 — Administration → Community 신고 경계 분리
 
-- 관리자 신고 목록·사용자별 신고·처리 완료 계약을 `shared-kernel`의 서비스 중립 계약으로 정리했다.
+- 관리자 신고 목록·사용자별 신고·처리 완료 계약을 `common-module`의 서비스 중립 계약으로 정리했다.
 - Administration outbound HTTP client가 Community의 `/internal/reports/**` API를 호출하도록 변경했다.
 - `admin-server` production source의 Community package 참조와 `community-server` Gradle 의존성을 제거했다.
 - 내부 신고 API는 Gateway 공개 라우트에 포함하지 않았다.
@@ -63,16 +63,16 @@
 
 ## 2026-09-22 — Administration → Member/Auth 관리 경계 분리
 
-- 관리자 회원 검색·상세·수정·차단·차단 해제 계약을 `shared-kernel`에 정의하고 Member 내부 HTTP API로 전환했다.
+- 관리자 회원 검색·상세·수정·차단·차단 해제 계약을 `common-module`에 정의하고 Member 내부 HTTP API로 전환했다.
 - Admin HTTP 응답과 요청 모델에서 Member domain·command·enum 직접 참조를 제거했다.
 - 관리자 비밀번호 초기화도 Auth의 내부 HTTP API로 전환해 Admin 독립 실행 시 로컬 Auth bean을 요구하지 않도록 했다.
 - `admin-server` production source의 Member package 참조와 `member-server` Gradle 의존성을 제거했다.
-- Admin은 이제 `shared-kernel` 외 다른 비즈니스 서버 Gradle project를 production 의존성으로 갖지 않는다.
+- Admin은 이제 `common-module` 외 다른 비즈니스 서버 Gradle project를 production 의존성으로 갖지 않는다.
 - Admin·Member·Auth 테스트와 `admin-server:bootJar`가 성공했다.
 
 ## 2026-09-22 — Auth → Administration 약관 동의 경계 분리
 
-- 가입 약관 동의 항목과 저장 command를 `shared-kernel`의 서비스 중립 계약으로 이동했다.
+- 가입 약관 동의 항목과 저장 command를 `common-module`의 서비스 중립 계약으로 이동했다.
 - Auth의 이메일/OAuth 가입 workflow가 Administration 내부 HTTP API로 약관 동의를 저장하도록 변경했다.
 - `auth-server` production source의 Administration package 참조와 `admin-server` Gradle 의존성을 제거했다.
 - 내부 약관 동의 API는 Gateway 공개 라우트에 포함하지 않았다.
@@ -81,11 +81,11 @@
 
 ## 2026-09-22 — Auth → Member 인증·가입 경계 분리
 
-- 회원 역할 enum을 `shared-kernel` 보안 계약으로 이동했다.
+- 회원 역할 enum을 `common-module` 보안 계약으로 이동했다.
 - 회원 등록, 최초 관리자 존재 확인, 로그인 가능 검증, 로그인 시각 갱신, 현재 역할 조회를 Member 내부 HTTP API로 전환했다.
 - Auth production 코드의 Member package 참조와 `member-server` Gradle production 의존성을 제거했다.
 - 기존 교차 모듈 테스트 fixture가 사용하는 Member 의존성은 `testImplementation`으로만 격리했다.
-- Auth는 이제 `shared-kernel` 외 다른 비즈니스 서버 Gradle project를 production 의존성으로 갖지 않는다.
+- Auth는 이제 `common-module` 외 다른 비즈니스 서버 Gradle project를 production 의존성으로 갖지 않는다.
 - `auth-server:test`, `member-server:test`, `auth-server:bootJar`가 성공했다.
 - Auth 독립화 이후 전체 `test bootJar`가 성공했다(73 tasks, 실패 0).
 
@@ -118,7 +118,7 @@
 - 활성 회원 수, 평균 매너 온도, 보유 기술, 포지션별 기술 통계는 Member 내부 API가 소유하도록 이동했다.
 - Query는 공유 계약과 HTTP 클라이언트로 두 서비스의 결과를 조합하며, Project/Member 엔티티를 직접 조회하지 않는다.
 - `query-server`의 `project-server`, `member-server` Gradle production 의존성을 제거했다.
-- 모든 비즈니스 서비스 간 production Gradle 의존성이 제거되었고 `shared-kernel`만 공통 계약 모듈로 남았다.
+- 모든 비즈니스 서비스 간 production Gradle 의존성이 제거되었고 `common-module`만 공통 계약 모듈로 남았다.
 - 집중 검증 23 tasks와 전체 `test bootJar` 71 tasks가 모두 성공했다.
 
 ## 2026-09-22 — 서비스 디스커버리 기반 내부 호출
@@ -202,7 +202,7 @@
 
 ## 모듈 이름
 
-`identity → auth-server`, `administration → admin-server`, `readmodel → query-server`, `platform → shared-kernel`로 변경했다. Java 패키지도 `identity → auth`, `administration → admin`, `readmodel → query`, `platform → shared`로 변경했다. `shared-kernel`은 배포 서비스가 아니므로 `bootJar`와 `bootRun`을 비활성화했다. 레거시 `web-server`, `bootstrap-server`, `DevhubApplication`은 제거했다.
+`identity → auth-server`, `administration → admin-server`, `readmodel → query-server`, `platform → common-module`로 변경했다. Java 패키지도 `identity → auth`, `administration → admin`, `readmodel → query`, `platform → shared`로 변경했다. `common-module`은 배포 서비스가 아니므로 `bootJar`와 `bootRun`을 비활성화했다. 레거시 `web-server`, `bootstrap-server`, `DevhubApplication`은 제거했다.
 
 검증용 `.gradle-phase1`, `.gradle-verify` 디렉터리도 제거하고 기본 Gradle 캐시만 사용한다.
 
@@ -213,7 +213,7 @@
 - `community-server → member-server, auth-server`
 - `query-server → admin-server, member-server, community-server, project-server`
 - `media-server`, `member-server`, `notification-server`, `admin-server`는 다른 비즈니스 모듈에 대한 메인 소스 Gradle 의존성이 없다.
-- 모든 비즈니스 모듈은 현재 `shared-kernel`에 의존한다. 이를 별도 배포 앱으로 만들지 않았다.
+- 모든 비즈니스 모듈은 현재 `common-module`에 의존한다. 이를 별도 배포 앱으로 만들지 않았다.
 
 다른 비즈니스 모듈 의존성이 없는 `media-server`를 첫 추출 대상으로 선택했다.
 
@@ -227,7 +227,7 @@
 | `GET /api/files/{fileGuid}/download` | `GET /files/{fileGuid}/download` | 동일 |
 | `DELETE /api/files/{fileGuid}` | `DELETE /files/{fileGuid}` | 동일 |
 
-파일 Controller, DTO, 퍼사드와 관련 단위 테스트를 media-server로 옮겼다. 공통 API 응답 형식과 성공 코드는 shared-kernel에 배치했다.
+파일 Controller, DTO, 퍼사드와 관련 단위 테스트를 media-server로 옮겼다. 공통 API 응답 형식과 성공 코드는 common-module에 배치했다.
 
 ## 보안 결정
 
@@ -239,7 +239,7 @@
 
 ## 검증 기록
 
-- 현재 Gradle `projects`에서 12개 모듈을 인식한다. `clean testClasses bootJar`가 성공했고 `shared-kernel:bootJar`는 의도대로 건너뛴다.
+- 현재 Gradle `projects`에서 12개 모듈을 인식한다. `clean testClasses bootJar`가 성공했고 `common-module:bootJar`는 의도대로 건너뛴다.
 - config-server, discovery-server, gateway-server와 8개 비즈니스 서버의 실행 JAR를 동시에 기동해 모두 `Started ...Application` 로그를 확인했다.
 - media-server는 Config Server의 설정을 받고 H2 `jdbc:h2:mem:media`에 접속했다. Eureka에 `MEDIA-SERVER`로 8086 포트 등록 확인.
 - Gateway 경유 익명 파일 업로드는 401, 유효한 개발용 ACCESS JWT 업로드는 200, 공개 메타 조회는 200이었다. 파일 없음 응답은 기존 오류 코드 `ERR.DVH.0064`를 유지했다.

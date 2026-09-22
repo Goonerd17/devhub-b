@@ -33,7 +33,13 @@ pipeline {
             steps {
                 echo "Building jar..."
                 sh "chmod +x gradlew"
-                sh "./gradlew clean build"
+                sh "./gradlew clean build verifyServiceBoundaries verifyApplicationScanBoundaries verifyProductionPackageBoundaries --no-daemon"
+            }
+        }
+
+        stage('Validate Compose') {
+            steps {
+                sh 'docker compose config --quiet'
             }
         }
 

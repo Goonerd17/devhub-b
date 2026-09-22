@@ -1,4 +1,4 @@
-package teamdevhub.devhub.project.config;
+package teamdevhub.devhub.shared.internal;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -11,6 +11,7 @@ import org.springframework.web.filter.OncePerRequestFilter;
 import java.io.IOException;
 import java.util.UUID;
 
+/** Establishes one correlation id for every inbound request handled by a service. */
 @Component
 public class CorrelationIdFilter extends OncePerRequestFilter {
     public static final String HEADER_NAME = "X-Correlation-Id";

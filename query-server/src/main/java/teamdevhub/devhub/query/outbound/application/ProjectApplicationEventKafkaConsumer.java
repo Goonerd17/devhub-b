@@ -3,11 +3,13 @@ package teamdevhub.devhub.query.outbound.application;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
+import org.slf4j.MDC;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import teamdevhub.devhub.query.outbound.application.persistence.ProjectApplicationProjectionEntity;
 import teamdevhub.devhub.query.outbound.application.persistence.ProjectApplicationProjectionRepository;
+import teamdevhub.devhub.shared.internal.CorrelationIdFilter;
 
 import java.time.Instant;
 
@@ -21,8 +23,13 @@ public class ProjectApplicationEventKafkaConsumer {
             groupId = "${query.application.kafka.group-id:query-project-application-projection}")
     @Transactional
     public void consume(String message) {
+        String correlationId = null;
         try {
             JsonNode event = objectMapper.readTree(message);
+            correlationId = event.path("correlationId").asText(null);
+            if (correlationId != null && !correlationId.isBlank()) {
+                MDC.put(CorrelationIdFilter.MDC_KEY, correlationId);
+            }
             if (event.path("schemaVersion").asInt(0) != 1) {
                 throw new IllegalArgumentException("Unsupported project application event schema version");
             }
@@ -58,6 +65,10 @@ public class ProjectApplicationEventKafkaConsumer {
             }
         } catch (Exception exception) {
             throw new IllegalStateException("Unable to consume project application event", exception);
+        } finally {
+            if (correlationId != null && !correlationId.isBlank()) {
+                MDC.remove(CorrelationIdFilter.MDC_KEY);
+            }
         }
     }
 }

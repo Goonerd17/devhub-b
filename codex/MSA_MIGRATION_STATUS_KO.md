@@ -11,7 +11,7 @@
 | 영역 | 상태 | 근거 및 설명 |
 |---|---|---|
 | 서비스 분리 | 완료 | `auth`, `member`, `project`, `community`, `admin`, `media`, `notification`, `query`와 `config`, `discovery`, `gateway`로 구성된 12개 Gradle 모듈이 존재합니다. |
-| 비즈니스 모듈 간 빌드 결합 제거 | 완료 | 운영 코드의 서비스 간 Gradle 의존성은 제거하고 `shared-kernel`의 계약·기술 타입만 공유하도록 정리했습니다. 루트 `verifyServiceBoundaries`로 금지 의존성을 검사합니다. |
+| 비즈니스 모듈 간 빌드 결합 제거 | 완료 | 운영 코드의 서비스 간 Gradle 의존성은 제거하고 `common-module`의 계약·기술 타입만 공유하도록 정리했습니다. 루트 `verifyServiceBoundaries`로 금지 의존성을 검사합니다. |
 | 서비스 간 통신 | 대부분 완료 | 주요 호출을 내부 HTTP/RestClient로 전환했고 Eureka 서비스 ID와 LoadBalancer를 사용합니다. Query의 홈/분석 조회, Project·Community의 Member/Auth/Media 연동이 포함됩니다. |
 | 이벤트 기반 전환 기반 | Kafka 1차 연결 | Project 생성·수정·마감 시 동일 트랜잭션으로 outbox 이벤트를 저장하고 Kafka publisher가 전달하도록 구성했습니다. Query projection과 Project 마감 알림 consumer까지 연결했습니다. 실제 Kafka Compose 기동 검증은 남아 있습니다. |
 | 내부 API 인증 | 개발 단계 완료 | `X-Internal-Api-Key`와 `INTERNAL_API_KEY`를 도입했습니다. 키가 없으면 401, 올바른 키면 내부 API가 호출되는 실제 Member HTTP 스모크 검증을 완료했습니다. |
@@ -103,7 +103,7 @@ Phase 6 운영 전환/안정화     예정
 - “빌드 성공”은 서비스 경계와 컴파일 가능성을 증명하지만, 네트워크·인증·데이터 일관성까지 증명하지는 않습니다.
 - 현재 가장 큰 다음 검증 포인트는 Docker Compose 전체 기동과 Gateway/Eureka를 포함한 종단 간 호출입니다.
 - 운영 전환 전까지는 H2 메모리 DB와 개발용 내부 키를 운영 환경에 사용하면 안 됩니다.
-- `shared-kernel`은 계약·공통 보안/기술 타입만 보유해야 하며, 특정 도메인의 Entity나 Repository가 들어가지 않도록 계속 검사해야 합니다.
+- `common-module`은 계약·공통 보안/기술 타입만 보유해야 하며, 특정 도메인의 Entity나 Repository가 들어가지 않도록 계속 검사해야 합니다.
 
 ## 관련 문서
 

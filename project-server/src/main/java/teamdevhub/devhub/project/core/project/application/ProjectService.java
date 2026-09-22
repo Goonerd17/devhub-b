@@ -40,6 +40,7 @@ import teamdevhub.devhub.project.outbound.event.ProjectEventOutbox;
 import teamdevhub.devhub.shared.event.IntegrationEvent;
 import teamdevhub.devhub.shared.event.project.ProjectClosedPayload;
 import teamdevhub.devhub.shared.event.project.ProjectCreatedPayload;
+import teamdevhub.devhub.shared.event.project.ProjectDeletedPayload;
 import teamdevhub.devhub.shared.event.project.ProjectUpdatedPayload;
 
 import java.time.Instant;
@@ -167,12 +168,16 @@ public class ProjectService implements ProjectUseCase, AdminMemberProjectQuery {
 
 	@Override
 	public List<String> deleteProject(String projectGuid) {
+		List<String> applicationFormGuids = projectApplicationFormRepository.findAllGuidByProjectGuid(projectGuid);
 		projectSkillRepository.deleteByProjectGuid(projectGuid);
 		projectRequirementRepository.deleteByProjectGuid(projectGuid);
 		projectApplicationFormRepository.deleteByProjectGuid(projectGuid);
 		projectLikeRepository.deleteByProjectGuid(projectGuid);
 		projectRepository.deleteById(projectGuid);
-		return projectApplicationFormRepository.findAllGuidByProjectGuid(projectGuid);
+		projectEventOutbox.append(new IntegrationEvent(
+				UUID.randomUUID().toString(), "project.deleted", 1, Instant.now(), "project",
+				projectGuid, null, null, new ProjectDeletedPayload(projectGuid)));
+		return applicationFormGuids;
 	}
 
 	@Override

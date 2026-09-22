@@ -15,11 +15,12 @@ public interface JpaAdminProjectApplicationRepository extends JpaRepository<Proj
 			from ProjectApplicationEntity T1
 			left join ProjectRequirementEntity ST1 on ST1.projectRequirementGuid = T1.requirementGuid
 		    where 1 = 1
+		    and (:projectGuid is null or ST1.projectGuid = :projectGuid)
 		    and (:positionCd is null or ST1.positionCd = :positionCd)
 		    and (:levelCd is null or ST1.levelCd = :levelCd)
 		    and (:approvalStatusCd is null or T1.statusCd = :approvalStatusCd)
 			""")
-	Page<ProjectApplicationEntity> getApplicationsByProjectGuid(@Param("positionCd")String positionCd, @Param("levelCd")String levelCd,
+	Page<ProjectApplicationEntity> getApplicationsByProjectGuid(@Param("projectGuid") String projectGuid, @Param("positionCd")String positionCd, @Param("levelCd")String levelCd,
 			@Param("approvalStatusCd")String approvalStatusCd, Pageable pageable);
 
 }

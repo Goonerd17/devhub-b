@@ -8,13 +8,13 @@
 
 | 구분 | 모듈 | 책임 |
 |---|---|---|
-| 공통 라이브러리 | `shared-kernel` | 공통 계약과 기술 구성. 독립 배포 대상이 아님 |
+| 공통 라이브러리 | `common-module` | 공통 계약과 기술 구성. 독립 배포 대상이 아님 |
 | 비즈니스 서버 | `auth-server`, `member-server`, `project-server`, `community-server`, `admin-server`, `media-server`, `notification-server`, `query-server` | 인증, 회원, 프로젝트, 커뮤니티, 관리, 파일, 알림, 통합 조회 |
 | 인프라 서버 | `config-server`, `discovery-server`, `gateway-server` | 중앙 설정, Eureka, 외부 요청 라우팅 |
 
 각 비즈니스 모듈은 실행 진입점과 JAR을 갖습니다. HTTP 계층은 `media-server`의 파일 API, `auth-server`의 인증·회원가입 API, `member-server`의 사용자 프로필 API, `notification-server`의 알림 API, `admin-server`의 배너·공통코드·지원서 양식·약관·사용자 관리·비밀번호 초기화·신고 관리 API, `community-server`의 게시판·댓글·신고·관리자 게시판 API, `project-server`의 프로젝트 생성·조회·수정·삭제·지원서·사용자 프로젝트 목록 API, `query-server`의 홈·스킬 트렌드 API까지 이관되어 있습니다. 따라서 현재 브랜치는 기능 API가 완성된 MSA가 아니라 **도메인 코드 물리 분리와 HTTP API 추출이 진행된 중간 상태**입니다.
 
-또한 `auth-server`, `project-server`, `community-server`, `query-server`에는 다른 비즈니스 모듈에 대한 Gradle 구현 의존성과 직접 Java 호출이 남아 있습니다. `member-server`에는 다른 비즈니스 모듈에 대한 테스트 의존성도 남아 있습니다. 따라서 **독립 실행 가능**과 **서비스 경계 분리 완료**를 구분해야 합니다. `shared-kernel`은 여러 서버가 함께 사용합니다.
+또한 `auth-server`, `project-server`, `community-server`, `query-server`에는 다른 비즈니스 모듈에 대한 Gradle 구현 의존성과 직접 Java 호출이 남아 있습니다. `member-server`에는 다른 비즈니스 모듈에 대한 테스트 의존성도 남아 있습니다. 따라서 **독립 실행 가능**과 **서비스 경계 분리 완료**를 구분해야 합니다. `common-module`은 여러 서버가 함께 사용합니다.
 
 `media-server`는 첫 추출 대상으로 파일 Controller·DTO·퍼사드를 소유하고, 자체 H2 DB(`jdbc:h2:mem:media`)와 JWT 검증을 사용합니다. Config Server 설정 수신, Eureka 등록, Gateway의 `/api/files/**` 라우팅이 검증되었습니다. 나머지 비즈니스 서버는 기본 설정에서 `jdbc:h2:mem:devhub`와 임의 포트(`server.port: 0`)를 사용하며, 현재 Gateway 라우트와 Config Client/Eureka 연동은 적용되지 않았습니다. 같은 H2 URL 문자열도 프로세스 간 데이터 공유를 뜻하지 않습니다.
 
@@ -64,7 +64,7 @@ docker compose up --build
 ## 다음 작업
 
 1. **현재 기준선 재검증**: 서비스명 변경 후 전체 `test`/`build`, 각 `bootJar`, 핵심 서버 기동을 다시 확인합니다. 오래된 테스트 수와 커버리지 수치를 현재 결과로 교체합니다.
-2. **HTTP API 복구 및 소유권 이전**: Git의 `d89a8cf~1`에 있던 `web` Controller와 HTTP DTO·퍼사드를 복구합니다. 홈·스킬 트렌드는 `query-server`, 사용자 프로필은 `member-server`, 프로젝트·지원서·사용자 프로젝트 목록 API는 `project-server`, 사용자 관리·비밀번호 초기화·신고 관리 API는 `admin-server`로 이전했습니다. 비밀번호 로그인 가능 여부도 `shared-kernel` 계약으로 연결했습니다. 공개 URL, 인증 정책, Swagger 경로를 확인한 다음 Gateway에 라우트를 추가합니다. 현재 인증·회원가입·사용자 프로필·알림·파일·관리자 일부·커뮤니티·프로젝트·지원서 양식·홈·스킬 트렌드 Controller는 각 서버에서 컴파일 검증되었습니다.
+2. **HTTP API 복구 및 소유권 이전**: Git의 `d89a8cf~1`에 있던 `web` Controller와 HTTP DTO·퍼사드를 복구합니다. 홈·스킬 트렌드는 `query-server`, 사용자 프로필은 `member-server`, 프로젝트·지원서·사용자 프로젝트 목록 API는 `project-server`, 사용자 관리·비밀번호 초기화·신고 관리 API는 `admin-server`로 이전했습니다. 비밀번호 로그인 가능 여부도 `common-module` 계약으로 연결했습니다. 공개 URL, 인증 정책, Swagger 경로를 확인한 다음 Gateway에 라우트를 추가합니다. 현재 인증·회원가입·사용자 프로필·알림·파일·관리자 일부·커뮤니티·프로젝트·지원서 양식·홈·스킬 트렌드 Controller는 각 서버에서 컴파일 검증되었습니다.
 3. **서비스 간 Java 의존성 제거**: `auth-server`, `project-server`, `community-server`, `query-server`의 다른 비즈니스 모듈 직접 호출을 명시적인 HTTP 계약으로 교체합니다. 동기 호출의 실패·타임아웃 처리와 서비스 인증도 함께 정의합니다.
 4. **데이터 소유권 분리**: 서비스별 데이터 소유권을 확정하고 외부 Entity/Repository 접근과 교차 DB 조인을 제거합니다. 특히 통합 조회용 `query-server`의 데이터 공급 방식을 설계한 뒤 서비스별 DB를 분리합니다. 현재 H2 메모리 DB는 재시작 시 데이터가 사라지므로 운영 저장소와 마이그레이션 전략도 필요합니다.
 5. **설정과 운영 검증**: 나머지 서비스에 Config Client·Eureka 등록을 적용하고 Gateway 경유 시나리오를 검증합니다. 비밀값, OAuth callback, JWT 검증 책임, CORS 및 관측성 구성을 서버별로 점검합니다.

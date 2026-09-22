@@ -3,6 +3,9 @@ spring:
     gateway:
       server:
         webflux:
+          httpclient:
+            connect-timeout: ${GATEWAY_CONNECT_TIMEOUT_MS:3000}
+            response-timeout: ${GATEWAY_RESPONSE_TIMEOUT:5s}
           routes:
             - id: auth-user-signup
               uri: lb://auth-server

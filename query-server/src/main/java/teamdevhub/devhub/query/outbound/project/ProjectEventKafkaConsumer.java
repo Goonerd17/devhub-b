@@ -3,12 +3,14 @@ package teamdevhub.devhub.query.outbound.project;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
+import org.slf4j.MDC;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import teamdevhub.devhub.query.outbound.project.persistence.ProjectProjectionEntity;
 import teamdevhub.devhub.query.outbound.project.persistence.ProjectProjectionRepository;
+import teamdevhub.devhub.shared.internal.CorrelationIdFilter;
 
 import java.time.Instant;
 import java.time.LocalDate;
@@ -24,8 +26,13 @@ public class ProjectEventKafkaConsumer {
             groupId = "${spring.kafka.consumer.group-id:query-project-projection}")
     @Transactional
     public void consume(String message) {
+        String correlationId = null;
         try {
             JsonNode event = objectMapper.readTree(message);
+            correlationId = event.path("correlationId").asText(null);
+            if (correlationId != null && !correlationId.isBlank()) {
+                MDC.put(CorrelationIdFilter.MDC_KEY, correlationId);
+            }
             assertSupportedSchema(event);
             String eventId = event.path("eventId").asText();
             if (eventId.isBlank() || repository.existsByLastEventId(eventId)) {
@@ -65,13 +72,22 @@ public class ProjectEventKafkaConsumer {
                         projection.applyClosed(eventId, eventAt);
                     }
                 }
+                case "project.deleted" -> {
+                    if (projection != null) {
+                        repository.delete(projection);
+                    }
+                }
                 default -> { return; }
             }
-            if (projection != null && !"project.created".equals(eventType)) {
+            if (projection != null && !"project.created".equals(eventType) && !"project.deleted".equals(eventType)) {
                 repository.save(projection);
             }
         } catch (Exception exception) {
             throw new IllegalStateException("Unable to consume project event", exception);
+        } finally {
+            if (correlationId != null && !correlationId.isBlank()) {
+                MDC.remove(CorrelationIdFilter.MDC_KEY);
+            }
         }
     }
 

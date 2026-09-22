@@ -107,8 +107,72 @@ tasks.register('verifyServiceBoundaries') {
 	}
 }
 
+def independentlyRunnableServices = [
+		'auth-server',
+		'member-server',
+		'project-server',
+		'community-server',
+		'admin-server',
+		'notification-server',
+		'query-server'
+] as Set
+
+tasks.register('verifyApplicationScanBoundaries') {
+	group = 'verification'
+	description = 'Rejects broad component scanning that would load another service into a runnable application.'
+	doLast {
+		def violations = []
+		independentlyRunnableServices.each { serviceName ->
+			fileTree("${serviceName}/src/main/java").matching { include '**/*Application.java' }.files.each { sourceFile ->
+				def source = sourceFile.getText('UTF-8')
+				if (source.contains('@SpringBootApplication') && source =~ /scanBasePackages\s*=\s*"teamdevhub\.devhub"/) {
+					violations << "${serviceName}:${sourceFile.name} scans teamdevhub.devhub"
+				}
+			}
+		}
+		if (!violations.isEmpty()) {
+			throw new GradleException('Runnable service scan boundaries are too broad:\n' + violations.join('\n'))
+		}
+	}
+}
+
+def servicePackageNames = [
+		'auth-server'         : 'auth',
+		'member-server'       : 'member',
+		'project-server'      : 'project',
+		'community-server'    : 'community',
+		'admin-server'        : 'admin',
+		'media-server'        : 'media',
+		'notification-server' : 'notification',
+		'query-server'        : 'query'
+]
+
+tasks.register('verifyProductionPackageBoundaries') {
+	group = 'verification'
+	description = 'Rejects production imports of another service internal package.'
+	doLast {
+		def violations = []
+		servicePackageNames.each { serviceName, servicePackage ->
+			fileTree("${serviceName}/src/main/java").matching { include '**/*.java' }.files.each { sourceFile ->
+				def source = sourceFile.getText('UTF-8')
+				servicePackageNames.each { foreignService, foreignPackage ->
+					if (serviceName != foreignService
+							&& source =~ /(?m)^\s*import\s+teamdevhub\.devhub\.${foreignPackage}\./) {
+						violations << "${sourceFile}: imports ${foreignService} internal package"
+					}
+				}
+			}
+		}
+		if (!violations.isEmpty()) {
+			throw new GradleException('Production package boundary violations:\n' + violations.join('\n'))
+		}
+	}
+}
+
 tasks.named('check') {
 	dependsOn tasks.named('verifyServiceBoundaries')
+	dependsOn tasks.named('verifyApplicationScanBoundaries')
+	dependsOn tasks.named('verifyProductionPackageBoundaries')
 }
 
 clean.doLast {

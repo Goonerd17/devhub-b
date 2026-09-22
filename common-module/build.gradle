@@ -1,5 +1,4 @@
 plugins {
-    id 'org.springframework.boot'
     id 'java-library'
 }
 
@@ -42,6 +41,3 @@ java {
 tasks.named('test') {
     useJUnitPlatform()
 }
-
-bootJar { enabled = false }
-bootRun { enabled = false }

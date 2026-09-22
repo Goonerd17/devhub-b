@@ -61,8 +61,21 @@ class ProjectEventKafkaConsumerTest {
         assertThat(projection.getLifecycleStatus()).isEqualTo("CLOSED");
     }
 
+    @Test
+    void deletedEventRemovesExistingProjection() {
+        when(repository.existsByLastEventId("evt-4")).thenReturn(false);
+        ProjectProjectionEntity projection = ProjectProjectionEntity.created(
+                "project-1", "member-1", "before", "WEB", "dev", null,
+                null, null, null, false, "3201", "evt-0", Instant.now());
+        when(repository.findById("project-1")).thenReturn(Optional.of(projection));
+
+        consumer.consume(event("evt-4", "project.deleted", "project-1", "{}"));
+
+        verify(repository).delete(projection);
+    }
+
     private static String event(String eventId, String eventType, String aggregateId, String payload) {
-        return "{\"eventId\":\"" + eventId + "\",\"eventType\":\"" + eventType
+        return "{\"schemaVersion\":1,\"eventId\":\"" + eventId + "\",\"eventType\":\"" + eventType
                 + "\",\"occurredAt\":\"2026-09-22T00:00:00Z\",\"aggregateId\":\""
                 + aggregateId + "\",\"payload\":" + payload + "}";
     }

@@ -13,6 +13,13 @@ x-business-dependencies: &business-dependencies
   discovery-server:
     condition: service_healthy
 
+x-business-healthcheck: &business-healthcheck
+  test: ["CMD", "wget", "-q", "--spider", "http://localhost:8080/actuator/health/readiness"]
+  interval: 10s
+  timeout: 5s
+  retries: 12
+  start_period: 20s
+
 services:
   kafka:
     image: bitnami/kafka:3.9
@@ -45,7 +52,7 @@ services:
     environment:
       SERVER_PORT: 8080
     healthcheck:
-      test: ["CMD", "wget", "-q", "--spider", "http://localhost:8080/actuator/health"]
+      test: ["CMD", "wget", "-q", "--spider", "http://localhost:8080/actuator/health/readiness"]
       interval: 5s
       timeout: 3s
       retries: 20
@@ -60,7 +67,7 @@ services:
     environment:
       SERVER_PORT: 8080
     healthcheck:
-      test: ["CMD", "wget", "-q", "--spider", "http://localhost:8080/"]
+      test: ["CMD", "wget", "-q", "--spider", "http://localhost:8080/actuator/health/readiness"]
       interval: 5s
       timeout: 3s
       retries: 20
@@ -74,6 +81,7 @@ services:
       - "8081:8080"
     environment: *business-environment
     depends_on: *business-dependencies
+    healthcheck: *business-healthcheck
 
   member-server:
     build:
@@ -84,6 +92,7 @@ services:
       - "8082:8080"
     environment: *business-environment
     depends_on: *business-dependencies
+    healthcheck: *business-healthcheck
 
   project-server:
     build:
@@ -99,6 +108,7 @@ services:
       <<: *business-dependencies
       kafka:
         condition: service_healthy
+    healthcheck: *business-healthcheck
 
   community-server:
     build:
@@ -109,6 +119,7 @@ services:
       - "8084:8080"
     environment: *business-environment
     depends_on: *business-dependencies
+    healthcheck: *business-healthcheck
 
   admin-server:
     build:
@@ -119,6 +130,7 @@ services:
       - "8085:8080"
     environment: *business-environment
     depends_on: *business-dependencies
+    healthcheck: *business-healthcheck
 
   media-server:
     build:
@@ -133,6 +145,7 @@ services:
     tmpfs:
       - /tmp/devhub-media
     depends_on: *business-dependencies
+    healthcheck: *business-healthcheck
 
   notification-server:
     build:
@@ -148,6 +161,7 @@ services:
       <<: *business-dependencies
       kafka:
         condition: service_healthy
+    healthcheck: *business-healthcheck
 
   query-server:
     build:
@@ -163,6 +177,7 @@ services:
       <<: *business-dependencies
       kafka:
         condition: service_healthy
+    healthcheck: *business-healthcheck
 
   gateway-server:
     build:
@@ -175,18 +190,19 @@ services:
     depends_on:
       <<: *business-dependencies
       auth-server:
-        condition: service_started
+        condition: service_healthy
       member-server:
-        condition: service_started
+        condition: service_healthy
       project-server:
-        condition: service_started
+        condition: service_healthy
       community-server:
-        condition: service_started
+        condition: service_healthy
       admin-server:
-        condition: service_started
+        condition: service_healthy
       media-server:
-        condition: service_started
+        condition: service_healthy
       notification-server:
-        condition: service_started
+        condition: service_healthy
       query-server:
-        condition: service_started
+        condition: service_healthy
+    healthcheck: *business-healthcheck
