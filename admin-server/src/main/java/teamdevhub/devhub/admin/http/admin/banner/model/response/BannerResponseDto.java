@@ -5,7 +5,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import teamdevhub.devhub.admin.core.admin.banner.domain.Banner;
-import teamdevhub.devhub.shared.shared.enums.DateConstants;
+import teamdevhub.devhub.shared.enums.DateConstants;
 
 @Getter
 @Builder
@@ -39,4 +39,3 @@ public class BannerResponseDto {
                 .build();
     }
 }
-

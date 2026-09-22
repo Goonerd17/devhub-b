@@ -9,7 +9,7 @@ import teamdevhub.devhub.shared.outbound.common.exception.AdapterDataException;
 import teamdevhub.devhub.member.outbound.user.adapter.entity.UserEntity;
 import teamdevhub.devhub.member.outbound.user.adapter.mapper.UserMapper;
 import teamdevhub.devhub.member.outbound.user.persistence.JpaUserRepository;
-import teamdevhub.devhub.shared.shared.enums.ErrorCode;
+import teamdevhub.devhub.shared.enums.ErrorCode;
 
 import java.time.LocalDateTime;
 import java.util.List;

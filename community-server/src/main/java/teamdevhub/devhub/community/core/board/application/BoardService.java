@@ -20,7 +20,7 @@ import teamdevhub.devhub.shared.identifier.IdentifierProvider;
 import teamdevhub.devhub.shared.security.MemberEmailQuery;
 import teamdevhub.devhub.shared.member.MemberCommunityProfile;
 import teamdevhub.devhub.shared.member.MemberProfileQuery;
-import teamdevhub.devhub.shared.shared.enums.ErrorCode;
+import teamdevhub.devhub.shared.enums.ErrorCode;
 
 @Service
 @Transactional

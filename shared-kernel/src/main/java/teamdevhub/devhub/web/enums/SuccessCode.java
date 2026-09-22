@@ -1,4 +1,4 @@
-package teamdevhub.devhub.web.shared.enums;
+package teamdevhub.devhub.web.enums;
 
 import lombok.Getter;
 

@@ -4,11 +4,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import lombok.RequiredArgsConstructor;
-import teamdevhub.devhub.web.api.web.model.response.DataApiResponseDto;
+import teamdevhub.devhub.web.api.model.response.DataApiResponseDto;
 import teamdevhub.devhub.community.core.board.port.in.command.CreateCommentCommand;
 import teamdevhub.devhub.community.core.board.port.in.command.UpdateCommentCommand;
 import teamdevhub.devhub.community.core.board.port.in.usecase.CommentUseCase;
-import teamdevhub.devhub.web.shared.enums.SuccessCode;
+import teamdevhub.devhub.web.enums.SuccessCode;
 
 @Service
 @Transactional
@@ -39,4 +39,3 @@ public class CommentFacade {
 	}
 
 }
-

@@ -5,7 +5,7 @@ import teamdevhub.devhub.auth.core.auth.domain.vo.user.AuthenticatedUser;
 import teamdevhub.devhub.auth.core.auth.port.out.UserCredentialRepository;
 import teamdevhub.devhub.shared.security.MemberRole;
 import teamdevhub.devhub.shared.outbound.common.exception.AdapterDataException;
-import teamdevhub.devhub.shared.shared.enums.ErrorCode;
+import teamdevhub.devhub.shared.enums.ErrorCode;
 import teamdevhub.devhub.auth.core.auth.domain.VerificationProvider;
 
 import java.util.HashMap;

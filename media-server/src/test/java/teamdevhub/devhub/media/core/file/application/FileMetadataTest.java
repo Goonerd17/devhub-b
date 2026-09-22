@@ -4,7 +4,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import teamdevhub.devhub.shared.core.common.exception.BusinessRuleException;
 import teamdevhub.devhub.media.core.application.FileMetadata;
-import teamdevhub.devhub.shared.shared.enums.ErrorCode;
+import teamdevhub.devhub.shared.enums.ErrorCode;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;

@@ -1,7 +1,7 @@
 package teamdevhub.devhub.shared.outbound.common.exception;
 
 import lombok.Getter;
-import teamdevhub.devhub.shared.shared.enums.ErrorCode;
+import teamdevhub.devhub.shared.enums.ErrorCode;
 
 @Getter
 public class AdapterDataException extends RuntimeException {

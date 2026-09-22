@@ -15,7 +15,7 @@ import teamdevhub.devhub.community.core.report.port.in.command.CreateReportComma
 import teamdevhub.devhub.community.core.report.port.in.usecase.ReportUseCase;
 import teamdevhub.devhub.community.api.ReportProcessing;
 import teamdevhub.devhub.community.core.report.port.out.ReportRepository;
-import teamdevhub.devhub.shared.shared.enums.ErrorCode;
+import teamdevhub.devhub.shared.enums.ErrorCode;
 
 @Service
 @Transactional

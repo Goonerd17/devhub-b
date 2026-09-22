@@ -9,9 +9,9 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 import teamdevhub.devhub.member.http.user.facade.UserProfileHttpFacade;
 import teamdevhub.devhub.member.http.user.model.*;
-import teamdevhub.devhub.web.api.web.model.response.DataApiResponseDto;
+import teamdevhub.devhub.web.api.model.response.DataApiResponseDto;
 import teamdevhub.devhub.shared.security.CurrentUserPrincipal;
-import teamdevhub.devhub.web.shared.enums.SuccessCode;
+import teamdevhub.devhub.web.enums.SuccessCode;
 
 @Tag(name = "User - Profile", description = "사용자 프로필 API")
 @RestController

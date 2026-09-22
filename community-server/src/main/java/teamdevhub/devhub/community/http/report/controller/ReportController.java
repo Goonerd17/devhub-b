@@ -13,7 +13,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import teamdevhub.devhub.community.http.report.model.CreateReportRequestDto;
-import teamdevhub.devhub.web.api.web.model.response.DataApiResponseDto;
+import teamdevhub.devhub.web.api.model.response.DataApiResponseDto;
 import teamdevhub.devhub.community.http.resolver.LoginUser;
 import java.lang.String;
 import teamdevhub.devhub.community.http.report.facade.ReportFacade;

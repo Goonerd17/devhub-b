@@ -19,8 +19,8 @@ import java.util.Base64;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static teamdevhub.devhub.constant.UserTestConstant.*;
-import static teamdevhub.devhub.shared.shared.enums.ErrorCode.TOKEN_EXPIRED;
-import static teamdevhub.devhub.shared.shared.enums.ErrorCode.TOKEN_INVALID;
+import static teamdevhub.devhub.shared.enums.ErrorCode.TOKEN_EXPIRED;
+import static teamdevhub.devhub.shared.enums.ErrorCode.TOKEN_INVALID;
 import static teamdevhub.devhub.shared.security.MemberRole.USER;
 
 class JwtTokenCodecTest {

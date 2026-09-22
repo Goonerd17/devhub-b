@@ -6,12 +6,12 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.http.ResponseEntity;
 import teamdevhub.devhub.media.http.controller.FileController;
-import teamdevhub.devhub.web.api.web.model.response.DataApiResponseDto;
+import teamdevhub.devhub.web.api.model.response.DataApiResponseDto;
 import teamdevhub.devhub.media.api.MediaDownload;
 import teamdevhub.devhub.media.http.facade.FileFacade;
 import teamdevhub.devhub.media.http.facade.model.FileResponseDto;
 import teamdevhub.devhub.media.http.facade.model.UploadFileResponseDto;
-import teamdevhub.devhub.web.shared.enums.SuccessCode;
+import teamdevhub.devhub.web.enums.SuccessCode;
 
 import java.util.Map;
 

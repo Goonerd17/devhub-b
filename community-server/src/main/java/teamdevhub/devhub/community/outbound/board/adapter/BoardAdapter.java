@@ -12,7 +12,7 @@ import teamdevhub.devhub.community.outbound.board.adapter.entity.BoardEntity;
 import teamdevhub.devhub.community.outbound.board.adapter.mapper.BoardMapper;
 import teamdevhub.devhub.community.outbound.board.persistence.JpaBoardRepository;
 import teamdevhub.devhub.shared.outbound.common.exception.AdapterDataException;
-import teamdevhub.devhub.shared.shared.enums.ErrorCode;
+import teamdevhub.devhub.shared.enums.ErrorCode;
 
 @Component
 @RequiredArgsConstructor

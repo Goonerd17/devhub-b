@@ -11,7 +11,7 @@ import teamdevhub.devhub.project.http.application.model.response.ProjectApplicat
 import teamdevhub.devhub.project.http.application.model.response.ProjectApplicationDetailResponseDto;
 import teamdevhub.devhub.project.http.application.model.response.ProjectApplicationDetailWrapperResponseDto;
 import teamdevhub.devhub.project.http.application.model.response.ProjectApplicationListResponseDto;
-import teamdevhub.devhub.web.api.web.model.response.DataApiResponseDto;
+import teamdevhub.devhub.web.api.model.response.DataApiResponseDto;
 import teamdevhub.devhub.project.http.response.PageResponseDto;
 import teamdevhub.devhub.project.core.application.domain.ProjectApplication;
 import teamdevhub.devhub.project.core.application.domain.ProjectApplicationAnswer;
@@ -24,7 +24,7 @@ import teamdevhub.devhub.project.core.project.domain.Project;
 import teamdevhub.devhub.project.core.project.domain.ProjectRequirement;
 import teamdevhub.devhub.project.http.project.model.ProjectDetailResponseDto;
 import teamdevhub.devhub.project.core.project.port.in.usecase.ProjectUseCase;
-import teamdevhub.devhub.web.shared.enums.SuccessCode;
+import teamdevhub.devhub.web.enums.SuccessCode;
 
 @Service
 @RequiredArgsConstructor
@@ -123,4 +123,3 @@ public class ProjectApplicationFacade {
 		return DataApiResponseDto.successWithData(SuccessCode.READ_SUCCESS, responseDto);
 	}
 }
-

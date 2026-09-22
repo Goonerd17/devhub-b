@@ -20,7 +20,7 @@ import teamdevhub.devhub.auth.api.credential.EmailCredentialRegistrationCommand;
 import teamdevhub.devhub.auth.api.credential.UpdatePasswordCommand;
 import teamdevhub.devhub.auth.api.credential.AdminPasswordReset;
 import teamdevhub.devhub.auth.core.auth.domain.vo.oauth.OAuthUser;
-import teamdevhub.devhub.shared.shared.enums.ErrorCode;
+import teamdevhub.devhub.shared.enums.ErrorCode;
 
 @Service
 @Transactional

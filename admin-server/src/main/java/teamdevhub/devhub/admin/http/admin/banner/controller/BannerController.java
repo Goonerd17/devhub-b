@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import teamdevhub.devhub.admin.http.admin.banner.model.request.BannerRequsetDto;
 import teamdevhub.devhub.admin.http.admin.banner.model.request.SearchBannerRequestDto;
 import teamdevhub.devhub.admin.http.admin.banner.model.response.BannerResponseDto;
-import teamdevhub.devhub.web.api.web.model.response.DataApiResponseDto;
+import teamdevhub.devhub.web.api.model.response.DataApiResponseDto;
 import teamdevhub.devhub.admin.http.response.DataListApiResponseDto;
 import teamdevhub.devhub.admin.http.admin.banner.facade.BannerFacade;
 import teamdevhub.devhub.shared.core.common.page.PageCommand;
@@ -58,4 +58,3 @@ public class BannerController {
         return ResponseEntity.ok(bannerFacade.deleteBanner(bannerGuid));
     }
 }
-

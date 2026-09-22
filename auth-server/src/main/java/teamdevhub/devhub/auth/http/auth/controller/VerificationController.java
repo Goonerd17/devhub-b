@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 import teamdevhub.devhub.auth.http.auth.model.request.ConfirmVerificationRequestDto;
 import teamdevhub.devhub.auth.http.auth.model.request.IssueVerificationRequestDto;
 import teamdevhub.devhub.auth.core.auth.port.in.facade.VerificationFacade;
-import teamdevhub.devhub.web.shared.enums.SuccessCode;
-import teamdevhub.devhub.web.api.web.model.response.DataApiResponseDto;
+import teamdevhub.devhub.web.enums.SuccessCode;
+import teamdevhub.devhub.web.api.model.response.DataApiResponseDto;
 
 @Tag(name = "Verification", description = "이메일 인증 API")
 @RestController
@@ -55,4 +55,3 @@ public class VerificationController {
         );
     }
 }
-

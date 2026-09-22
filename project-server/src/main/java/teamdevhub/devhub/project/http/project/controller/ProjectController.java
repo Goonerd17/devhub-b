@@ -22,7 +22,7 @@ import lombok.RequiredArgsConstructor;
 import teamdevhub.devhub.project.http.project.model.CreateProjectRequestDto;
 import teamdevhub.devhub.project.http.project.model.SearchProjectRequestDto;
 import teamdevhub.devhub.project.http.project.model.UpdateProjectRequestDto;
-import teamdevhub.devhub.web.api.web.model.response.DataApiResponseDto;
+import teamdevhub.devhub.web.api.model.response.DataApiResponseDto;
 import teamdevhub.devhub.project.http.response.DataListApiResponseDto;
 import teamdevhub.devhub.project.http.response.PageResponseDto;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -33,7 +33,7 @@ import teamdevhub.devhub.project.core.project.domain.vo.command.CreateProjectLik
 import teamdevhub.devhub.project.http.project.facade.ProjectFacade;
 import teamdevhub.devhub.project.http.project.model.ProjectDetailResponseDto;
 import teamdevhub.devhub.project.http.project.model.ProjectDetailWithFormResponseDto;
-import teamdevhub.devhub.web.shared.enums.SuccessCode;
+import teamdevhub.devhub.web.enums.SuccessCode;
 
 @Tag(name = "Project", description = "프로젝트 생성/조회/수정/삭제 API")
 @RestController

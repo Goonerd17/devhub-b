@@ -15,7 +15,7 @@ import teamdevhub.devhub.project.http.response.DataListApiResponseDto;
 import teamdevhub.devhub.project.http.response.PageResponseDto;
 import teamdevhub.devhub.shared.core.common.page.PageCommand;
 import teamdevhub.devhub.shared.security.CurrentUserPrincipal;
-import teamdevhub.devhub.web.shared.enums.SuccessCode;
+import teamdevhub.devhub.web.enums.SuccessCode;
 
 @Tag(name = "User - Projects", description = "사용자 프로젝트 목록 API")
 @RestController

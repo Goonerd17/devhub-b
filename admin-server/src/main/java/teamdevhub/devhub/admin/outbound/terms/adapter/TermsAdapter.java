@@ -12,7 +12,7 @@ import teamdevhub.devhub.admin.outbound.terms.adapter.mapper.TermsAgreementMappe
 import teamdevhub.devhub.admin.outbound.terms.adapter.mapper.TermsMapper;
 import teamdevhub.devhub.admin.outbound.terms.persistence.JpaTermsAgreementRepository;
 import teamdevhub.devhub.admin.outbound.terms.persistence.JpaTermsRepository;
-import teamdevhub.devhub.shared.shared.enums.ErrorCode;
+import teamdevhub.devhub.shared.enums.ErrorCode;
 
 import java.util.List;
 import java.util.Set;

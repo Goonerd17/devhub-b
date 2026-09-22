@@ -13,7 +13,7 @@ import teamdevhub.devhub.community.outbound.board.adapter.entity.CommentEntity;
 import teamdevhub.devhub.community.outbound.board.adapter.mapper.CommentMapper;
 import teamdevhub.devhub.community.outbound.board.persistence.JpaCommentRepository;
 import teamdevhub.devhub.shared.outbound.common.exception.AdapterDataException;
-import teamdevhub.devhub.shared.shared.enums.ErrorCode;
+import teamdevhub.devhub.shared.enums.ErrorCode;
 
 @Component
 @RequiredArgsConstructor

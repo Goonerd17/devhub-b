@@ -2,7 +2,7 @@ package teamdevhub.devhub.auth.core.auth.domain.vo.verification;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import teamdevhub.devhub.shared.shared.enums.ErrorCode;
+import teamdevhub.devhub.shared.enums.ErrorCode;
 import teamdevhub.devhub.shared.core.common.exception.DomainRuleException;
 import teamdevhub.devhub.auth.core.auth.domain.vo.verification.VerificationTarget;
 import teamdevhub.devhub.auth.core.auth.domain.vo.verification.VerificationType;

@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import teamdevhub.devhub.admin.http.admin.form.model.SaveApplicationFormRequestDto;
 import teamdevhub.devhub.admin.http.admin.form.model.SearchAdminFormRequestDto;
-import teamdevhub.devhub.web.api.web.model.response.DataApiResponseDto;
+import teamdevhub.devhub.web.api.model.response.DataApiResponseDto;
 import teamdevhub.devhub.admin.http.response.DataListApiResponseDto;
 import teamdevhub.devhub.admin.http.admin.form.facade.ApplicationFormFacade;
 import teamdevhub.devhub.admin.http.admin.form.facade.ApplicationFormFacade.ApplicationFormListItemDto;
@@ -61,4 +61,3 @@ public class ApplicationFormController {
 		);
 	}
 }
-

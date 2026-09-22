@@ -18,12 +18,12 @@ import teamdevhub.devhub.auth.http.auth.model.response.TokenResponseDto;
 import teamdevhub.devhub.auth.http.user.model.SignupOAuthRequestDto;
 import teamdevhub.devhub.auth.core.auth.application.service.oauth.vo.OAuthResult;
 import teamdevhub.devhub.auth.core.auth.application.service.oauth.vo.OAuthAuthorizationResult;
-import teamdevhub.devhub.web.api.web.model.response.DataApiResponseDto;
+import teamdevhub.devhub.web.api.model.response.DataApiResponseDto;
 import teamdevhub.devhub.auth.core.auth.application.service.oauth.SignupStatus;
 import teamdevhub.devhub.auth.core.auth.port.in.facade.OAuthFacade;
 import teamdevhub.devhub.shared.core.common.exception.BusinessRuleException;
-import teamdevhub.devhub.shared.shared.enums.ErrorCode;
-import teamdevhub.devhub.web.shared.enums.SuccessCode;
+import teamdevhub.devhub.shared.enums.ErrorCode;
+import teamdevhub.devhub.web.enums.SuccessCode;
 import teamdevhub.devhub.auth.core.user.port.in.facade.UserSignupFacade;
 
 import java.io.IOException;

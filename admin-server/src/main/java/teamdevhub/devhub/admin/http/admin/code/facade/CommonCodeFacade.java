@@ -3,13 +3,13 @@ package teamdevhub.devhub.admin.http.admin.code.facade;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import teamdevhub.devhub.admin.http.admin.code.model.response.CommonCodeResponseDto;
-import teamdevhub.devhub.web.api.web.model.response.DataApiResponseDto;
+import teamdevhub.devhub.web.api.model.response.DataApiResponseDto;
 import teamdevhub.devhub.admin.http.response.DataListApiResponseDto;
 import teamdevhub.devhub.admin.core.admin.code.domain.CommonCode;
 import teamdevhub.devhub.admin.core.admin.code.port.in.command.CommonCodeCommand;
 import teamdevhub.devhub.admin.core.admin.code.port.in.usecase.CommonCodeUseCase;
-import teamdevhub.devhub.shared.shared.enums.ErrorCode;
-import teamdevhub.devhub.web.shared.enums.SuccessCode;
+import teamdevhub.devhub.shared.enums.ErrorCode;
+import teamdevhub.devhub.web.enums.SuccessCode;
 
 import java.util.List;
 
@@ -44,4 +44,3 @@ public class CommonCodeFacade {
         );
     }
 }
-

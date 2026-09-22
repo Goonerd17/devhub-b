@@ -3,7 +3,7 @@ package teamdevhub.devhub.media.http.model;
 import org.springframework.web.multipart.MultipartFile;
 import teamdevhub.devhub.shared.core.common.exception.BusinessRuleException;
 import teamdevhub.devhub.media.api.MediaUploadCommand;
-import teamdevhub.devhub.shared.shared.enums.ErrorCode;
+import teamdevhub.devhub.shared.enums.ErrorCode;
 
 import java.io.IOException;
 import java.util.Map;

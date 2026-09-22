@@ -1,7 +1,7 @@
-package teamdevhub.devhub.shared.shared.util;
+package teamdevhub.devhub.shared.util;
 
 import teamdevhub.devhub.shared.core.common.exception.BusinessRuleException;
-import teamdevhub.devhub.shared.shared.enums.ErrorCode;
+import teamdevhub.devhub.shared.enums.ErrorCode;
 
 public final class StringUtil {
 

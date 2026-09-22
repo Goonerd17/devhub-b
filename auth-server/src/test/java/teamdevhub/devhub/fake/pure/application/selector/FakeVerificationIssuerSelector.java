@@ -3,7 +3,7 @@ package teamdevhub.devhub.fake.pure.application.selector;
 import teamdevhub.devhub.shared.core.common.exception.BusinessRuleException;
 import teamdevhub.devhub.auth.core.auth.application.selector.verification.VerificationIssuerSelector;
 import teamdevhub.devhub.auth.core.auth.port.out.verification.VerificationIssuer;
-import teamdevhub.devhub.shared.shared.enums.ErrorCode;
+import teamdevhub.devhub.shared.enums.ErrorCode;
 import teamdevhub.devhub.auth.core.auth.application.service.verification.IssuedVerification;
 import teamdevhub.devhub.auth.core.auth.domain.vo.verification.VerificationTarget;
 

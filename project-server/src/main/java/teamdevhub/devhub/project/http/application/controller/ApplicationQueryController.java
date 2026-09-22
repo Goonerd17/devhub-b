@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import teamdevhub.devhub.project.http.application.facade.ProjectApplicationFacade;
 import teamdevhub.devhub.project.http.application.model.response.ProjectApplicationDetailWrapperResponseDto;
 import teamdevhub.devhub.project.http.application.model.response.ProjectApplicationListResponseDto;
-import teamdevhub.devhub.web.api.web.model.response.DataApiResponseDto;
+import teamdevhub.devhub.web.api.model.response.DataApiResponseDto;
 import teamdevhub.devhub.shared.core.common.page.PageCommand;
 
 @Tag(name = "Application", description = "프로젝트 지원 조회 API")

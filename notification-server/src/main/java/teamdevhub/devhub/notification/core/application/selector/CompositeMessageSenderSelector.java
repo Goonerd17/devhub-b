@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 import teamdevhub.devhub.notification.core.port.out.NotificationSender;
 import teamdevhub.devhub.notification.core.port.in.command.VerificationNotificationCommand;
 import teamdevhub.devhub.shared.outbound.common.exception.ExternalServiceException;
-import teamdevhub.devhub.shared.shared.enums.ErrorCode;
+import teamdevhub.devhub.shared.enums.ErrorCode;
 
 import java.util.List;
 

@@ -16,7 +16,7 @@ import teamdevhub.devhub.auth.outbound.auth.infrastructure.oauth.google.config.G
 import teamdevhub.devhub.auth.outbound.auth.infrastructure.oauth.google.vo.GoogleTokenResponse;
 import teamdevhub.devhub.auth.outbound.auth.infrastructure.oauth.google.vo.GoogleUserResponse;
 import teamdevhub.devhub.shared.outbound.common.exception.ExternalServiceException;
-import teamdevhub.devhub.shared.shared.enums.ErrorCode;
+import teamdevhub.devhub.shared.enums.ErrorCode;
 import teamdevhub.devhub.auth.core.auth.domain.VerificationProvider;
 
 import java.net.URI;

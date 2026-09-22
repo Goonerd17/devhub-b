@@ -10,7 +10,7 @@ import teamdevhub.devhub.member.core.user.port.in.command.ReviewUserCommand;
 import teamdevhub.devhub.member.core.user.port.in.usecase.UserReviewUseCase;
 import teamdevhub.devhub.member.core.user.port.out.UserReviewRepository;
 import teamdevhub.devhub.member.api.review.MemberReviewScoreQuery;
-import teamdevhub.devhub.shared.shared.enums.ErrorCode;
+import teamdevhub.devhub.shared.enums.ErrorCode;
 
 @Service
 @Transactional

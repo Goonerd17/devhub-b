@@ -1,4 +1,4 @@
-package teamdevhub.devhub.shared.shared.enums;
+package teamdevhub.devhub.shared.enums;
 
 import lombok.Getter;
 import org.springframework.http.HttpStatus;

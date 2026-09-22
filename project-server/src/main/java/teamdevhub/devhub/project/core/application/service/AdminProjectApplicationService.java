@@ -1,4 +1,4 @@
-package teamdevhub.devhub.project.core.application.application;
+package teamdevhub.devhub.project.core.application.service;
 
 import java.util.List;
 

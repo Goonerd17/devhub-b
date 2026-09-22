@@ -4,7 +4,7 @@ import lombok.Builder;
 import lombok.Getter;
 import teamdevhub.devhub.admin.core.admin.banner.port.in.command.BannerCommand;
 import teamdevhub.devhub.shared.core.common.audit.AuditInfo;
-import teamdevhub.devhub.shared.shared.enums.DateConstants;
+import teamdevhub.devhub.shared.enums.DateConstants;
 
 import java.time.LocalDate;
 import java.util.UUID;

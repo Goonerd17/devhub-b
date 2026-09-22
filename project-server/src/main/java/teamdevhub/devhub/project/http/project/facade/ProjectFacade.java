@@ -37,7 +37,7 @@ import teamdevhub.devhub.project.core.project.port.in.usecase.ProjectLikeUseCase
 import teamdevhub.devhub.project.core.project.port.in.usecase.ProjectUseCase;
 import teamdevhub.devhub.shared.member.MemberProjectOwner;
 import teamdevhub.devhub.shared.member.ProjectMemberQuery;
-import teamdevhub.devhub.shared.shared.enums.ErrorCode;
+import teamdevhub.devhub.shared.enums.ErrorCode;
 
 @Service
 @RequiredArgsConstructor

@@ -9,7 +9,7 @@ import teamdevhub.devhub.shared.core.common.audit.AuditInfo;
 import teamdevhub.devhub.shared.core.common.exception.DomainRuleException;
 import teamdevhub.devhub.project.core.project.domain.vo.command.CreateProjectCommand;
 import teamdevhub.devhub.project.core.project.domain.vo.command.UpdateProjectCommand;
-import teamdevhub.devhub.shared.shared.enums.ErrorCode;
+import teamdevhub.devhub.shared.enums.ErrorCode;
 import teamdevhub.devhub.project.api.ProjectRecruitStatus;
 
 @Getter

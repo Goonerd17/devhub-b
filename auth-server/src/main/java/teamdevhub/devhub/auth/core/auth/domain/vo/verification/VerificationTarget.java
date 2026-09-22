@@ -1,7 +1,7 @@
 package teamdevhub.devhub.auth.core.auth.domain.vo.verification;
 
 import lombok.Builder;
-import teamdevhub.devhub.shared.shared.enums.ErrorCode;
+import teamdevhub.devhub.shared.enums.ErrorCode;
 import teamdevhub.devhub.shared.core.common.exception.DomainRuleException;
 
 @Builder

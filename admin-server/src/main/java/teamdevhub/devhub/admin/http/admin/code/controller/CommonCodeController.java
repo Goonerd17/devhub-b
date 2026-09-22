@@ -8,7 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import teamdevhub.devhub.admin.http.admin.code.model.request.CommonCodeRequestDto;
 import teamdevhub.devhub.admin.http.admin.code.model.response.CommonCodeResponseDto;
-import teamdevhub.devhub.web.api.web.model.response.DataApiResponseDto;
+import teamdevhub.devhub.web.api.model.response.DataApiResponseDto;
 import teamdevhub.devhub.admin.http.response.DataListApiResponseDto;
 import teamdevhub.devhub.admin.http.admin.code.facade.CommonCodeFacade;
 
@@ -34,4 +34,3 @@ public class CommonCodeController {
         return ResponseEntity.ok(commonCodeFacade.saveCode(code.toCommonCodeCommand(), code.isInsert()));
     }
 }
-

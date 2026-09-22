@@ -3,7 +3,7 @@ package teamdevhub.devhub.admin.http.admin.banner.facade;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import teamdevhub.devhub.admin.http.admin.banner.model.response.BannerResponseDto;
-import teamdevhub.devhub.web.api.web.model.response.DataApiResponseDto;
+import teamdevhub.devhub.web.api.model.response.DataApiResponseDto;
 import teamdevhub.devhub.admin.http.response.DataListApiResponseDto;
 import teamdevhub.devhub.admin.http.response.PageResponseDto;
 import teamdevhub.devhub.admin.core.admin.banner.domain.Banner;
@@ -12,7 +12,7 @@ import teamdevhub.devhub.admin.core.admin.banner.port.in.command.SearchBannerReq
 import teamdevhub.devhub.admin.core.admin.banner.port.in.usecase.BannerUseCase;
 import teamdevhub.devhub.shared.core.common.page.PageCommand;
 import teamdevhub.devhub.shared.core.common.page.PageResult;
-import teamdevhub.devhub.web.shared.enums.SuccessCode;
+import teamdevhub.devhub.web.enums.SuccessCode;
 
 import java.util.List;
 
@@ -51,4 +51,3 @@ public class BannerFacade {
         );
     }
 }
-

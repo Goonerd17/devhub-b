@@ -13,7 +13,7 @@ import teamdevhub.devhub.admin.api.terms.AgreeTermsCommand;
 import teamdevhub.devhub.admin.core.terms.port.in.command.CreateTermsCommand;
 import teamdevhub.devhub.fake.pure.application.port.out.terms.FakeTermsAgreementRepository;
 import teamdevhub.devhub.fake.pure.application.port.out.terms.FakeTermsRepository;
-import teamdevhub.devhub.shared.shared.enums.ErrorCode;
+import teamdevhub.devhub.shared.enums.ErrorCode;
 
 import java.util.List;
 import java.util.UUID;

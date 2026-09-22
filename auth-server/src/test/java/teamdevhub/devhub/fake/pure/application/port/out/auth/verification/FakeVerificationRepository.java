@@ -1,7 +1,7 @@
 package teamdevhub.devhub.fake.pure.application.port.out.auth.verification;
 
 import teamdevhub.devhub.shared.core.common.exception.BusinessRuleException;
-import teamdevhub.devhub.shared.shared.enums.ErrorCode;
+import teamdevhub.devhub.shared.enums.ErrorCode;
 import teamdevhub.devhub.auth.core.auth.domain.Verification;
 import teamdevhub.devhub.auth.core.auth.domain.vo.verification.VerificationTarget;
 import teamdevhub.devhub.auth.core.auth.port.out.verification.VerificationRepository;

@@ -23,8 +23,8 @@ import org.springframework.security.oauth2.server.resource.InvalidBearerTokenExc
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.AnonymousAuthenticationFilter;
 import teamdevhub.devhub.shared.internal.InternalApiAuthenticationFilter;
-import teamdevhub.devhub.shared.shared.enums.ErrorCode;
-import teamdevhub.devhub.web.api.web.model.response.DataApiResponseDto;
+import teamdevhub.devhub.shared.enums.ErrorCode;
+import teamdevhub.devhub.web.api.model.response.DataApiResponseDto;
 
 import javax.crypto.spec.SecretKeySpec;
 import java.io.IOException;

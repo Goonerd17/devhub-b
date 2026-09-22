@@ -7,14 +7,14 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import lombok.RequiredArgsConstructor;
-import teamdevhub.devhub.web.api.web.model.response.DataApiResponseDto;
+import teamdevhub.devhub.web.api.model.response.DataApiResponseDto;
 import teamdevhub.devhub.admin.http.response.DataListApiResponseDto;
 import teamdevhub.devhub.admin.core.admin.form.domain.ApplicationForm;
 import teamdevhub.devhub.admin.core.admin.form.port.in.command.SaveApplicationFormCommand;
 import teamdevhub.devhub.admin.core.admin.form.port.in.usecase.ApplicationFormQueryUseCase;
 import teamdevhub.devhub.admin.core.admin.form.port.in.usecase.ApplicationFormUseCase;
 import teamdevhub.devhub.admin.api.form.SearchApplicationFormCommand;
-import teamdevhub.devhub.web.shared.enums.SuccessCode;
+import teamdevhub.devhub.web.enums.SuccessCode;
 
 @Service("adminApplicationFormFacade")
 @Transactional
@@ -70,4 +70,3 @@ public class ApplicationFormFacade {
 		}
 	}
 }
-

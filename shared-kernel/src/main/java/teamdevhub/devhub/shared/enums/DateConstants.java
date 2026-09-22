@@ -1,4 +1,4 @@
-package teamdevhub.devhub.shared.shared.enums;
+package teamdevhub.devhub.shared.enums;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;

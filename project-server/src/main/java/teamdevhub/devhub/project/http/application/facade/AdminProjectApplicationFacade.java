@@ -11,7 +11,7 @@ import teamdevhub.devhub.project.http.application.model.response.AdminProjectApp
 import teamdevhub.devhub.project.http.application.model.response.ProjectApplicationAnswerDetailResponseDto;
 import teamdevhub.devhub.project.http.application.model.response.ProjectApplicationBasicResponseDto;
 import teamdevhub.devhub.project.http.application.model.response.ProjectApplicationDetailWrapperResponseDto;
-import teamdevhub.devhub.web.api.web.model.response.DataApiResponseDto;
+import teamdevhub.devhub.web.api.model.response.DataApiResponseDto;
 import teamdevhub.devhub.project.http.response.PageResponseDto;
 import teamdevhub.devhub.project.core.application.domain.ProjectApplication;
 import teamdevhub.devhub.project.core.application.domain.ProjectApplicationAnswer;
@@ -21,7 +21,7 @@ import teamdevhub.devhub.project.core.application.port.in.usecase.AdminProjectAp
 import teamdevhub.devhub.project.core.application.port.in.usecase.ProjectApplicationUseCase;
 import teamdevhub.devhub.shared.core.common.page.PageCommand;
 import teamdevhub.devhub.shared.core.common.page.PageResult;
-import teamdevhub.devhub.web.shared.enums.SuccessCode;
+import teamdevhub.devhub.web.enums.SuccessCode;
 
 @Service
 @RequiredArgsConstructor

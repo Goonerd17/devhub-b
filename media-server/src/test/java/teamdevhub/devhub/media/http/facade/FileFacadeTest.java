@@ -10,7 +10,7 @@ import teamdevhub.devhub.media.http.facade.FileFacade;
 import teamdevhub.devhub.media.http.facade.model.FileResponseDto;
 import teamdevhub.devhub.media.http.facade.model.UploadFileResponseDto;
 import teamdevhub.devhub.media.http.fake.FakeFileUseCase;
-import teamdevhub.devhub.shared.shared.enums.ErrorCode;
+import teamdevhub.devhub.shared.enums.ErrorCode;
 
 import java.util.Map;
 

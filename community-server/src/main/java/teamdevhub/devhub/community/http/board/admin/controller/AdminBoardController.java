@@ -16,7 +16,7 @@ import lombok.RequiredArgsConstructor;
 import teamdevhub.devhub.community.http.board.admin.model.DeleteAdminBoardRequestDto;
 import teamdevhub.devhub.community.http.board.admin.model.SearchAdminBoardRequestDto;
 import teamdevhub.devhub.community.http.request.PageRequestDto;
-import teamdevhub.devhub.web.api.web.model.response.DataApiResponseDto;
+import teamdevhub.devhub.web.api.model.response.DataApiResponseDto;
 import teamdevhub.devhub.community.http.response.DataListApiResponseDto;
 import teamdevhub.devhub.community.http.board.facade.BoardFacade;
 import teamdevhub.devhub.community.http.board.port.in.Facade.model.AdminBoardResponseDto;
@@ -45,4 +45,3 @@ public class AdminBoardController {
 	}
 
 }
-

@@ -1,10 +1,10 @@
-package teamdevhub.devhub.web.api.web.model.response;
+package teamdevhub.devhub.web.api.model.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import teamdevhub.devhub.shared.shared.enums.ErrorCode;
+import teamdevhub.devhub.shared.enums.ErrorCode;
 
 @Getter
 @Builder

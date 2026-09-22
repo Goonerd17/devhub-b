@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 import teamdevhub.devhub.shared.outbound.common.exception.AdapterDataException;
 import teamdevhub.devhub.auth.outbound.auth.adapter.mapper.VerificationMapper;
 import teamdevhub.devhub.auth.outbound.auth.persistence.JpaVerificationRepository;
-import teamdevhub.devhub.shared.shared.enums.ErrorCode;
+import teamdevhub.devhub.shared.enums.ErrorCode;
 import teamdevhub.devhub.auth.core.auth.domain.Verification;
 import teamdevhub.devhub.auth.core.auth.domain.vo.verification.VerificationTarget;
 import teamdevhub.devhub.auth.core.auth.port.out.verification.VerificationRepository;

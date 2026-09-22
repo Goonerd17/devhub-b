@@ -17,9 +17,9 @@ import org.springframework.web.bind.annotation.RestController;
 import teamdevhub.devhub.auth.http.auth.controller.CookieFactory;
 import teamdevhub.devhub.auth.http.auth.model.response.TokenResponseDto;
 import teamdevhub.devhub.auth.http.user.model.SignupRequestDto;
-import teamdevhub.devhub.web.api.web.model.response.DataApiResponseDto;
+import teamdevhub.devhub.web.api.model.response.DataApiResponseDto;
 import teamdevhub.devhub.auth.core.auth.application.service.AuthResult;
-import teamdevhub.devhub.web.shared.enums.SuccessCode;
+import teamdevhub.devhub.web.enums.SuccessCode;
 import teamdevhub.devhub.auth.core.user.port.in.facade.UserSignupFacade;
 
 @Tag(name = "User - Signup", description = "이메일 회원가입 API")
@@ -49,4 +49,3 @@ public class UserSignupController {
                 );
     }
 }
-

@@ -12,7 +12,7 @@ import teamdevhub.devhub.auth.core.auth.port.in.usecase.verification.Verificatio
 import teamdevhub.devhub.auth.core.auth.port.out.verification.VerificationRepository;
 import teamdevhub.devhub.shared.core.common.exception.BusinessRuleException;
 import teamdevhub.devhub.shared.time.TimeProvider;
-import teamdevhub.devhub.shared.shared.enums.ErrorCode;
+import teamdevhub.devhub.shared.enums.ErrorCode;
 
 @Service
 @Transactional

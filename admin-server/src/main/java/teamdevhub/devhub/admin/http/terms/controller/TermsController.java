@@ -9,11 +9,11 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import teamdevhub.devhub.admin.http.terms.model.CreateTermsRequestDto;
-import teamdevhub.devhub.web.api.web.model.response.DataApiResponseDto;
+import teamdevhub.devhub.web.api.model.response.DataApiResponseDto;
 import teamdevhub.devhub.admin.http.response.DataListApiResponseDto;
 import teamdevhub.devhub.admin.http.terms.port.in.facade.TermsFacade;
 import teamdevhub.devhub.admin.http.terms.port.in.facade.model.TermsResponseDto;
-import teamdevhub.devhub.web.shared.enums.SuccessCode;
+import teamdevhub.devhub.web.enums.SuccessCode;
 
 import java.util.List;
 
@@ -56,4 +56,3 @@ public class TermsController {
         );
     }
 }
-

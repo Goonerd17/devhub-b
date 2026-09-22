@@ -8,7 +8,7 @@ import teamdevhub.devhub.shared.outbound.common.exception.AdapterDataException;
 import teamdevhub.devhub.media.outbound.adapter.entity.FileEntity;
 import teamdevhub.devhub.media.outbound.adapter.mapper.FileMetadataMapper;
 import teamdevhub.devhub.media.outbound.persistence.JpaFileRepository;
-import teamdevhub.devhub.shared.shared.enums.ErrorCode;
+import teamdevhub.devhub.shared.enums.ErrorCode;
 
 @Component
 @RequiredArgsConstructor

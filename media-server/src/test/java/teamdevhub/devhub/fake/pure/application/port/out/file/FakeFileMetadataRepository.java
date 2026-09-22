@@ -3,7 +3,7 @@ package teamdevhub.devhub.fake.pure.application.port.out.file;
 import teamdevhub.devhub.shared.outbound.common.exception.AdapterDataException;
 import teamdevhub.devhub.media.core.application.FileMetadata;
 import teamdevhub.devhub.media.core.port.out.FileMetadataRepository;
-import teamdevhub.devhub.shared.shared.enums.ErrorCode;
+import teamdevhub.devhub.shared.enums.ErrorCode;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -1,7 +1,7 @@
 package teamdevhub.devhub.media.core.application;
 
 import teamdevhub.devhub.shared.core.common.exception.BusinessRuleException;
-import teamdevhub.devhub.shared.shared.enums.ErrorCode;
+import teamdevhub.devhub.shared.enums.ErrorCode;
 
 public record FileMetadata(
         String fileGuid,

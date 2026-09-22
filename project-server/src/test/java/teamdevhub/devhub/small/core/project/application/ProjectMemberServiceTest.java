@@ -8,7 +8,7 @@ import teamdevhub.devhub.project.core.project.application.ProjectMemberService;
 import teamdevhub.devhub.project.core.project.domain.Project;
 import teamdevhub.devhub.fake.pure.application.port.out.project.FakeProjectMemberRepository;
 import teamdevhub.devhub.fake.pure.application.port.out.project.FakeProjectRepository;
-import teamdevhub.devhub.shared.shared.enums.ErrorCode;
+import teamdevhub.devhub.shared.enums.ErrorCode;
 
 import java.time.LocalDate;
 

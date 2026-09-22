@@ -4,7 +4,7 @@ import lombok.Builder;
 import lombok.Getter;
 import teamdevhub.devhub.shared.core.common.exception.DomainRuleException;
 import teamdevhub.devhub.member.core.user.port.in.command.ReviewUserCommand;
-import teamdevhub.devhub.shared.shared.enums.ErrorCode;
+import teamdevhub.devhub.shared.enums.ErrorCode;
 
 import java.util.Set;
 

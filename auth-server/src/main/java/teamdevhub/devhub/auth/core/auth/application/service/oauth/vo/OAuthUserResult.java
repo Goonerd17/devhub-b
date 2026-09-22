@@ -3,7 +3,7 @@ package teamdevhub.devhub.auth.core.auth.application.service.oauth.vo;
 import lombok.Builder;
 import teamdevhub.devhub.auth.core.auth.domain.vo.user.AuthenticatedUser;
 import teamdevhub.devhub.shared.core.common.exception.BusinessRuleException;
-import teamdevhub.devhub.shared.shared.enums.ErrorCode;
+import teamdevhub.devhub.shared.enums.ErrorCode;
 
 @Builder
 public record OAuthUserResult(boolean loginAvailable, AuthenticatedUser authenticatedUser) {

@@ -7,7 +7,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import teamdevhub.devhub.web.api.web.model.response.DataApiResponseDto;
+import teamdevhub.devhub.web.api.model.response.DataApiResponseDto;
 import teamdevhub.devhub.notification.http.response.DataListApiResponseDto;
 import teamdevhub.devhub.notification.http.resolver.LoginUser;
 import teamdevhub.devhub.notification.http.notification.facade.NotificationFacade;

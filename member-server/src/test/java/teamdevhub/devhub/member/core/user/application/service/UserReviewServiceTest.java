@@ -9,7 +9,7 @@ import teamdevhub.devhub.member.core.user.application.service.UserReviewService;
 import teamdevhub.devhub.member.core.user.port.in.command.ReviewUserCommand;
 import teamdevhub.devhub.fake.pure.application.port.out.user.FakeUserReviewRepository;
 import teamdevhub.devhub.fake.pure.application.provider.FakeUuidIdentifierProvider;
-import teamdevhub.devhub.shared.shared.enums.ErrorCode;
+import teamdevhub.devhub.shared.enums.ErrorCode;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;

@@ -16,7 +16,7 @@ import teamdevhub.devhub.shared.core.common.exception.BusinessRuleException;
 import teamdevhub.devhub.shared.identifier.IdentifierProvider;
 import teamdevhub.devhub.shared.member.MemberProfileQuery;
 import teamdevhub.devhub.shared.member.MemberPublicProfile;
-import teamdevhub.devhub.shared.shared.enums.ErrorCode;
+import teamdevhub.devhub.shared.enums.ErrorCode;
 @Service
 @Transactional
 @RequiredArgsConstructor

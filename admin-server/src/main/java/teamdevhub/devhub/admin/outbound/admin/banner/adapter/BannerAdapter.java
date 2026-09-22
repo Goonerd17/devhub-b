@@ -16,7 +16,7 @@ import teamdevhub.devhub.admin.outbound.admin.banner.adapter.entity.BannerEntity
 
 import java.time.LocalDate;
 
-import static teamdevhub.devhub.shared.shared.enums.DateConstants.MAX_LOCAL_DATE;
+import static teamdevhub.devhub.shared.enums.DateConstants.MAX_LOCAL_DATE;
 
 @Component
 @RequiredArgsConstructor

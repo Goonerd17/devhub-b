@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import teamdevhub.devhub.auth.core.auth.application.selector.oauth.CompositeOAuthClientSelector;
 import teamdevhub.devhub.shared.core.common.exception.BusinessRuleException;
-import teamdevhub.devhub.shared.shared.enums.ErrorCode;
+import teamdevhub.devhub.shared.enums.ErrorCode;
 import teamdevhub.devhub.auth.core.auth.domain.VerificationProvider;
 import teamdevhub.devhub.fake.pure.application.port.out.auth.oauth.StubOAuthClient;
 import teamdevhub.devhub.auth.core.auth.port.out.oauth.OAuthClient;

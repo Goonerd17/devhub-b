@@ -15,7 +15,7 @@ import teamdevhub.devhub.project.http.application.facade.AdminProjectApplication
 import teamdevhub.devhub.project.http.application.model.request.SearchAdminProjectApplicationRequestDto;
 import teamdevhub.devhub.project.http.application.model.response.AdminProjectApplicationListResponseDto;
 import teamdevhub.devhub.shared.core.common.page.PageCommand;
-import teamdevhub.devhub.web.api.web.model.response.DataApiResponseDto;
+import teamdevhub.devhub.web.api.model.response.DataApiResponseDto;
 
 @Tag(name = "Admin - Application", description = "관리자 지원서 조회 API")
 @RestController

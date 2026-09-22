@@ -10,7 +10,7 @@ import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.method.support.ModelAndViewContainer;
 import teamdevhub.devhub.auth.core.auth.domain.vo.user.AuthenticatedUser;
 import teamdevhub.devhub.auth.api.AuthenticatedUserCarrier;
-import teamdevhub.devhub.shared.shared.enums.ErrorCode;
+import teamdevhub.devhub.shared.enums.ErrorCode;
 import teamdevhub.devhub.shared.outbound.common.exception.AuthRuleException;
 
 import java.util.Optional;
@@ -59,4 +59,3 @@ public class LoginUserArgumentResolver implements HandlerMethodArgumentResolver 
         return null;
     }
 }
-

@@ -4,7 +4,7 @@ import lombok.Builder;
 import teamdevhub.devhub.auth.core.auth.application.service.AuthResult;
 import teamdevhub.devhub.auth.core.auth.application.service.oauth.SignupStatus;
 import teamdevhub.devhub.shared.core.common.exception.BusinessRuleException;
-import teamdevhub.devhub.shared.shared.enums.ErrorCode;
+import teamdevhub.devhub.shared.enums.ErrorCode;
 
 @Builder
 public record OAuthResult(

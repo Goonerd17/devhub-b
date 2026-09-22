@@ -7,7 +7,7 @@ import teamdevhub.devhub.shared.core.common.exception.BusinessRuleException;
 import teamdevhub.devhub.shared.core.common.exception.DomainRuleException;
 import teamdevhub.devhub.shared.outbound.common.exception.AdapterDataException;
 import teamdevhub.devhub.shared.outbound.common.exception.ExternalServiceException;
-import teamdevhub.devhub.web.api.web.model.response.DataApiResponseDto;
+import teamdevhub.devhub.web.api.model.response.DataApiResponseDto;
 
 @RestControllerAdvice(basePackages = "teamdevhub.devhub.media.http")
 public class MediaExceptionHandler {

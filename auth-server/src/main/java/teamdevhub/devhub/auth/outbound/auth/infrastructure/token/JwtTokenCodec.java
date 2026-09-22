@@ -16,7 +16,7 @@ import teamdevhub.devhub.shared.security.MemberRole;
 import teamdevhub.devhub.shared.time.TimeProvider;
 import teamdevhub.devhub.auth.core.auth.port.out.token.TokenIssueProvider;
 import teamdevhub.devhub.auth.core.auth.port.out.token.TokenParseProvider;
-import teamdevhub.devhub.shared.shared.enums.ErrorCode;
+import teamdevhub.devhub.shared.enums.ErrorCode;
 import teamdevhub.devhub.auth.core.auth.domain.VerificationProvider;
 
 import java.security.Key;

@@ -3,7 +3,7 @@ package teamdevhub.devhub.fake.pure.application.port.out.terms;
 import teamdevhub.devhub.shared.outbound.common.exception.AdapterDataException;
 import teamdevhub.devhub.admin.core.terms.domain.Terms;
 import teamdevhub.devhub.admin.core.terms.port.out.TermsRepository;
-import teamdevhub.devhub.shared.shared.enums.ErrorCode;
+import teamdevhub.devhub.shared.enums.ErrorCode;
 
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;

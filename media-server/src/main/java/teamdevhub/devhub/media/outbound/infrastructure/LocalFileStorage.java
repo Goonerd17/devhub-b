@@ -4,7 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import teamdevhub.devhub.media.core.port.out.FileStorage;
 import teamdevhub.devhub.shared.outbound.common.exception.ExternalServiceException;
-import teamdevhub.devhub.shared.shared.enums.ErrorCode;
+import teamdevhub.devhub.shared.enums.ErrorCode;
 
 import java.io.IOException;
 import java.nio.file.Files;

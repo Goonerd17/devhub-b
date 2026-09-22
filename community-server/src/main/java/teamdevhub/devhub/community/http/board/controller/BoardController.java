@@ -25,7 +25,7 @@ import teamdevhub.devhub.community.http.board.model.DeleteBoardRequestDto;
 import teamdevhub.devhub.community.http.board.model.SearchBoardRequestDto;
 import teamdevhub.devhub.community.http.board.model.UpdateBoardRequestDto;
 import teamdevhub.devhub.community.http.request.PageRequestDto;
-import teamdevhub.devhub.web.api.web.model.response.DataApiResponseDto;
+import teamdevhub.devhub.web.api.model.response.DataApiResponseDto;
 import teamdevhub.devhub.community.http.response.DataListApiResponseDto;
 import teamdevhub.devhub.community.http.resolver.LoginUser;
 import teamdevhub.devhub.community.http.board.facade.BoardFacade;

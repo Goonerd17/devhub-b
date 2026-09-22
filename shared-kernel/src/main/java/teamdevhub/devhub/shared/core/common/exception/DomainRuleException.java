@@ -1,6 +1,6 @@
 package teamdevhub.devhub.shared.core.common.exception;
 
-import teamdevhub.devhub.shared.shared.enums.ErrorCode;
+import teamdevhub.devhub.shared.enums.ErrorCode;
 import lombok.Getter;
 
 @Getter

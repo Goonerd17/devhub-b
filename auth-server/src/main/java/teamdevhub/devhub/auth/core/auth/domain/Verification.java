@@ -4,7 +4,7 @@ import lombok.Builder;
 import lombok.Getter;
 import teamdevhub.devhub.auth.core.auth.domain.vo.verification.VerificationMessage;
 import teamdevhub.devhub.auth.core.auth.domain.vo.verification.VerificationTarget;
-import teamdevhub.devhub.shared.shared.enums.ErrorCode;
+import teamdevhub.devhub.shared.enums.ErrorCode;
 import teamdevhub.devhub.shared.core.common.exception.DomainRuleException;
 
 import java.time.LocalDateTime;

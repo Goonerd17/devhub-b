@@ -11,8 +11,8 @@ import teamdevhub.devhub.admin.http.response.PageResponseDto;
 import teamdevhub.devhub.admin.http.user.facade.AdminUserHttpFacade;
 import teamdevhub.devhub.admin.http.user.model.*;
 import teamdevhub.devhub.shared.core.common.page.PageCommand;
-import teamdevhub.devhub.web.api.web.model.response.DataApiResponseDto;
-import teamdevhub.devhub.web.shared.enums.SuccessCode;
+import teamdevhub.devhub.web.api.model.response.DataApiResponseDto;
+import teamdevhub.devhub.web.enums.SuccessCode;
 
 @Tag(name = "Admin - User", description = "관리자 사용자 관리 API")
 @RestController

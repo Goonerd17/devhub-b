@@ -16,7 +16,7 @@ import teamdevhub.devhub.fake.pure.application.provider.FakeAuthenticatedUserRes
 import teamdevhub.devhub.fake.pure.application.provider.FakeEncodedPasswordProvider;
 import teamdevhub.devhub.fake.pure.application.provider.FakeTokenParseProvider;
 import teamdevhub.devhub.fake.pure.application.provider.FakeUuidIdentifierProvider;
-import teamdevhub.devhub.shared.shared.enums.ErrorCode;
+import teamdevhub.devhub.shared.enums.ErrorCode;
 import teamdevhub.devhub.auth.core.auth.domain.VerificationProvider;
 
 import static org.assertj.core.api.Assertions.assertThat;

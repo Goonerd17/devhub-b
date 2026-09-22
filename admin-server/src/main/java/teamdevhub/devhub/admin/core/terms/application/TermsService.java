@@ -13,7 +13,7 @@ import teamdevhub.devhub.admin.core.terms.port.in.command.CreateTermsCommand;
 import teamdevhub.devhub.admin.core.terms.port.in.usecase.TermsUseCase;
 import teamdevhub.devhub.admin.core.terms.port.out.TermsAgreementRepository;
 import teamdevhub.devhub.admin.core.terms.port.out.TermsRepository;
-import teamdevhub.devhub.shared.shared.enums.ErrorCode;
+import teamdevhub.devhub.shared.enums.ErrorCode;
 
 import java.util.List;
 import java.util.Map;

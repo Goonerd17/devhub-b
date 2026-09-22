@@ -8,7 +8,7 @@ import teamdevhub.devhub.project.core.project.domain.Project;
 import teamdevhub.devhub.project.core.project.port.in.usecase.ProjectMemberUseCase;
 import teamdevhub.devhub.project.core.project.port.out.ProjectMemberRepository;
 import teamdevhub.devhub.project.core.project.port.out.ProjectRepository;
-import teamdevhub.devhub.shared.shared.enums.ErrorCode;
+import teamdevhub.devhub.shared.enums.ErrorCode;
 
 @Service
 @Transactional(readOnly = true)

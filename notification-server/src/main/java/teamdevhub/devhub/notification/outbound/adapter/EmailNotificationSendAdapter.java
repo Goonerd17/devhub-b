@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 import org.thymeleaf.context.Context;
 import org.thymeleaf.spring6.SpringTemplateEngine;
 import teamdevhub.devhub.shared.outbound.common.exception.ExternalServiceException;
-import teamdevhub.devhub.shared.shared.enums.ErrorCode;
+import teamdevhub.devhub.shared.enums.ErrorCode;
 import teamdevhub.devhub.notification.core.port.in.command.VerificationNotificationCommand;
 import teamdevhub.devhub.notification.core.port.out.NotificationSender;
 

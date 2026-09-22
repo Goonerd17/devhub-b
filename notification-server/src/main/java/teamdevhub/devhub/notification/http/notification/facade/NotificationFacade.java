@@ -2,11 +2,11 @@ package teamdevhub.devhub.notification.http.notification.facade;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import teamdevhub.devhub.web.api.web.model.response.DataApiResponseDto;
+import teamdevhub.devhub.web.api.model.response.DataApiResponseDto;
 import teamdevhub.devhub.notification.http.response.DataListApiResponseDto;
 import teamdevhub.devhub.notification.api.NotificationInboxQuery;
 import teamdevhub.devhub.notification.http.notification.model.NotificationResponseDto;
-import teamdevhub.devhub.web.shared.enums.SuccessCode;
+import teamdevhub.devhub.web.enums.SuccessCode;
 
 import java.util.List;
 

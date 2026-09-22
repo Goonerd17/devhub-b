@@ -12,7 +12,7 @@ import teamdevhub.devhub.member.core.user.domain.vo.position.UserPositionChangeR
 import teamdevhub.devhub.member.core.user.domain.vo.skill.UserSkill;
 import teamdevhub.devhub.member.core.user.domain.vo.skill.UserSkillChangeResult;
 import teamdevhub.devhub.member.core.user.port.in.command.UpdateProfileImageCommand;
-import teamdevhub.devhub.shared.shared.enums.ErrorCode;
+import teamdevhub.devhub.shared.enums.ErrorCode;
 
 import java.time.LocalDateTime;
 import java.util.HashSet;

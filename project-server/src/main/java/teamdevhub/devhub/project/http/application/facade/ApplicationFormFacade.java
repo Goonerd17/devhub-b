@@ -12,7 +12,7 @@ import teamdevhub.devhub.shared.form.ApplicationFormPage;
 import teamdevhub.devhub.shared.form.ApplicationFormSearch;
 import teamdevhub.devhub.project.http.application.model.ApplicationFormResponseDto;
 import teamdevhub.devhub.shared.core.common.page.PageResult;
-import teamdevhub.devhub.web.shared.enums.SuccessCode;
+import teamdevhub.devhub.web.enums.SuccessCode;
 
 @Service("applicationApplicationFormFacade")
 @RequiredArgsConstructor

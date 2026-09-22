@@ -18,10 +18,10 @@ import teamdevhub.devhub.auth.http.user.model.UpdatePasswordRequestDto;
 import teamdevhub.devhub.auth.core.auth.application.service.AuthResult;
 
 import teamdevhub.devhub.auth.http.auth.model.response.TokenResponseDto;
-import teamdevhub.devhub.web.api.web.model.response.DataApiResponseDto;
+import teamdevhub.devhub.web.api.model.response.DataApiResponseDto;
 import teamdevhub.devhub.auth.http.resolver.LoginUser;
 import teamdevhub.devhub.auth.core.auth.domain.vo.user.AuthenticatedUser;
-import teamdevhub.devhub.web.shared.enums.SuccessCode;
+import teamdevhub.devhub.web.enums.SuccessCode;
 import teamdevhub.devhub.auth.core.auth.port.in.facade.AuthFacade;
 
 @Tag(name = "Auth", description = "이메일/비밀번호 인증 API")
@@ -104,4 +104,3 @@ public class AuthController {
         );
     }
 }
-

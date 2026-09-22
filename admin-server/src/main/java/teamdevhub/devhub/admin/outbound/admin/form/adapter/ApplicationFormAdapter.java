@@ -10,7 +10,7 @@ import teamdevhub.devhub.admin.core.admin.form.port.out.ApplicationFormRepositor
 import teamdevhub.devhub.admin.outbound.admin.form.adapter.mapper.ApplicationFormMapper;
 import teamdevhub.devhub.admin.outbound.admin.form.persistence.JpaApplicationFormRepository;
 import teamdevhub.devhub.shared.outbound.common.exception.AdapterDataException;
-import teamdevhub.devhub.shared.shared.enums.ErrorCode;
+import teamdevhub.devhub.shared.enums.ErrorCode;
 
 @Component
 @RequiredArgsConstructor

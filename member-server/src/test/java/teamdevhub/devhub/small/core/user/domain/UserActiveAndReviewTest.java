@@ -8,7 +8,7 @@ import teamdevhub.devhub.member.core.user.domain.User;
 import teamdevhub.devhub.member.core.user.domain.vo.UserRole;
 import teamdevhub.devhub.member.core.user.domain.vo.command.CreateUserCommand;
 import teamdevhub.devhub.auth.core.user.port.in.command.SignupUserCommand;
-import teamdevhub.devhub.shared.shared.enums.ErrorCode;
+import teamdevhub.devhub.shared.enums.ErrorCode;
 
 import java.time.LocalDateTime;
 import java.util.List;

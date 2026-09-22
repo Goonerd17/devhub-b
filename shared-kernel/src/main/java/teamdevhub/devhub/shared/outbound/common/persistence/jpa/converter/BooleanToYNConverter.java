@@ -3,7 +3,7 @@ package teamdevhub.devhub.shared.outbound.common.persistence.jpa.converter;
 import jakarta.persistence.AttributeConverter;
 import jakarta.persistence.Converter;
 import teamdevhub.devhub.shared.outbound.common.exception.AdapterDataException;
-import teamdevhub.devhub.shared.shared.enums.ErrorCode;
+import teamdevhub.devhub.shared.enums.ErrorCode;
 
 @Converter
 public class BooleanToYNConverter implements AttributeConverter<Boolean, String> {

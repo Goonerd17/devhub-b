@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import lombok.RequiredArgsConstructor;
-import teamdevhub.devhub.web.api.web.model.response.DataApiResponseDto;
+import teamdevhub.devhub.web.api.model.response.DataApiResponseDto;
 import teamdevhub.devhub.community.http.response.DataListApiResponseDto;
 import teamdevhub.devhub.community.http.response.PageResponseDto;
 import teamdevhub.devhub.community.core.board.domain.Board;
@@ -23,7 +23,7 @@ import teamdevhub.devhub.community.core.board.port.in.usecase.BoardQueryUseCase;
 import teamdevhub.devhub.community.core.board.port.in.usecase.BoardUseCase;
 import teamdevhub.devhub.shared.core.common.page.PageCommand;
 import teamdevhub.devhub.shared.core.common.page.PageResult;
-import teamdevhub.devhub.web.shared.enums.SuccessCode;
+import teamdevhub.devhub.web.enums.SuccessCode;
 
 @Service
 @Transactional
@@ -125,4 +125,3 @@ public class BoardFacade {
 	}
 
 }
-

@@ -12,7 +12,7 @@ import teamdevhub.devhub.member.core.user.domain.vo.command.CreateUserCommand;
 import teamdevhub.devhub.auth.core.user.port.in.command.SignupUserCommand;
 import teamdevhub.devhub.fake.pure.application.port.out.user.FakeUserRepository;
 import teamdevhub.devhub.fake.pure.application.provider.FakeTimeProvider;
-import teamdevhub.devhub.shared.shared.enums.ErrorCode;
+import teamdevhub.devhub.shared.enums.ErrorCode;
 
 import java.time.LocalDateTime;
 

@@ -4,10 +4,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import lombok.RequiredArgsConstructor;
-import teamdevhub.devhub.web.api.web.model.response.DataApiResponseDto;
+import teamdevhub.devhub.web.api.model.response.DataApiResponseDto;
 import teamdevhub.devhub.community.core.report.port.in.command.CreateReportCommand;
 import teamdevhub.devhub.community.core.report.port.in.usecase.ReportUseCase;
-import teamdevhub.devhub.web.shared.enums.SuccessCode;
+import teamdevhub.devhub.web.enums.SuccessCode;
 
 @Service
 @Transactional
@@ -21,4 +21,3 @@ public class ReportFacade {
         return DataApiResponseDto.successWithoutData(SuccessCode.CREATE_SUCCESS);
     }
 }
-

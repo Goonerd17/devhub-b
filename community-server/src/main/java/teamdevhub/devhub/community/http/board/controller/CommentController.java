@@ -18,7 +18,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import teamdevhub.devhub.community.http.board.model.CreateCommentRequestDto;
 import teamdevhub.devhub.community.http.board.model.UpdateCommentRequestDto;
-import teamdevhub.devhub.web.api.web.model.response.DataApiResponseDto;
+import teamdevhub.devhub.web.api.model.response.DataApiResponseDto;
 import teamdevhub.devhub.community.http.resolver.LoginUser;
 import teamdevhub.devhub.community.http.board.facade.CommentFacade;
 import java.lang.String;

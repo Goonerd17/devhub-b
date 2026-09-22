@@ -10,11 +10,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import teamdevhub.devhub.media.http.model.UploadFileRequestDto;
-import teamdevhub.devhub.web.api.web.model.response.DataApiResponseDto;
+import teamdevhub.devhub.web.api.model.response.DataApiResponseDto;
 import teamdevhub.devhub.media.http.facade.FileFacade;
 import teamdevhub.devhub.media.http.facade.model.FileResponseDto;
 import teamdevhub.devhub.media.http.facade.model.UploadFileResponseDto;
-import teamdevhub.devhub.web.shared.enums.SuccessCode;
+import teamdevhub.devhub.web.enums.SuccessCode;
 
 import java.util.Map;
 
