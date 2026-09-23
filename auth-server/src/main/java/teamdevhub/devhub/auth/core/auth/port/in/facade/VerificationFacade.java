@@ -7,7 +7,7 @@ import teamdevhub.devhub.auth.core.auth.application.service.verification.IssuedV
 import teamdevhub.devhub.auth.core.auth.port.in.command.verification.ConfirmVerificationCommand;
 import teamdevhub.devhub.auth.core.auth.port.in.command.verification.IssueVerificationCommand;
 import teamdevhub.devhub.auth.core.auth.port.in.usecase.verification.VerificationUseCase;
-import teamdevhub.devhub.shared.notification.VerificationNotificationSender;
+import teamdevhub.devhub.auth.core.port.out.VerificationNotificationPort;
 
 @Service
 @Transactional
@@ -15,7 +15,7 @@ import teamdevhub.devhub.shared.notification.VerificationNotificationSender;
 public class VerificationFacade {
 
     private final VerificationUseCase verificationUseCase;
-    private final VerificationNotificationSender notificationSender;
+    private final VerificationNotificationPort notificationSender;
 
     public void issueVerification(IssueVerificationCommand issueVerificationCommand) {
         IssuedVerification issuedVerification = verificationUseCase.issueVerification(issueVerificationCommand);

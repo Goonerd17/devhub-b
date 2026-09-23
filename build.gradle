@@ -60,6 +60,7 @@ sourceSets {
 tasks.withType(JavaCompile).configureEach {
 	options.generatedSourceOutputDirectory.set(querydslDir)
 	options.annotationProcessorPath = configurations.annotationProcessor
+	options.encoding = 'UTF-8'
 	options.compilerArgs += "-Xlint:deprecation"
 	options.compilerArgs += "-parameters"
 }
@@ -69,6 +70,7 @@ tasks.withType(JavaCompile).configureEach {
 subprojects {
 	plugins.withId('java') {
 		tasks.withType(JavaCompile).configureEach {
+			options.encoding = 'UTF-8'
 			options.compilerArgs += "-parameters"
 		}
 	}
@@ -92,7 +94,7 @@ tasks.register('verifyServiceBoundaries') {
 		def violations = []
 		businessServiceNames.each { serviceName ->
 			def serviceProject = project(":${serviceName}")
-			['api', 'implementation'].each { configurationName ->
+			['api', 'implementation', 'compileOnly', 'runtimeOnly'].each { configurationName ->
 				serviceProject.configurations.findByName(configurationName)?.dependencies
 						?.withType(org.gradle.api.artifacts.ProjectDependency)
 						?.findAll { businessServiceNames.contains(it.dependencyProject.name) }
@@ -169,10 +171,31 @@ tasks.register('verifyProductionPackageBoundaries') {
 	}
 }
 
+tasks.register('verifyCommonModuleBoundaries') {
+	group = 'verification'
+	description = 'Rejects business-service imports from the common module.'
+	doLast {
+		def violations = []
+		fileTree('common-module/src/main/java').matching { include '**/*.java' }.files.each { sourceFile ->
+			def source = sourceFile.getText('UTF-8')
+			businessServiceNames.each { serviceName ->
+				def servicePackage = servicePackageNames[serviceName]
+				if (source =~ /(?m)^\s*import\s+teamdevhub\.devhub\.${servicePackage}\./) {
+					violations << "${sourceFile}: imports ${serviceName} internal package"
+				}
+			}
+		}
+		if (!violations.isEmpty()) {
+			throw new GradleException('Common-module boundary violations:\n' + violations.join('\n'))
+		}
+	}
+}
+
 tasks.named('check') {
 	dependsOn tasks.named('verifyServiceBoundaries')
 	dependsOn tasks.named('verifyApplicationScanBoundaries')
 	dependsOn tasks.named('verifyProductionPackageBoundaries')
+	dependsOn tasks.named('verifyCommonModuleBoundaries')
 }
 
 clean.doLast {

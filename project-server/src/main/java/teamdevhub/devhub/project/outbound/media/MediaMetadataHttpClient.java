@@ -1,25 +1,19 @@
 package teamdevhub.devhub.project.outbound.media;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
-import org.springframework.web.client.RestClient;
 import teamdevhub.devhub.shared.media.MediaFileMetadata;
-import teamdevhub.devhub.shared.media.MediaFileMetadataQuery;
+import teamdevhub.devhub.project.core.port.out.MediaMetadataPort;
 
 @Component
-public class MediaMetadataHttpClient implements MediaFileMetadataQuery {
-    private final RestClient client;
+public class MediaMetadataHttpClient implements MediaMetadataPort {
+    private final MediaMetadataFeignClient client;
 
-    public MediaMetadataHttpClient(RestClient.Builder builder,
-            @Value("${services.media.base-url:http://media-server}") String baseUrl) {
-        this.client = builder.baseUrl(baseUrl).build();
+    public MediaMetadataHttpClient(MediaMetadataFeignClient client) {
+        this.client = client;
     }
 
     @Override
     public MediaFileMetadata findMetadata(String fileGuid) {
-        return client.get()
-                .uri("/internal/media/{fileGuid}/metadata", fileGuid)
-                .retrieve()
-                .body(MediaFileMetadata.class);
+        return client.findMetadata(fileGuid);
     }
 }

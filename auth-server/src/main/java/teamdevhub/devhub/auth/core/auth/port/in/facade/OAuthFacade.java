@@ -7,7 +7,7 @@ import teamdevhub.devhub.auth.core.auth.application.service.AuthResult;
 import teamdevhub.devhub.auth.core.auth.application.service.oauth.vo.OAuthResult;
 import teamdevhub.devhub.auth.core.auth.application.service.oauth.vo.OAuthAuthorizationResult;
 import teamdevhub.devhub.auth.core.auth.application.service.oauth.vo.OAuthUserResult;
-import teamdevhub.devhub.shared.member.AuthMemberGateway;
+import teamdevhub.devhub.auth.core.port.out.AuthMemberPort;
 import teamdevhub.devhub.auth.core.auth.domain.VerificationProvider;
 import teamdevhub.devhub.auth.core.auth.domain.vo.oauth.OAuthUser;
 import teamdevhub.devhub.auth.core.auth.port.in.usecase.AuthenticationUseCase;
@@ -22,7 +22,7 @@ public class OAuthFacade {
     private final OAuthAuthenticationUseCase oauthAuthenticationUseCase;
     private final OAuthResolveUseCase oauthResolveUseCase;
     private final AuthenticationUseCase authenticationUseCase;
-    private final AuthMemberGateway memberLoginActivityUseCase;
+    private final AuthMemberPort memberLoginActivityUseCase;
 
     public OAuthAuthorizationResult createOAuthAuthorizationUrl(String provider) {
         return oauthAuthenticationUseCase.createAuthorizationUrl(provider);

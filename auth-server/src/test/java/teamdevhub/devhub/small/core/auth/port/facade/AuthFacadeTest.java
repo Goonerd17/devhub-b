@@ -7,9 +7,6 @@ import teamdevhub.devhub.auth.core.auth.application.service.AuthResult;
 import teamdevhub.devhub.auth.core.auth.port.in.command.LoginCommand;
 import teamdevhub.devhub.auth.core.auth.port.in.facade.AuthFacade;
 import teamdevhub.devhub.shared.core.common.exception.DomainRuleException;
-import teamdevhub.devhub.member.core.user.domain.User;
-import teamdevhub.devhub.member.core.user.domain.vo.command.CreateUserCommand;
-import teamdevhub.devhub.auth.core.user.port.in.command.SignupUserCommand;
 import teamdevhub.devhub.fake.pure.application.port.in.usecase.auth.FakeAuthenticationUseCase;
 import teamdevhub.devhub.fake.pure.application.port.in.usecase.auth.FakeUserCredentialUseCase;
 import teamdevhub.devhub.fake.pure.application.port.in.usecase.user.FakeUserLoginUseCase;
@@ -37,14 +34,6 @@ public class AuthFacadeTest {
                 authenticationUseCase,
                 userLoginUseCase
         );
-    }
-
-    private User buildUser(String userGuid) {
-        SignupUserCommand signupUserCommand = SignupUserCommand.builder()
-                .email(TEST_EMAIL_1).password(TEST_PASSWORD_1).username(TEST_USERNAME_1)
-                .introduction(TEST_INTRO_1).positionList(TEST_POSITION_LIST).skillList(TEST_SKILL_LIST)
-                .verificationTarget(VERIFICATION_TARGET_1).build();
-        return User.createGeneralUser(new CreateUserCommand(userGuid, signupUserCommand.username(), signupUserCommand.introduction(), signupUserCommand.positionList(), signupUserCommand.skillList()));
     }
 
     @Test
@@ -113,9 +102,7 @@ public class AuthFacadeTest {
     @DisplayName("?덊눜???좎?媛_濡쒓렇?몄쓣_?쒕룄?섎㈃_理쒖쥌_濡쒓렇???쇱떆媛_?낅뜲?댄듃?섏?_?딅뒗??")
     void login_withdrawnUser_doesNotUpdateLastLoginDateTime() {
         // given
-        User withdrawnUser = buildUser(TEST_USER_GUID_1);
-        withdrawnUser.withdraw();
-        userLoginUseCase.givenUser(withdrawnUser);
+        userLoginUseCase.givenWithdrawnUser(TEST_USER_GUID_1);
 
         LoginCommand loginCommand = new LoginCommand(TEST_EMAIL_1, TEST_PASSWORD_1);
 

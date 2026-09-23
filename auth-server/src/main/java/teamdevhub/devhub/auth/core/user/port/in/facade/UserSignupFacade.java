@@ -7,11 +7,11 @@ import teamdevhub.devhub.auth.core.auth.application.service.AuthResult;
 import teamdevhub.devhub.auth.core.auth.application.service.oauth.vo.OAuthResult;
 import teamdevhub.devhub.auth.core.auth.domain.vo.user.AuthenticatedUser;
 import teamdevhub.devhub.auth.core.auth.port.in.usecase.UserCredentialUseCase;
-import teamdevhub.devhub.shared.terms.TermsAgreementGateway;
+import teamdevhub.devhub.auth.core.port.out.TermsAgreementPort;
 import teamdevhub.devhub.auth.core.auth.domain.vo.oauth.OAuthUser;
 import teamdevhub.devhub.shared.security.MemberRole;
 import teamdevhub.devhub.auth.api.credential.EmailCredentialRegistrationCommand;
-import teamdevhub.devhub.shared.member.AuthMemberGateway;
+import teamdevhub.devhub.auth.core.port.out.AuthMemberPort;
 import teamdevhub.devhub.auth.core.user.port.in.usecase.UserSignupUseCase;
 import teamdevhub.devhub.auth.core.auth.port.in.usecase.AuthenticationUseCase;
 import teamdevhub.devhub.auth.core.auth.port.in.command.oauth.SignupOAuthUserCommand;
@@ -25,12 +25,12 @@ import teamdevhub.devhub.auth.core.auth.port.in.usecase.verification.Verificatio
 public class UserSignupFacade {
 
     private final UserSignupUseCase userSignupUseCase;
-    private final TermsAgreementGateway termsUseCase;
+    private final TermsAgreementPort termsUseCase;
     private final OAuthResolveUseCase oauthResolveUseCase;
     private final UserCredentialUseCase userCredentialUseCase;
     private final AuthenticationUseCase authenticationUseCase;
     private final VerificationUseCase verificationUseCase;
-    private final AuthMemberGateway userLoginUseCase;
+    private final AuthMemberPort userLoginUseCase;
 
     public AuthResult signup(SignupUserCommand signupUserCommand) {
         verificationUseCase.assertAllowed(signupUserCommand.verificationTarget());

@@ -8,7 +8,7 @@ import teamdevhub.devhub.auth.core.auth.domain.vo.user.AuthenticatedUser;
 import teamdevhub.devhub.auth.core.auth.port.in.usecase.AuthenticationUseCase;
 import teamdevhub.devhub.auth.core.auth.port.out.token.RefreshTokenRepository;
 import teamdevhub.devhub.auth.core.auth.port.out.token.TokenIssueProvider;
-import teamdevhub.devhub.shared.member.AuthMemberGateway;
+import teamdevhub.devhub.auth.core.port.out.AuthMemberPort;
 
 @Service
 @Transactional
@@ -17,7 +17,7 @@ public class AuthenticationService implements AuthenticationUseCase {
 
     private final TokenIssueProvider tokenIssueProvider;
     private final RefreshTokenRepository refreshTokenRepository;
-    private final AuthMemberGateway currentMemberRoleQuery;
+    private final AuthMemberPort currentMemberRoleQuery;
 
     @Override
     public AuthResult login(AuthenticatedUser authenticatedUser) {

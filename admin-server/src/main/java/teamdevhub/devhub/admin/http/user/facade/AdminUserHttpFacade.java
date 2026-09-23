@@ -14,7 +14,7 @@ import teamdevhub.devhub.shared.core.common.page.PageResult;
 @Transactional
 @RequiredArgsConstructor
 public class AdminUserHttpFacade {
-    private final AdminMemberGateway memberGateway;
+    private final teamdevhub.devhub.admin.core.port.out.AdminMemberPort memberGateway;
     private final AdminPasswordReset adminPasswordReset;
 
     public PageResult<UserBasicResponseDto> listUsers(AdminMemberSearch command, PageCommand page) {

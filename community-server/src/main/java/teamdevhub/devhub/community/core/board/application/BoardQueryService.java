@@ -18,7 +18,7 @@ import teamdevhub.devhub.community.core.board.port.out.BoardQueryRepository;
 import teamdevhub.devhub.community.core.board.port.out.CommentRepository;
 import teamdevhub.devhub.shared.core.common.page.PageCommand;
 import teamdevhub.devhub.shared.core.common.page.PageResult;
-import teamdevhub.devhub.shared.member.MemberProfileQuery;
+import teamdevhub.devhub.community.core.port.out.MemberProfilePort;
 import teamdevhub.devhub.shared.member.MemberPublicProfile;
 
 @Service
@@ -29,7 +29,7 @@ public class BoardQueryService implements BoardQueryUseCase {
 	private final BoardQueryRepository boardQueryRepository;
 	private final BoardLikeRepository boardLikeRepository;
 	private final CommentRepository commentRepository;
-	private final MemberProfileQuery memberPublicProfileQuery;
+	private final MemberProfilePort memberPublicProfileQuery;
 	
 	@Override
 	public PageResult<Board> listBoard(SearchBoardCommand searchBoardCommand, PageCommand pageCommand, String userGuid) {

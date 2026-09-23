@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.PutMapping;
-import teamdevhub.devhub.shared.security.MemberEmailQuery;
+import teamdevhub.devhub.auth.api.credential.MemberEmailQuery;
 import teamdevhub.devhub.shared.security.AdminPasswordReset;
 
 @RestController

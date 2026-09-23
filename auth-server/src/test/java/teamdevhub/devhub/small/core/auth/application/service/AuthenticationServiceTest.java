@@ -7,13 +7,9 @@ import teamdevhub.devhub.auth.core.auth.application.service.AuthResult;
 import teamdevhub.devhub.auth.core.auth.application.service.AuthenticationService;
 import teamdevhub.devhub.auth.core.auth.application.service.token.RefreshToken;
 import teamdevhub.devhub.auth.core.auth.domain.vo.user.AuthenticatedUser;
-import teamdevhub.devhub.shared.core.common.audit.AuditInfo;
-import teamdevhub.devhub.member.core.user.domain.User;
-import teamdevhub.devhub.member.core.user.domain.vo.UserRole;
-import teamdevhub.devhub.shared.member.AuthMemberGateway;
+import teamdevhub.devhub.auth.core.port.out.AuthMemberPort;
 import teamdevhub.devhub.shared.security.MemberRole;
 import teamdevhub.devhub.fake.pure.application.port.out.auth.FakeRefreshTokenRepository;
-import teamdevhub.devhub.fake.pure.application.port.out.user.FakeUserRepository;
 import teamdevhub.devhub.fake.pure.application.provider.FakeTokenIssueProvider;
 
 import java.util.Optional;
@@ -26,32 +22,14 @@ class AuthenticationServiceTest {
     private AuthenticationService authenticationService;
 
     private FakeRefreshTokenRepository refreshTokenRepository;
-    private FakeUserRepository userRepository;
-    private AuthMemberGateway memberGateway;
+    private AuthMemberPort memberGateway;
 
     @BeforeEach
     void init() {
         FakeTokenIssueProvider fakeTokenIssueProvider = new FakeTokenIssueProvider();
         refreshTokenRepository = new FakeRefreshTokenRepository();
-        userRepository = new FakeUserRepository();
-        memberGateway = org.mockito.Mockito.mock(AuthMemberGateway.class);
+        memberGateway = org.mockito.Mockito.mock(AuthMemberPort.class);
         org.mockito.Mockito.when(memberGateway.findCurrentRole(TEST_USER_GUID_1)).thenReturn(MemberRole.USER);
-
-        userRepository.givenUser(
-                User.of(
-                        TEST_USER_GUID_1,
-                        UserRole.USER,
-                        "tester",
-                        null,
-                        null,
-                        36.5,
-                        false,
-                        null,
-                        false,
-                        null,
-                        AuditInfo.empty()
-                )
-        );
 
         authenticationService = new AuthenticationService(
                 fakeTokenIssueProvider,

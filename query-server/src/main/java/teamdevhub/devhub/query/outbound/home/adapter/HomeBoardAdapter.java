@@ -4,7 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import teamdevhub.devhub.query.core.home.port.in.query.HomeBoardQuery;
 import teamdevhub.devhub.query.core.home.port.out.LoadHomeBoardPort;
-import teamdevhub.devhub.shared.home.HomeBoardGateway;
+import teamdevhub.devhub.query.core.port.out.HomeBoardPort;
 
 import java.util.List;
 
@@ -12,7 +12,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class HomeBoardAdapter implements LoadHomeBoardPort {
 
-    private final HomeBoardGateway homeBoardQueryDao;
+    private final HomeBoardPort homeBoardQueryDao;
 
     @Override
     public List<HomeBoardResult> loadPopularBoards(HomeBoardQuery query) {

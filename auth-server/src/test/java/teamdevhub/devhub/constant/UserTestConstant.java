@@ -1,14 +1,11 @@
 package teamdevhub.devhub.constant;
 
 import teamdevhub.devhub.shared.terms.TermsAgreementItem;
-import teamdevhub.devhub.member.core.user.domain.vo.position.UserPosition;
-import teamdevhub.devhub.member.core.user.domain.vo.skill.UserSkill;
 import teamdevhub.devhub.auth.core.auth.domain.vo.verification.VerificationTarget;
 import teamdevhub.devhub.auth.core.auth.domain.vo.verification.VerificationType;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Set;
 
 public final class UserTestConstant {
 
@@ -49,8 +46,6 @@ public final class UserTestConstant {
     public static final List<String> TEST_POSITION_LIST = List.of("001");
     public static final List<String> TEST_SKILL_LIST = List.of("001");
 
-    public static final Set<UserPosition> TEST_USER_POSITIONS = Set.of(new UserPosition(TEST_USER_GUID_1,"001"));
-    public static final Set<UserSkill> TEST_USER_SKILLS = Set.of(new UserSkill(TEST_USER_GUID_1, "001"));
 
     public static final String TEST_EMAIL_CODE = "123456";
     public static final String TEST_EMAIL = "test@test.com";
@@ -65,8 +60,6 @@ public final class UserTestConstant {
     public static final List<String> NEW_POSITION_LIST = List.of("002");
     public static final List<String> NEW_SKILL_LIST = List.of("002");
 
-    public static final Set<UserPosition> NEW_USER_POSITIONS = Set.of(new UserPosition(TEST_USER_GUID_1,"002"));
-    public static final Set<UserSkill> NEW_USER_SKILLS = Set.of(new UserSkill(TEST_USER_GUID_1,"002"));
 
     public static final VerificationTarget VERIFICATION_TARGET_1 = VerificationTarget.of(VerificationType.EMAIL, TEST_EMAIL_1);
     public static final VerificationTarget VERIFICATION_TARGET_2 = VerificationTarget.of(VerificationType.EMAIL, UNVERIFIED_EMAIL);

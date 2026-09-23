@@ -7,7 +7,7 @@ import teamdevhub.devhub.auth.core.auth.port.in.command.oauth.SignupOAuthUserCom
 import teamdevhub.devhub.auth.core.user.port.in.command.SignupAdminCommand;
 import teamdevhub.devhub.auth.core.user.port.in.command.SignupUserCommand;
 import teamdevhub.devhub.auth.core.user.port.in.usecase.UserSignupUseCase;
-import teamdevhub.devhub.shared.member.AuthMemberGateway;
+import teamdevhub.devhub.auth.core.port.out.AuthMemberPort;
 import teamdevhub.devhub.shared.member.AuthMemberRegistration;
 import teamdevhub.devhub.shared.security.MemberRole;
 import teamdevhub.devhub.shared.identifier.IdentifierProvider;
@@ -17,7 +17,7 @@ import teamdevhub.devhub.shared.identifier.IdentifierProvider;
 @RequiredArgsConstructor
 public class UserSignupService implements UserSignupUseCase {
 
-    private final AuthMemberGateway memberRegistrationUseCase;
+    private final AuthMemberPort memberRegistrationUseCase;
     private final IdentifierProvider identifierProvider;
 
     @Override

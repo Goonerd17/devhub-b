@@ -16,7 +16,6 @@ import teamdevhub.devhub.member.core.user.port.in.command.UpdateProfileImageComm
 import teamdevhub.devhub.fake.pure.application.port.out.user.FakeUserPositionRepository;
 import teamdevhub.devhub.fake.pure.application.port.out.user.FakeUserRepository;
 import teamdevhub.devhub.fake.pure.application.port.out.user.FakeUserSkillRepository;
-import teamdevhub.devhub.fake.pure.application.provider.FakeEncodedPasswordProvider;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -29,7 +28,6 @@ class UserProfileServiceTest {
 
     private UserProfileService userProfileService;
 
-    private FakeEncodedPasswordProvider encodedPasswordProvider;
     private FakeUserRepository userRepository;
     private FakeUserPositionRepository userPositionRepository;
     private FakeUserSkillRepository skillRepository;

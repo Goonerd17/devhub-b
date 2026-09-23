@@ -11,7 +11,7 @@ import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import teamdevhub.devhub.shared.home.HomeBoardView;
-import teamdevhub.devhub.shared.member.MemberProfileQuery;
+import teamdevhub.devhub.community.core.port.out.MemberProfilePort;
 import teamdevhub.devhub.shared.member.MemberPublicProfile;
 
 @RestController
@@ -19,7 +19,7 @@ import teamdevhub.devhub.shared.member.MemberPublicProfile;
 @RequiredArgsConstructor
 public class HomeBoardInternalController {
     private final JPAQueryFactory queryFactory;
-    private final MemberProfileQuery memberProfileQuery;
+    private final MemberProfilePort memberProfileQuery;
 
     @GetMapping
     public List<HomeBoardView> popular(@RequestParam int limit, @RequestParam boolean sortByLike) {

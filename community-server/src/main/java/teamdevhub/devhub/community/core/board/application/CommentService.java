@@ -14,7 +14,7 @@ import teamdevhub.devhub.community.core.board.port.in.usecase.CommentUseCase;
 import teamdevhub.devhub.community.core.board.port.out.CommentRepository;
 import teamdevhub.devhub.shared.core.common.exception.BusinessRuleException;
 import teamdevhub.devhub.shared.identifier.IdentifierProvider;
-import teamdevhub.devhub.shared.member.MemberProfileQuery;
+import teamdevhub.devhub.community.core.port.out.MemberProfilePort;
 import teamdevhub.devhub.shared.member.MemberPublicProfile;
 import teamdevhub.devhub.shared.enums.ErrorCode;
 @Service
@@ -24,7 +24,7 @@ public class CommentService implements CommentUseCase {
 
 	private final IdentifierProvider identifierProvider;
 	private final CommentRepository commentRepository;
-	private final MemberProfileQuery memberPublicProfileQuery;
+	private final MemberProfilePort memberPublicProfileQuery;
 
 	@Override
 	public List<Comment> commentList(String boardGuid) {

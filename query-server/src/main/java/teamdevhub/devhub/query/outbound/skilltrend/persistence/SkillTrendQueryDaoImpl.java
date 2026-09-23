@@ -5,17 +5,17 @@ import org.springframework.stereotype.Repository;
 import java.time.LocalDate;
 import java.util.List;
 import teamdevhub.devhub.shared.analytics.CodeCount;
-import teamdevhub.devhub.shared.analytics.MemberAnalyticsGateway;
+import teamdevhub.devhub.query.core.port.out.MemberAnalyticsPort;
 import teamdevhub.devhub.shared.analytics.MonthlyProjectCount;
 import teamdevhub.devhub.shared.analytics.PositionSkillCount;
-import teamdevhub.devhub.shared.analytics.ProjectAnalyticsGateway;
+import teamdevhub.devhub.query.core.port.out.ProjectAnalyticsPort;
 
 @Repository
 @RequiredArgsConstructor
 public class SkillTrendQueryDaoImpl implements SkillTrendQueryDao {
 
-    private final ProjectAnalyticsGateway projectAnalyticsGateway;
-    private final MemberAnalyticsGateway memberAnalyticsGateway;
+    private final ProjectAnalyticsPort projectAnalyticsGateway;
+    private final MemberAnalyticsPort memberAnalyticsGateway;
 
     @Override
     public long countTotalProjects() {

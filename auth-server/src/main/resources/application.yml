@@ -4,7 +4,7 @@ spring:
   application:
     name: auth-server
   config:
-    import: optional:configserver:http://localhost:8888
+    import: optional:configserver:${CONFIG_SERVER_URL:http://localhost:8888}
   datasource:
     url: ${SPRING_DATASOURCE_URL:jdbc:h2:mem:auth}
     driver-class-name: org.h2.Driver
@@ -25,7 +25,7 @@ app:
 eureka:
   client:
     service-url:
-      defaultZone: http://localhost:8761/eureka/
+      defaultZone: ${EUREKA_SERVER_URL:http://localhost:8761/eureka/}
 management:
   endpoints:
     web:

@@ -4,7 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import teamdevhub.devhub.query.core.home.domain.Banner;
 import teamdevhub.devhub.query.core.home.port.out.LoadHomeBannerPort;
-import teamdevhub.devhub.shared.home.HomeBannerGateway;
+import teamdevhub.devhub.query.core.port.out.HomeBannerPort;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -13,7 +13,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class HomeBannerAdapter implements LoadHomeBannerPort {
 
-    private final HomeBannerGateway homeBannerQueryDao;
+    private final HomeBannerPort homeBannerQueryDao;
 
     @Override
     public List<Banner> loadMainBanners() {

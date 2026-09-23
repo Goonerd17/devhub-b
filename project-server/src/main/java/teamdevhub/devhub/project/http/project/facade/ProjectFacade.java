@@ -15,13 +15,13 @@ import teamdevhub.devhub.project.core.application.domain.ProjectApplicationScore
 import teamdevhub.devhub.project.core.application.port.in.usecase.ProjectApplicationQueryUseCase;
 import teamdevhub.devhub.project.core.application.port.in.usecase.ProjectApplicationUseCase;
 import teamdevhub.devhub.shared.security.CurrentUserPrincipal;
-import teamdevhub.devhub.shared.security.MemberEmailQuery;
-import teamdevhub.devhub.shared.form.ApplicationFormGateway;
+import teamdevhub.devhub.project.core.port.out.MemberEmailPort;
+import teamdevhub.devhub.project.core.port.out.ApplicationFormPort;
 import teamdevhub.devhub.shared.form.ApplicationFormView;
 import teamdevhub.devhub.shared.core.common.exception.BusinessRuleException;
 import teamdevhub.devhub.shared.core.common.page.PageCommand;
 import teamdevhub.devhub.shared.core.common.page.PageResult;
-import teamdevhub.devhub.shared.media.MediaFileMetadataQuery;
+import teamdevhub.devhub.project.core.port.out.MediaMetadataPort;
 import teamdevhub.devhub.project.core.project.domain.Project;
 import teamdevhub.devhub.project.core.project.domain.ProjectLike;
 import teamdevhub.devhub.project.core.project.domain.ProjectRequirement;
@@ -36,7 +36,7 @@ import teamdevhub.devhub.project.core.project.port.in.usecase.ProjectApplication
 import teamdevhub.devhub.project.core.project.port.in.usecase.ProjectLikeUseCase;
 import teamdevhub.devhub.project.core.project.port.in.usecase.ProjectUseCase;
 import teamdevhub.devhub.shared.member.MemberProjectOwner;
-import teamdevhub.devhub.shared.member.ProjectMemberQuery;
+import teamdevhub.devhub.project.core.port.out.ProjectMemberPort;
 import teamdevhub.devhub.shared.enums.ErrorCode;
 
 @Service
@@ -44,14 +44,14 @@ import teamdevhub.devhub.shared.enums.ErrorCode;
 public class ProjectFacade {
 	
 	private final ProjectUseCase projectUseCase;
-	private final ApplicationFormGateway applicationFormGateway;
-	private final ProjectMemberQuery memberProjectOwnerQuery;
+	private final ApplicationFormPort applicationFormGateway;
+	private final ProjectMemberPort memberProjectOwnerQuery;
 	private final ProjectApplicationFormUseCase projectApplicationFormUseCase;
-	private final MediaFileMetadataQuery mediaFileMetadataQuery;
+	private final MediaMetadataPort mediaFileMetadataQuery;
 	private final ProjectLikeUseCase projectLikeUseCase;
 	private final ProjectApplicationUseCase projectApplicationUseCase;
 	private final ProjectApplicationQueryUseCase projectApplicationQueryUseCase;
-	private final MemberEmailQuery memberEmailQuery;
+	private final MemberEmailPort memberEmailQuery;
 
 	public PageResult<ProjectDetailResponseDto> getProjectList(SearchProjectListCommand projectListSearchRequestCommand, PageCommand pageCommand, CurrentUserPrincipal user) {
 		PageResult<Project> pagedProjectList = projectUseCase.getProjectList(projectListSearchRequestCommand, pageCommand);

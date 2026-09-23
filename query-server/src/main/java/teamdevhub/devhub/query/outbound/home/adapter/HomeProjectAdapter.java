@@ -4,7 +4,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.beans.factory.annotation.Value;
 import teamdevhub.devhub.query.core.home.port.in.query.HomeProjectQuery;
 import teamdevhub.devhub.query.core.home.port.out.LoadHomeProjectPort;
-import teamdevhub.devhub.shared.home.HomeProjectGateway;
+import teamdevhub.devhub.query.core.port.out.HomeProjectPort;
 import teamdevhub.devhub.query.outbound.project.persistence.ProjectProjectionRepository;
 
 import java.time.LocalDate;
@@ -13,11 +13,11 @@ import java.util.List;
 @Component
 public class HomeProjectAdapter implements LoadHomeProjectPort {
 
-    private final HomeProjectGateway homeProjectQueryDao;
+    private final HomeProjectPort homeProjectQueryDao;
     private final ProjectProjectionRepository projectProjectionRepository;
     private final String source;
 
-    public HomeProjectAdapter(HomeProjectGateway homeProjectQueryDao,
+    public HomeProjectAdapter(HomeProjectPort homeProjectQueryDao,
             ProjectProjectionRepository projectProjectionRepository,
             @Value("${query.home.project-source:projection}") String source) {
         this.homeProjectQueryDao = homeProjectQueryDao;

@@ -14,3 +14,11 @@ internal:
   http:
     connect-timeout-ms: ${INTERNAL_HTTP_CONNECT_TIMEOUT_MS:3000}
     read-timeout-ms: ${INTERNAL_HTTP_READ_TIMEOUT_MS:5000}
+
+spring:
+  kafka:
+    producer:
+      acks: all
+      enable-idempotence: true
+      retries: ${KAFKA_PRODUCER_RETRIES:10}
+      delivery-timeout-ms: ${KAFKA_PRODUCER_DELIVERY_TIMEOUT_MS:120000}

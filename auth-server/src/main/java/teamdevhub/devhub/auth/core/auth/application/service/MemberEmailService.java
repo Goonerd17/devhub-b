@@ -9,7 +9,7 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
-public class MemberEmailService implements MemberEmailQuery, teamdevhub.devhub.shared.security.MemberEmailQuery {
+public class MemberEmailService implements MemberEmailQuery {
     private final EmailUserCredentialRepository emailUserCredentialRepository;
 
     @Override

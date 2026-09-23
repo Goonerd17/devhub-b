@@ -28,7 +28,7 @@ jobs:
         run: chmod +x gradlew
 
       - name: Test, package, and verify service boundaries
-        run: ./gradlew test bootJar verifyServiceBoundaries verifyApplicationScanBoundaries verifyProductionPackageBoundaries --no-daemon
+        run: ./gradlew test bootJar verifyServiceBoundaries verifyApplicationScanBoundaries verifyProductionPackageBoundaries verifyCommonModuleBoundaries --no-daemon
 
       - name: Check source formatting and whitespace
         run: git diff --check --exit-code

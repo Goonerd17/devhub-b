@@ -21,13 +21,13 @@ import teamdevhub.devhub.community.outbound.board.adapter.entity.BoardEntity;
 import teamdevhub.devhub.community.outbound.board.adapter.mapper.BoardMapper;
 import teamdevhub.devhub.community.outbound.board.persistence.JpaBoardRepository;
 import teamdevhub.devhub.shared.member.MemberModerationProfile;
-import teamdevhub.devhub.shared.member.MemberModerationQuery;
+import teamdevhub.devhub.community.core.port.out.MemberModerationPort;
 
 @Component
 @RequiredArgsConstructor
 public class BoardQueryAdapter implements BoardQueryRepository {
 	private final JpaBoardRepository jpaBoardRepository;
-	private final MemberModerationQuery memberModerationQuery;
+	private final MemberModerationPort memberModerationQuery;
 	
 	@Override
 	public PageResult<Board> listBoard(SearchBoardCommand searchBoardCommand, int page, int size) {

@@ -9,10 +9,7 @@ import teamdevhub.devhub.auth.core.auth.application.service.oauth.vo.OAuthUserRe
 import teamdevhub.devhub.auth.core.auth.application.service.oauth.SignupStatus;
 import teamdevhub.devhub.auth.core.auth.domain.vo.user.AuthenticatedUser;
 import teamdevhub.devhub.auth.core.auth.port.in.facade.OAuthFacade;
-import teamdevhub.devhub.member.core.user.domain.User;
 import teamdevhub.devhub.shared.security.MemberRole;
-import teamdevhub.devhub.member.core.user.domain.vo.command.CreateUserCommand;
-import teamdevhub.devhub.auth.core.user.port.in.command.SignupUserCommand;
 import teamdevhub.devhub.fake.pure.application.port.in.usecase.auth.FakeAuthenticationUseCase;
 import teamdevhub.devhub.fake.pure.application.port.in.usecase.auth.oauth.FakeOAuthAuthenticationUseCase;
 import teamdevhub.devhub.fake.pure.application.port.in.usecase.auth.oauth.FakeOAuthResolveUseCase;
@@ -96,13 +93,7 @@ public class OAuthFacadeTest {
     @DisplayName("?덊눜???좎?媛_OAuth_濡쒓렇?몄쓣_?쒕룄?섎㈃_?덉쇅媛_諛쒖깮?쒕떎")
     void handleOAuthCallback_withdrawnUser_throwsException() {
         // given
-        SignupUserCommand signupUserCommand = SignupUserCommand.builder()
-                .email(TEST_EMAIL_1).password(TEST_PASSWORD_1).username(TEST_USERNAME_1)
-                .introduction(TEST_INTRO_1).positionList(TEST_POSITION_LIST).skillList(TEST_SKILL_LIST)
-                .verificationTarget(VERIFICATION_TARGET_1).build();
-        User withdrawnUser = User.createGeneralUser(new CreateUserCommand(TEST_USER_GUID_1, signupUserCommand.username(), signupUserCommand.introduction(), signupUserCommand.positionList(), signupUserCommand.skillList()));
-        withdrawnUser.withdraw();
-        userLoginUseCase.givenUser(withdrawnUser);
+        userLoginUseCase.givenWithdrawnUser(TEST_USER_GUID_1);
 
         AuthenticatedUser withdrawnAuthUser = new AuthenticatedUser(TEST_USER_GUID_1, TEST_EMAIL_1, MemberRole.USER);
         oauthResolveUseCase.setOauthUserResult(OAuthUserResult.success(withdrawnAuthUser));

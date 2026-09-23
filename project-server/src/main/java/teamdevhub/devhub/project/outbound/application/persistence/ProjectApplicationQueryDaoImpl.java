@@ -20,7 +20,7 @@ import teamdevhub.devhub.project.outbound.application.adapter.mapper.Application
 import teamdevhub.devhub.project.outbound.project.adapter.entity.ProjectRequirementEntity;
 import teamdevhub.devhub.project.outbound.project.persistence.JpaProjectRequirementRepository;
 import teamdevhub.devhub.shared.member.MemberApplicationProfile;
-import teamdevhub.devhub.shared.member.ProjectMemberQuery;
+import teamdevhub.devhub.project.core.port.out.ProjectMemberPort;
 
 @Repository
 @RequiredArgsConstructor
@@ -29,7 +29,7 @@ public class ProjectApplicationQueryDaoImpl implements ProjectApplicationQueryDa
 	private final JpaProjectApplicationRepository jpaProjectApplicationRepository;
 	private final JpaProjectApplicationAnswerRepository jpaProjectApplicationAnswerRepository;
 	private final JpaProjectRequirementRepository jpaProjectRequirementRepository;
-	private final ProjectMemberQuery memberApplicationProfileQuery;
+	private final ProjectMemberPort memberApplicationProfileQuery;
 
 	@Override
 	public Page<ProjectApplication> findApplicationsByProjectGuid(String projectGuid, Pageable pageable) {
